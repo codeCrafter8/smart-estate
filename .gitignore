@@ -1,0 +1,93 @@
+# Node.js 
+node_modules/
+dist/
+tmp/
+out-tsc/
+package-lock.json
+yarn.lock
+.npm/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.pnp/
+.pnp.js
+
+# Angular CLI specific
+.angular/
+
+# Java 
+*.class
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# IDEs
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+out/
+
+# Eclipse
+.metadata/
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+bin/
+.loadpath/
+
+# IntelliJ
+.idea/
+*.iml
+/out/
+
+# VS Code
+.vscode/
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Spring Boot specific
+spring.log
+
+# Logging
+*.log
+
+# Environment variables
+.env
+.env.*
+
+# Temporary files
+*.tmp
+*.temp
+
+# System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Lombok
+lombok.config
+
+# Misc
+*.swp
+*.swo
+*~
