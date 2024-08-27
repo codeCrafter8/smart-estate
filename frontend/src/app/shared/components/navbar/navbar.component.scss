@@ -1,5 +1,4 @@
 $navbar-bg-color: #f8f9fa;
-$navbar-border-color: #e7e7e7;
 $link-color: #000;
 $link-hover-color: darken(#7491b0, 10%);
 $btn-primary-bg-color: #7491b0;
@@ -11,9 +10,8 @@ $btn-secondary-hover-bg-color: darken(#6c757d, 10%);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 0 20px;
   background-color: $navbar-bg-color;
-  border-bottom: 1px solid $navbar-border-color;
 
   .nav-links {
     list-style: none;
@@ -23,7 +21,7 @@ $btn-secondary-hover-bg-color: darken(#6c757d, 10%);
     a {
       text-decoration: none;
       color: $link-color;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       cursor: pointer;
       font-family: 'Roboto', sans-serif;
 
