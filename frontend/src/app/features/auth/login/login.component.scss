@@ -1,0 +1,67 @@
+.login-container {
+    max-width: 400px;
+    margin: auto;
+    margin-top: 60px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  
+    .login-title {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+  
+    label {
+      display: block;
+      margin-bottom: 8px;
+      margin-top: 20px;
+    }
+  
+    input {
+      width: 95.5%;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+  
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #7491b0;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 1rem;
+      
+      &:disabled {
+        background-color: #aaa;
+      }
+    }
+  
+    .error {
+      color: rgb(146, 48, 48);
+    }
+  
+    .registration-link {
+        text-align: center;
+        margin-top: 16px;
+        
+        a {
+          color: #3a7ca4; 
+          text-decoration: none;
+          cursor: pointer;
+          font-weight: bold;
+      
+          &:hover {
+            text-decoration: underline; 
+          }
+        }
+    }
+}
+  
