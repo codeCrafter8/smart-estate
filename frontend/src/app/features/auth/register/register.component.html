@@ -1,0 +1,43 @@
+<div class="register-container">
+    <h2 class="register-title">Register</h2>
+    <form (ngSubmit)="onSubmit()" [formGroup]="registerForm" novalidate>
+      <div>
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" type="email" placeholder="Enter your email">
+        <div *ngIf="(submitted && email?.invalid) || (email?.touched)" class="error">
+          <small *ngIf="email?.errors?.['required']">Email is required.</small>
+          <small *ngIf="email?.errors?.['email']">Invalid email format.</small>
+        </div>
+      </div>
+  
+      <div>
+        <label for="password">Password:</label>
+        <input id="password" formControlName="password" type="password" placeholder="Enter your password">
+        <div *ngIf="(submitted && password?.invalid) || (password?.touched)" class="error">
+          <small *ngIf="password?.errors?.['required']">Password is required.</small>
+          <small *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters long.</small>
+        </div>
+      </div>
+  
+      <div>
+        <label for="confirmPassword">Confirm Password:</label>
+        <input id="confirmPassword" formControlName="confirmPassword" type="password" placeholder="Confirm your password">
+        <div *ngIf="(submitted && confirmPassword?.invalid) || (confirmPassword?.touched)" class="error">
+          <small *ngIf="confirmPassword?.errors?.['required']">Confirmation is required.</small>
+          <small *ngIf="registerForm.errors?.['mismatch']">Passwords do not match.</small>
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="registerForm.invalid">Register</button>
+  
+      <div *ngIf="registrationFailed" class="error">
+        <small>Registration failed. Please try again.</small>
+      </div>
+  
+      <div class="registration-link">
+        <span>Already have an account? </span>
+        <a routerLink="/login">Sign in here</a>
+      </div>
+    </form>
+</div>
+  
