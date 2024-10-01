@@ -1,0 +1,45 @@
+.footer {
+    background-color: #f8f9fa;
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    margin-top: 30px;
+  
+    .footer-content {
+      max-width: 1200px;
+      margin: auto;
+  
+      .copyright {
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: #666;
+      }
+  
+      .contact-info {
+        margin-bottom: 10px;
+        font-size: 14px;
+  
+        a {
+          color: #5d87b5;
+          text-decoration: none;
+  
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+  
+      .social-media {
+        a {
+          margin-right: 10px;
+          color: #5d87b5;
+          text-decoration: none;
+  
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+}
+  
