@@ -16,7 +16,6 @@ import java.util.List;
 @Table(name = "users")
 @Entity
 public class User implements UserDetails {
-
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
@@ -68,5 +67,4 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
 }

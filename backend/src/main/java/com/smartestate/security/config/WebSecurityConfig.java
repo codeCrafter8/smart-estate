@@ -24,7 +24,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Configuration
 public class WebSecurityConfig {
-
     private final UserService userService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
@@ -41,6 +40,7 @@ public class WebSecurityConfig {
                 .anyRequest().authenticated());
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
         return http.build();
     }
 

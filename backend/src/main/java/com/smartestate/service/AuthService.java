@@ -2,6 +2,7 @@ package com.smartestate.service;
 
 import com.smartestate.dto.AuthRequestDto;
 import com.smartestate.dto.AuthResponseDto;
+import com.smartestate.exception.DuplicateResourceException;
 import com.smartestate.model.User;
 import com.smartestate.repository.UserRepository;
 import com.smartestate.security.jwt.JwtUtil;
@@ -16,13 +17,16 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Service
 public class AuthService {
-
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
 
     public AuthResponseDto signUp(AuthRequestDto authRequestDto) {
+        if (userRepository.existsByEmail(authRequestDto.email())) {
+            throw new DuplicateResourceException("User with email " + authRequestDto.email() + " already exists.");
+        }
+
         User user = User.builder()
                 .email(authRequestDto.email())
                 .password(passwordEncoder.encode(authRequestDto.password()))
@@ -49,5 +53,4 @@ public class AuthService {
 
         return new AuthResponseDto(jwtToken);
     }
-
 }
