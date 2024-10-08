@@ -31,7 +31,7 @@
       <button type="submit" [disabled]="registerForm.invalid">Register</button>
   
       <div *ngIf="registrationFailed" class="error">
-        <small>Registration failed. Please try again.</small>
+        <small>{{ errorMessage }}</small>
       </div>
   
       <div class="registration-link">

@@ -21,7 +21,7 @@
       <button type="submit" [disabled]="loginForm.invalid">Sign In</button>
   
       <div *ngIf="loginFailed" class="error">
-        <small>Incorrect email or password.</small>
+        <small>{{ errorMessage }}</small>
       </div>
   
       <div class="registration-link">
