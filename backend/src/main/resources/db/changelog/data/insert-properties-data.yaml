@@ -1,0 +1,266 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: codeCrafter8
+      changes:
+        - insert:
+            tableName: properties
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: title
+                  value: "2 room apartment 54 m² in Prague Czech Republic"
+              - column:
+                  name: country_name
+                  value: "Czech Republic"
+              - column:
+                  name: region_name
+                  value: "Prague, Czech Republic"
+              - column:
+                  name: year_built
+                  value: 2023
+              - column:
+                  name: total_building_floors
+                  value: 4
+              - column:
+                  name: apartment_floor
+                  value: 2
+              - column:
+                  name: total_rooms
+                  value: 4
+              - column:
+                  name: total_bedrooms
+                  value: 2
+              - column:
+                  name: total_bathrooms
+                  value: 1
+              - column:
+                  name: apartment_area
+                  value: 54.0
+              - column:
+                  name: price_in_usd
+                  value: 314990.0
+        - insert:
+            tableName: properties
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: title
+                  value: "4 room apartment 245 m² in Yesiloez, Turkey"
+              - column:
+                  name: country_name
+                  value: "Turkey"
+              - column:
+                  name: region_name
+                  value: "Yesiloez, Mediterranean Region, Alanya, Turkey"
+              - column:
+                  name: year_built
+                  value: 2007
+              - column:
+                  name: total_building_floors
+                  value: 2
+              - column:
+                  name: apartment_floor
+                  value: 3
+              - column:
+                  name: total_rooms
+                  value: 5
+              - column:
+                  name: total_bedrooms
+                  value: 4
+              - column:
+                  name: total_bathrooms
+                  value: 4
+              - column:
+                  name: apartment_area
+                  value: 245.0
+              - column:
+                  name: price_in_usd
+                  value: 274415.0
+        - insert:
+            tableName: properties
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: title
+                  value: "2 room apartment 80 m² in Brguli, Montenegro"
+              - column:
+                  name: country_name
+                  value: "Montenegro"
+              - column:
+                  name: region_name
+                  value: "Brguli, Lustica, Herceg Novi, Montenegro"
+              - column:
+                  name: total_building_floors
+                  value: 4
+              - column:
+                  name: apartment_floor
+                  value: 1
+              - column:
+                  name: total_rooms
+                  value: 3
+              - column:
+                  name: total_bedrooms
+                  value: 2
+              - column:
+                  name: total_bathrooms
+                  value: 1
+              - column:
+                  name: apartment_area
+                  value: 80.0
+              - column:
+                  name: price_in_usd
+                  value: 460092.0
+        - insert:
+            tableName: properties
+            columns:
+              - column:
+                  name: id
+                  value: 4
+              - column:
+                  name: title
+                  value: "1 room apartment 58 m² in Saint Spyridon, Greece"
+              - column:
+                  name: country_name
+                  value: "Greece"
+              - column:
+                  name: region_name
+                  value: "Saint Spyridon, Limenas Markopoulou, Attica, Municipality of Athens, Regional Unit of Central Athens, Greece"
+              - column:
+                  name: year_built
+                  value: 1973
+              - column:
+                  name: total_building_floors
+                  value: 1
+              - column:
+                  name: total_rooms
+                  value: 1
+              - column:
+                  name: total_bedrooms
+                  value: 1
+              - column:
+                  name: total_bathrooms
+                  value: 1
+              - column:
+                  name: apartment_area
+                  value: 58.0
+              - column:
+                  name: price_in_usd
+                  value: 163039.0
+        - insert:
+            tableName: properties
+            columns:
+              - column:
+                  name: id
+                  value: 5
+              - column:
+                  name: title
+                  value: "4 room house 269 m² in Lokva Rogoznica, Croatia"
+              - column:
+                  name: country_name
+                  value: "Croatia"
+              - column:
+                  name: region_name
+                  value: "Lokva Rogoznica, Grad Omis, Split-Dalmatia County, Croatia"
+              - column:
+                  name: year_built
+                  value: 2024
+              - column:
+                  name: total_building_floors
+                  value: 2
+              - column:
+                  name: apartment_area
+                  value: 269.0
+              - column:
+                  name: price_in_usd
+                  value: 1521699.0
+        - insert:
+            tableName: properties
+            columns:
+              - column:
+                  name: id
+                  value: 6
+              - column:
+                  name: title
+                  value: "House 1 bathroom 78 m² in Szekesfehervari jaras, Hungary"
+              - column:
+                  name: country_name
+                  value: "Hungary"
+              - column:
+                  name: region_name
+                  value: "Transdanubia, Szekesfehervari jaras, Fejér, Hungary"
+              - column:
+                  name: year_built
+                  value: 1990
+              - column:
+                  name: total_building_floors
+                  value: 2
+              - column:
+                  name: total_bathrooms
+                  value: 1
+              - column:
+                  name: apartment_area
+                  value: 78.0
+              - column:
+                  name: price_in_usd
+                  value: 146816.0
+        - insert:
+            tableName: properties
+            columns:
+              - column:
+                  name: id
+                  value: 7
+              - column:
+                  name: title
+                  value: "7 room house 220 m² in Grebastica, Croatia"
+              - column:
+                  name: country_name
+                  value: "Croatia"
+              - column:
+                  name: region_name
+                  value: "Grebastica, Grad Sibenik, Šibenik-Knin County, Croatia"
+              - column:
+                  name: year_built
+                  value: 1980
+              - column:
+                  name: total_building_floors
+                  value: 1
+              - column:
+                  name: apartment_area
+                  value: 220.0
+              - column:
+                  name: price_in_usd
+                  value: 1249967.0
+        - insert:
+            tableName: properties
+            columns:
+              - column:
+                  name: id
+                  value: 8
+              - column:
+                  name: title
+                  value: "6 room house 632 m² in Zagreb, Croatia"
+              - column:
+                  name: country_name
+                  value: "Croatia"
+              - column:
+                  name: region_name
+                  value: "Zagreb, Croatia"
+              - column:
+                  name: year_built
+                  value: 1996
+              - column:
+                  name: total_building_floors
+                  value: 2
+              - column:
+                  name: apartment_area
+                  value: 632.0
+              - column:
+                  name: price_in_usd
+                  value: 2404508.0
