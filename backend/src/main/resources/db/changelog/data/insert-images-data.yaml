@@ -1,14 +1,5 @@
 databaseChangeLog:
   - changeSet:
-      id: 6
-      author: codeCrafter8
-      changes:
-        - createSequence:
-            sequenceName: image_sequence
-            startValue: 1
-            incrementBy: 1
-
-  - changeSet:
       id: 7
       author: codeCrafter8
       changes:
