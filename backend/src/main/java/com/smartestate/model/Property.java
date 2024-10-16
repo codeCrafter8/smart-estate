@@ -1,6 +1,7 @@
 package com.smartestate.model;
 
 import com.smartestate.model.enumeration.CountryName;
+import com.smartestate.model.enumeration.PropertyType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,8 +17,20 @@ import java.util.List;
 @Entity
 public class Property {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "property_seq_generator"
+    )
+    @SequenceGenerator(
+            name = "property_seq_generator",
+            sequenceName = "property_sequence",
+            allocationSize = 1
+    )
     private Integer id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private PropertyType propertyType;
 
     @Column(nullable = false)
     private String title;

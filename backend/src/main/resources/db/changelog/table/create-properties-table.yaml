@@ -8,14 +8,24 @@ databaseChangeLog:
             tableExists:
               tableName: properties
       changes:
+        - createSequence:
+            sequenceName: property_sequence
+            startValue: 1
+            incrementBy: 1
         - createTable:
             tableName: properties
             columns:
               - column:
                   name: id
-                  type: INT
+                  type: BIGINT
+                  defaultValueSequenceNext: property_sequence
                   constraints:
                     primaryKey: true
+                    nullable: false
+              - column:
+                  name: property_type
+                  type: VARCHAR(50)
+                  constraints:
                     nullable: false
               - column:
                   name: title

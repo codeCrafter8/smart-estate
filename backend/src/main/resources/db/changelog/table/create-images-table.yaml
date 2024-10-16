@@ -8,12 +8,17 @@ databaseChangeLog:
             tableExists:
               tableName: images
       changes:
+        - createSequence:
+            sequenceName: image_sequence
+            startValue: 1
+            incrementBy: 1
         - createTable:
             tableName: images
             columns:
               - column:
                   name: id
-                  type: INT
+                  type: BIGINT
+                  defaultValueSequenceNext: image_sequence
                   constraints:
                     primaryKey: true
                     nullable: false

@@ -10,6 +10,9 @@ databaseChangeLog:
                   name: id
                   value: 1
               - column:
+                  name: property_type
+                  value: "APARTMENT"
+              - column:
                   name: title
                   value: "2 room apartment 54 m² in Prague Czech Republic"
               - column:
@@ -48,6 +51,9 @@ databaseChangeLog:
               - column:
                   name: id
                   value: 2
+              - column:
+                  name: property_type
+                  value: "APARTMENT"
               - column:
                   name: title
                   value: "4 room apartment 245 m² in Yesiloez, Turkey"
@@ -88,6 +94,9 @@ databaseChangeLog:
                   name: id
                   value: 3
               - column:
+                  name: property_type
+                  value: "APARTMENT"
+              - column:
                   name: title
                   value: "2 room apartment 80 m² in Brguli, Montenegro"
               - column:
@@ -123,6 +132,9 @@ databaseChangeLog:
               - column:
                   name: id
                   value: 4
+              - column:
+                  name: property_type
+                  value: "APARTMENT"
               - column:
                   name: title
                   value: "1 room apartment 58 m² in Saint Spyridon, Greece"
@@ -160,6 +172,9 @@ databaseChangeLog:
                   name: id
                   value: 5
               - column:
+                  name: property_type
+                  value: "HOUSE"
+              - column:
                   name: title
                   value: "4 room house 269 m² in Lokva Rogoznica, Croatia"
               - column:
@@ -186,6 +201,9 @@ databaseChangeLog:
               - column:
                   name: id
                   value: 6
+              - column:
+                  name: property_type
+                  value: "HOUSE"
               - column:
                   name: title
                   value: "House 1 bathroom 78 m² in Szekesfehervari jaras, Hungary"
@@ -217,6 +235,9 @@ databaseChangeLog:
                   name: id
                   value: 7
               - column:
+                  name: property_type
+                  value: "HOUSE"
+              - column:
                   name: title
                   value: "7 room house 220 m² in Grebastica, Croatia"
               - column:
@@ -243,6 +264,9 @@ databaseChangeLog:
               - column:
                   name: id
                   value: 8
+              - column:
+                  name: property_type
+                  value: "HOUSE"
               - column:
                   name: title
                   value: "6 room house 632 m² in Zagreb, Croatia"
