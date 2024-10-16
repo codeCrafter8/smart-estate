@@ -5,6 +5,7 @@ import com.smartestate.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -38,7 +39,9 @@ public class WebSecurityConfig {
         http.cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer
                 .configurationSource(corsConfigurationSource()));
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("api/v1/auth/**").permitAll()
+                .requestMatchers(HttpMethod.POST,
+                        "api/v1/auth/**",
+                        "api/v1/properties/search").permitAll()
                 .anyRequest().authenticated());
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

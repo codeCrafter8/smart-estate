@@ -20,7 +20,7 @@ public class AuthController {
 
     @PostMapping("/sign-up")
     public ResponseEntity<AuthResponseDto> signUp(@RequestBody AuthRequestDto authRequestDto) {
-        log.info("Sign-up request received for email: {}", authRequestDto.email());
+        log.info("Received sign-up request for email: {}", authRequestDto.email());
 
         AuthResponseDto authResponseDto = authService.signUp(authRequestDto);
         log.info("Sign-up successful for email: {}", authRequestDto.email());
@@ -30,7 +30,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponseDto> authenticate(@RequestBody AuthRequestDto authRequestDto) {
-        log.info("Authentication request received for email: {}", authRequestDto.email());
+        log.info("Received authentication request for email: {}", authRequestDto.email());
 
         AuthResponseDto authResponseDto = authService.authenticate(authRequestDto);
         log.info("Authentication successful for email: {}", authRequestDto.email());
