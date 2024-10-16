@@ -1,0 +1,73 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: codeCrafter8
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: properties
+      changes:
+        - createSequence:
+            sequenceName: property_sequence
+            startValue: 1
+            incrementBy: 1
+        - createTable:
+            tableName: properties
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  defaultValueSequenceNext: property_sequence
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: property_type
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: country_name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: region_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: year_built
+                  type: INT
+              - column:
+                  name: total_building_floors
+                  type: INT
+              - column:
+                  name: apartment_floor
+                  type: INT
+              - column:
+                  name: total_rooms
+                  type: INT
+              - column:
+                  name: total_bedrooms
+                  type: INT
+              - column:
+                  name: total_bathrooms
+                  type: INT
+              - column:
+                  name: apartment_area
+                  type: decimal(10, 2)
+              - column:
+                  name: price_in_usd
+                  type: decimal(10, 2)
+                  constraints:
+                    nullable: false
