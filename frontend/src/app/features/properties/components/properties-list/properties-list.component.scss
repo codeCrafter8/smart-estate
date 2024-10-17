@@ -1,0 +1,22 @@
+.properties-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto; 
+  }
+  
+  .loading {
+    font-size: 18px;
+    color: #007bff;
+    margin: 20px 0;
+  }
+  
+  .error {
+    font-size: 16px;
+    color: #ff0000;
+    margin: 20px 0;
+}
+  

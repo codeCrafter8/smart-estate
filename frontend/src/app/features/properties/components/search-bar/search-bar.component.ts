@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',
@@ -16,7 +17,7 @@ export class SearchBarComponent implements OnInit {
   propertyTypes = ['Apartment', 'House'];
   transactionTypes = ['Buy', 'Rent'];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.searchForm = this.fb.group({
       propertyType: ['House', Validators.required], 
       transactionType: ['Buy', Validators.required], 
@@ -53,7 +54,7 @@ export class SearchBarComponent implements OnInit {
   onSearch() {
     if (this.searchForm.valid) {
       const searchCriteria = this.searchForm.value;
-      console.log('Search Criteria:', searchCriteria);
+      this.router.navigate(['/properties'], { queryParams: searchCriteria });
     } else {
       console.log('Invalid form input');
     }
