@@ -42,6 +42,8 @@ public class WebSecurityConfig {
                 .requestMatchers(HttpMethod.POST,
                         "api/v1/auth/**",
                         "api/v1/properties/search").permitAll()
+                .requestMatchers(HttpMethod.GET,
+                        "api/v1/images/**").permitAll()
                 .anyRequest().authenticated());
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
