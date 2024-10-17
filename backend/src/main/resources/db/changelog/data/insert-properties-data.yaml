@@ -14,7 +14,7 @@ databaseChangeLog:
                   value: "APARTMENT"
               - column:
                   name: title
-                  value: "2 room apartment 54 m² in Prague Czech Republic"
+                  value: "2 room apartment 54 m² in Prague, Czech Republic"
               - column:
                   name: country_name
                   value: "Czech Republic"

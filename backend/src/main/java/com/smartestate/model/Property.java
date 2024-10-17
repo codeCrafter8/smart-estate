@@ -1,6 +1,7 @@
 package com.smartestate.model;
 
-import com.smartestate.model.enumeration.CountryName;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.smartestate.model.enumeration.PropertyType;
 import jakarta.persistence.*;
 import lombok.*;
@@ -13,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "properties")
 @Entity
 public class Property {
@@ -38,9 +40,8 @@ public class Property {
     @Column(length = 1000)
     private String description;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 100)
-    private CountryName countryName;
+    private String countryName;
 
     @Column(nullable = false)
     private String regionName;
@@ -62,5 +63,6 @@ public class Property {
     private BigDecimal priceInUsd;
 
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Image> images;
 }
