@@ -1,6 +1,6 @@
 <div class="property-card">
-    <img *ngIf="property.images.length > 0; else noImage" 
-         [src]="property.images[0]" 
+    <img *ngIf="property.imageIds.length > 0; else noImage" 
+         [src]="getImageUrl(property.imageIds[0])"
          alt="{{ property.title }}" 
          class="property-image" />
     <ng-template #noImage>

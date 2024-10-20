@@ -28,7 +28,7 @@ public class Property {
             sequenceName = "property_sequence",
             allocationSize = 1
     )
-    private Integer id;
+    private Long id;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

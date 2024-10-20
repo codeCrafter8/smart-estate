@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { Property } from '../../models/property';
+import { Property } from '../../models/property.model';
 import { CommonModule, NgIf } from '@angular/common';
+import { environment } from '../../../../../environments/environment';
+import { PropertyService } from '../../services/property.service';
 
 @Component({
   selector: 'app-property-item',
@@ -11,4 +13,10 @@ import { CommonModule, NgIf } from '@angular/common';
 })
 export class PropertyItemComponent {
   @Input() property!: Property;
+
+  constructor(private propertyService: PropertyService) {}
+
+  getImageUrl(imageId: number): string {
+    return this.propertyService.getImageUrl(imageId);
+  }
 }

@@ -1,6 +1,5 @@
-<div *ngIf="isLoading" class="loading">Loading...</div>
+<app-search-bar [initialCriteria]="searchCriteria"></app-search-bar>
 <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
-<div *ngIf="!isLoading && properties.length > 0" class="properties-list">
+<div *ngIf="properties.length > 0" class="properties-list">
   <app-property-item *ngFor="let property of properties" [property]="property"></app-property-item>
 </div>
-

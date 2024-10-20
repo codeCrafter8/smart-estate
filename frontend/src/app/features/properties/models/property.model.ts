@@ -6,5 +6,5 @@ export interface Property {
     regionName: string;
     priceInUsd: number;
     apartmentArea: number;
-    images: string[]; 
+    imageIds: number[]; 
 }

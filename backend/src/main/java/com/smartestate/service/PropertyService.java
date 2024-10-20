@@ -1,6 +1,8 @@
 package com.smartestate.service;
 
+import com.smartestate.dto.PropertyDto;
 import com.smartestate.dto.PropertySearchCriteriaDto;
+import com.smartestate.mapper.PropertyMapper;
 import com.smartestate.model.Property;
 import com.smartestate.repository.PropertyRepository;
 import com.smartestate.repository.PropertySpecification;
@@ -16,8 +18,9 @@ import java.util.List;
 @Service
 public class PropertyService {
     private final PropertyRepository propertyRepository;
+    private final PropertyMapper propertyMapper;
 
-    public List<Property> searchProperties(PropertySearchCriteriaDto criteria) {
+    public List<PropertyDto> searchProperties(PropertySearchCriteriaDto criteria) {
         log.info("Searching properties with criteria: {}", criteria);
 
         Specification<Property> spec = PropertySpecification.filterByCriteria(criteria);
@@ -25,6 +28,8 @@ public class PropertyService {
 
         log.info("Found {} properties", properties.size());
 
-        return properties;
+        return properties.stream()
+                .map(propertyMapper::toDto)
+                .toList();
     }
 }
