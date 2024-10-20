@@ -28,7 +28,7 @@ export class PropertiesListComponent implements OnInit {
     });
   }
 
-  fetchProperties(criteria: any) {
+  fetchProperties(criteria: PropertySearchCriteria) {
     this.propertyService.searchProperties(criteria).subscribe({
       next: (properties) => {
         this.properties = properties;
