@@ -1,5 +1,5 @@
-<div class="property-card">
-    <img *ngIf="property.imageIds.length > 0; else noImage" 
+<div *ngIf="property" class="property-card">
+    <img *ngIf="property.imageIds && property.imageIds.length > 0; else noImage" 
          [src]="getImageUrl(property.imageIds[0])"
          alt="{{ property.title }}" 
          class="property-image" />

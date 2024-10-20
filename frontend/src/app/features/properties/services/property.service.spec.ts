@@ -1,12 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
 import { PropertyService } from './property.service';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('PropertyService', () => {
   let service: PropertyService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [provideHttpClient()]
+    });
     service = TestBed.inject(PropertyService);
   });
 

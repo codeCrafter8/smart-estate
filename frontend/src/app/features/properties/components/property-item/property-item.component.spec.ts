@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PropertyItemComponent } from './property-item.component';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('PropertyItemComponent', () => {
   let component: PropertyItemComponent;
@@ -8,7 +9,8 @@ describe('PropertyItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PropertyItemComponent]
+      imports: [PropertyItemComponent],
+      providers: [provideHttpClient()]
     })
     .compileComponents();
 
