@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { PropertySearchCriteria } from '../../models/property-search-criteria.model';
 
 @Component({
   selector: 'app-search-bar',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent implements OnInit {
-  @Input() initialCriteria: any;
+  @Input() initialCriteria: PropertySearchCriteria | undefined;
   searchForm: FormGroup;
 
   propertyTypes = ['Apartment', 'House'];
