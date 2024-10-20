@@ -3,7 +3,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -19,7 +18,7 @@ export class SearchBarComponent implements OnInit {
   propertyTypes = ['Apartment', 'House'];
   transactionTypes = ['Buy', 'Rent'];
   
-  constructor(private fb: FormBuilder, private router: Router, private searchService: SearchService) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.searchForm = this.fb.group({
       propertyType: ['Apartment', Validators.required], 
       transactionType: ['Buy', Validators.required], 
