@@ -1,0 +1,18 @@
+.properties-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto; 
+}
+  
+.error {
+  font-size: 16px;
+  color: #666;
+  margin: 20px 0; 
+  text-align: center; 
+  display: flex;
+  justify-content: center;
+  width: 100%; 
+}

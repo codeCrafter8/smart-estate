@@ -1,12 +1,15 @@
 package com.smartestate.controller;
 
+import com.smartestate.dto.PropertyDto;
 import com.smartestate.dto.PropertySearchCriteriaDto;
-import com.smartestate.model.Property;
 import com.smartestate.service.PropertyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -19,10 +22,10 @@ public class PropertyController {
     private final PropertyService propertyService;
 
     @PostMapping("/search")
-    public ResponseEntity<List<Property>> searchProperties(@RequestBody PropertySearchCriteriaDto criteria) {
+    public ResponseEntity<List<PropertyDto>> searchProperties(@RequestBody PropertySearchCriteriaDto criteria) {
         log.info("Received search request with criteria: {}", criteria);
 
-        List<Property> properties = propertyService.searchProperties(criteria);
+        List<PropertyDto> properties = propertyService.searchProperties(criteria);
 
         log.info("Properties search completed.");
 

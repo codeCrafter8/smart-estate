@@ -22,7 +22,7 @@ public class Image {
             sequenceName = "image_sequence",
             allocationSize = 1
     )
-    private Integer id;
+    private Long id;
 
     private String filePath;
 
