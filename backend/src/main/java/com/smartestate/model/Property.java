@@ -58,8 +58,10 @@ public class Property {
 
     private Integer totalBathrooms;
 
+    @Column(nullable = false)
     private BigDecimal apartmentArea;
 
+    @Column(nullable = false)
     private BigDecimal priceInUsd;
 
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
