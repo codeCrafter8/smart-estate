@@ -1,10 +1,16 @@
 <nav class="navbar">
-    <ul class="nav-links">
-      <li><a routerLink="/">Home</a></li>
-      <li><a routerLink="/properties">Properties</a></li>
-    </ul>
+  <ul class="nav-links">
+    <li><a routerLink="/">Home</a></li>
+    <li><a routerLink="/properties">Properties</a></li>
+  </ul>
+  <div class="auth-buttons" *ngIf="!isLoggedIn; else loggedInTemplate">
+    <button routerLink="/login" class="btn btn-primary">Sign In</button>
+    <button routerLink="/register" class="btn btn-secondary">Join</button>
+  </div>
+  <ng-template #loggedInTemplate>
     <div class="auth-buttons">
-      <button routerLink="/login" class="btn btn-primary">Sign In</button>
-      <button routerLink="/register" class="btn btn-secondary">Join</button>
+      <button routerLink="/advertise" class="btn btn-primary">Advertise</button>
+      <button (click)="logOut()" class="btn btn-secondary">Log Out</button>
     </div>
+  </ng-template>
 </nav>

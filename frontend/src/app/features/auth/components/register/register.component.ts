@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControlOptions } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
@@ -23,7 +23,8 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder, 
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router, 
   ) {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -56,10 +57,10 @@ export class RegisterComponent {
       const { email, password } = this.registerForm.value;
       
       this.authService.signUp({ email, password }).subscribe({
-        next: (response) => {
-          console.log('Registration successful', response);
+        next: () => {
           this.registrationFailed = false;
           this.errorMessage = '';
+          this.router.navigate(['/']); 
         },
         error: (err) => {
           console.error('Registration failed', err);
