@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 7
+      author: codeCrafter8
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: email
+                  value: "john.doe@example.com"
+              - column:
+                  name: password
+                  value: "password1"
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: email
+                  value: "jane.smith@example.com"
+              - column:
+                  name: password
+                  value: "password2"
