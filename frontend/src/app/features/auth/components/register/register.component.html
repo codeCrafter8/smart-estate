@@ -23,7 +23,7 @@
         <label for="confirmPassword">Confirm Password:</label>
         <input id="confirmPassword" formControlName="confirmPassword" type="password" placeholder="Confirm your password">
         <div *ngIf="(submitted && confirmPassword?.invalid) || (confirmPassword?.touched)" class="error">
-          <small *ngIf="confirmPassword?.errors?.['required']">Confirmation is required.</small>
+          <small *ngIf="confirmPassword?.errors?.['required']">Confirmation is required. </small>
           <small *ngIf="registerForm.errors?.['mismatch']">Passwords do not match.</small>
         </div>
       </div>
