@@ -36,13 +36,13 @@ public class PropertyController {
     }
 
     @PostMapping
-    public ResponseEntity<PropertyDto> addProperty(
+    public ResponseEntity<Long> addProperty(
             @RequestBody PropertyRequestDto propertyRequest,
             Principal principal) {
         log.info("Received request to add property: {}", propertyRequest);
 
-        PropertyDto savedProperty = propertyService.addProperty(propertyRequest, principal);
+        Long savedPropertyId = propertyService.addProperty(propertyRequest, principal);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedProperty);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedPropertyId);
     }
 }

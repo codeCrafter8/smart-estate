@@ -29,6 +29,7 @@ public class PropertyMapper {
 
     public Property toEntity(PropertyRequestDto propertyRequest) {
         return Property.builder()
+                .propertyType(propertyRequest.propertyType())
                 .title(propertyRequest.title())
                 .description(propertyRequest.description())
                 .countryName(propertyRequest.countryName())

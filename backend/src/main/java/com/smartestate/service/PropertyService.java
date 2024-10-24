@@ -3,6 +3,7 @@ package com.smartestate.service;
 import com.smartestate.dto.PropertyDto;
 import com.smartestate.dto.PropertyRequestDto;
 import com.smartestate.dto.PropertySearchCriteriaDto;
+import com.smartestate.exception.ResourceNotFoundException;
 import com.smartestate.mapper.PropertyMapper;
 import com.smartestate.model.Property;
 import com.smartestate.model.User;
@@ -37,7 +38,7 @@ public class PropertyService {
                 .toList();
     }
 
-    public PropertyDto addProperty(PropertyRequestDto propertyRequest, Principal principal) {
+    public Long addProperty(PropertyRequestDto propertyRequest, Principal principal) {
         String userEmail = principal.getName();
         log.info("Adding property for user: {}", userEmail);
 
@@ -50,6 +51,17 @@ public class PropertyService {
 
         log.info("Property added successfully: {}", savedProperty);
 
-        return propertyMapper.toDto(savedProperty);
+        return savedProperty.getId();
+    }
+
+    public Property getPropertyById(Long id) {
+        log.info("Fetching property with id: {}", id);
+
+        return propertyRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.warn("Property with id {} not found", id);
+                    return new ResourceNotFoundException(
+                            String.format("Property with id %d not found", id));
+                });
     }
 }
