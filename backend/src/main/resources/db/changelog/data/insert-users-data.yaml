@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: 7
+      author: codeCrafter8
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: "john.doe@example.com"
+              - column:
+                  name: password
+                  value: "$2a$12$GpdfRTQcBEkpRv2HApJ2J.jwVjHUayP2yaiQt1RiOGooo76dwOtXq"
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: "jane.smith@example.com"
+              - column:
+                  name: password
+                  value: "$2a$12$X7Xgay0x7TVgYufH1zN1rOTXJ5wGLLQIl8L9aaMm0xEr35p6qPWt6"

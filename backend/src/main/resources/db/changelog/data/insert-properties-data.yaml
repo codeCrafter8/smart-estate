@@ -7,9 +7,6 @@ databaseChangeLog:
             tableName: properties
             columns:
               - column:
-                  name: id
-                  value: 1
-              - column:
                   name: property_type
                   value: "APARTMENT"
               - column:
@@ -48,9 +45,6 @@ databaseChangeLog:
         - insert:
             tableName: properties
             columns:
-              - column:
-                  name: id
-                  value: 2
               - column:
                   name: property_type
                   value: "APARTMENT"
@@ -91,9 +85,6 @@ databaseChangeLog:
             tableName: properties
             columns:
               - column:
-                  name: id
-                  value: 3
-              - column:
                   name: property_type
                   value: "APARTMENT"
               - column:
@@ -129,9 +120,6 @@ databaseChangeLog:
         - insert:
             tableName: properties
             columns:
-              - column:
-                  name: id
-                  value: 4
               - column:
                   name: property_type
                   value: "APARTMENT"
@@ -169,9 +157,6 @@ databaseChangeLog:
             tableName: properties
             columns:
               - column:
-                  name: id
-                  value: 5
-              - column:
                   name: property_type
                   value: "HOUSE"
               - column:
@@ -198,9 +183,6 @@ databaseChangeLog:
         - insert:
             tableName: properties
             columns:
-              - column:
-                  name: id
-                  value: 6
               - column:
                   name: property_type
                   value: "HOUSE"
@@ -232,9 +214,6 @@ databaseChangeLog:
             tableName: properties
             columns:
               - column:
-                  name: id
-                  value: 7
-              - column:
                   name: property_type
                   value: "HOUSE"
               - column:
@@ -261,9 +240,6 @@ databaseChangeLog:
         - insert:
             tableName: properties
             columns:
-              - column:
-                  name: id
-                  value: 8
               - column:
                   name: property_type
                   value: "HOUSE"

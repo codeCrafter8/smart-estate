@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: 10
+      author: codeCrafter8
+      changes:
+        - addNotNullConstraint:
+            tableName: properties
+            columnName: user_id

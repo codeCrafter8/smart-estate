@@ -1,14 +1,11 @@
 databaseChangeLog:
   - changeSet:
-      id: 7
+      id: 5
       author: codeCrafter8
       changes:
         - insert:
             tableName: images
             columns:
-              - column:
-                  name: id
-                  value: 1
               - column:
                   name: file_path
                   value: "static/images/1.jpg"
@@ -20,9 +17,6 @@ databaseChangeLog:
             tableName: images
             columns:
               - column:
-                  name: id
-                  value: 2
-              - column:
                   name: file_path
                   value: "static/images/2.jpg"
               - column:
@@ -32,9 +26,6 @@ databaseChangeLog:
         - insert:
             tableName: images
             columns:
-              - column:
-                  name: id
-                  value: 3
               - column:
                   name: file_path
                   value: "static/images/3.jpg"
@@ -46,9 +37,6 @@ databaseChangeLog:
             tableName: images
             columns:
               - column:
-                  name: id
-                  value: 4
-              - column:
                   name: file_path
                   value: "static/images/4.jpg"
               - column:
@@ -58,9 +46,6 @@ databaseChangeLog:
         - insert:
             tableName: images
             columns:
-              - column:
-                  name: id
-                  value: 5
               - column:
                   name: file_path
                   value: "static/images/5.jpg"
@@ -72,9 +57,6 @@ databaseChangeLog:
             tableName: images
             columns:
               - column:
-                  name: id
-                  value: 6
-              - column:
                   name: file_path
                   value: "static/images/6.jpg"
               - column:
@@ -85,9 +67,6 @@ databaseChangeLog:
             tableName: images
             columns:
               - column:
-                  name: id
-                  value: 7
-              - column:
                   name: file_path
                   value: "static/images/7.jpg"
               - column:
@@ -97,9 +76,6 @@ databaseChangeLog:
         - insert:
             tableName: images
             columns:
-              - column:
-                  name: id
-                  value: 8
               - column:
                   name: file_path
                   value: "static/images/8.jpg"
