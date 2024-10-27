@@ -31,18 +31,26 @@ export class PropertyAdvertComponent {
       totalBathrooms: ['', [Validators.min(0)]],
       apartmentArea: ['', [Validators.required, Validators.min(1)]],
       priceInUsd: ['', [Validators.required, Validators.min(0)]],
-      images: ['', Validators.required],
+      images: [null, Validators.required],
       description: ['', Validators.required],
     });
+  }
+
+  onFileChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files) {
+      this.propertyForm.patchValue({
+        images: input.files 
+      });
+    }
   }
 
   onSubmit() {
     if (this.propertyForm.valid) {
       this.propertyService.addProperty(this.propertyForm.value).subscribe({
         next: (propertyId: number) => {
-          console.log('Property created with ID:', propertyId);
           if (this.propertyForm.get('images')?.value) {
-            this.uploadImages(propertyId);  
+            this.uploadImages(propertyId);
           }
           this.router.navigate(['/properties']); 
         },
@@ -55,15 +63,15 @@ export class PropertyAdvertComponent {
   
   uploadImages(propertyId: number) {
     const formData = new FormData();
-    const images: File[] = this.propertyForm.get('images')?.value;
-  
-    images.forEach(image => formData.append('file', image));
+    const images: FileList = this.propertyForm.get('images')?.value;
+
+    if (images) {
+      Array.from(images).forEach(image => {
+        formData.append('files', image);
+      });
+    }
   
     this.propertyService.uploadImage(propertyId, formData).subscribe({
-      next: () => {
-        console.log('Images uploaded successfully');
-        this.router.navigate(['/properties']);
-      },
       error: (err) => {
         console.error('Error uploading images', err);
       }

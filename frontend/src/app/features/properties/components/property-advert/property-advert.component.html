@@ -79,7 +79,7 @@
         </div>
 
         <label for="images">Images:</label>
-        <input id="images" formControlName="images" type="file" multiple />
+        <input id="images" type="file" (change)="onFileChange($event)" multiple />
         <div *ngIf="propertyForm.get('images')?.invalid && propertyForm.get('images')?.touched">
             <small>At least one image is required.</small>
         </div>
