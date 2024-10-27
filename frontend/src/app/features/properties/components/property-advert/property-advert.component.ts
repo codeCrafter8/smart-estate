@@ -39,7 +39,11 @@ export class PropertyAdvertComponent {
   onSubmit() {
     if (this.propertyForm.valid) {
       this.propertyService.addProperty(this.propertyForm.value).subscribe({
-        next: () => {
+        next: (propertyId: number) => {
+          console.log('Property created with ID:', propertyId);
+          if (this.propertyForm.get('images')?.value) {
+            this.uploadImages(propertyId);  
+          }
           this.router.navigate(['/properties']); 
         },
         error: (err) => {
@@ -47,5 +51,22 @@ export class PropertyAdvertComponent {
         }
       });
     }
+  }
+  
+  uploadImages(propertyId: number) {
+    const formData = new FormData();
+    const images: File[] = this.propertyForm.get('images')?.value;
+  
+    images.forEach(image => formData.append('file', image));
+  
+    this.propertyService.uploadImage(propertyId, formData).subscribe({
+      next: () => {
+        console.log('Images uploaded successfully');
+        this.router.navigate(['/properties']);
+      },
+      error: (err) => {
+        console.error('Error uploading images', err);
+      }
+    });
   }
 }
