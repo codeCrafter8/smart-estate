@@ -1,3 +1,5 @@
+@import '../../../../../variables.scss';
+
 .register-container {
     max-width: 400px;
     margin: auto;
@@ -45,7 +47,7 @@
     }
   
     .error {
-      color: rgb(146, 48, 48);
+      color: $error-color;
     }
   
     .registration-link {
