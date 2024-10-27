@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/images")
@@ -31,10 +33,10 @@ public class ImageController {
     @PostMapping("/upload/{propertyId}")
     public ResponseEntity<Void> uploadImage(
             @PathVariable("propertyId") Long propertyId,
-            @RequestParam("file") MultipartFile file) {
+            @RequestParam("files") List<MultipartFile> files) {
         log.info("Received request to upload image for property ID: {}", propertyId);
 
-        imageService.saveImage(propertyId, file);
+        files.forEach(file -> imageService.saveImage(propertyId, file));
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
