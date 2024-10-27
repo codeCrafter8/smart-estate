@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PropertyRepository extends JpaRepository<Property, Integer>,
+public interface PropertyRepository extends JpaRepository<Property, Long>,
         JpaSpecificationExecutor<Property> {
 }

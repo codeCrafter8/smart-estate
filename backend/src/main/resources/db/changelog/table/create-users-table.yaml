@@ -1,45 +1,35 @@
 databaseChangeLog:
   - changeSet:
-      id: 3
+      id: 6
       author: codeCrafter8
       preConditions:
         - onFail: MARK_RAN
           not:
             tableExists:
-              tableName: images
+              tableName: users
       changes:
         - createSequence:
-            sequenceName: image_sequence
+            sequenceName: user_sequence
             startValue: 1
             incrementBy: 1
         - createTable:
-            tableName: images
+            tableName: users
             columns:
               - column:
                   name: id
                   type: BIGINT
-                  defaultValueSequenceNext: image_sequence
+                  defaultValueSequenceNext: user_sequence
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: file_path
+                  name: email
+                  type: VARCHAR(100)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: password
                   type: VARCHAR(255)
                   constraints:
                     nullable: false
-              - column:
-                  name: property_id
-                  type: INT
-                  constraints:
-                    nullable: false
-
-  - changeSet:
-      id: 4
-      author: codeCrafter8
-      changes:
-        - addForeignKeyConstraint:
-            baseTableName: images
-            baseColumnNames: property_id
-            referencedTableName: properties
-            referencedColumnNames: id
-            constraintName: fk_property_id

@@ -66,6 +66,8 @@ databaseChangeLog:
               - column:
                   name: apartment_area
                   type: decimal(10, 2)
+                  constraints:
+                    nullable: false
               - column:
                   name: price_in_usd
                   type: decimal(10, 2)
