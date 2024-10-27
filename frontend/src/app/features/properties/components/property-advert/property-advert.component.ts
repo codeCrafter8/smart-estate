@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { PropertyService } from '../../services/property.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -31,7 +31,7 @@ export class PropertyAdvertComponent {
       totalBathrooms: ['', [Validators.min(0)]],
       apartmentArea: ['', [Validators.required, Validators.min(1)]],
       priceInUsd: ['', [Validators.required, Validators.min(0)]],
-      images: [null, Validators.required],
+      images: [null, this.imagesValidator],
       description: ['', Validators.required],
     });
   }
@@ -42,7 +42,8 @@ export class PropertyAdvertComponent {
       this.propertyForm.patchValue({
         images: input.files 
       });
-    }
+    } 
+    this.propertyForm.get('images')?.markAsTouched();
   }
 
   onSubmit() {
@@ -76,5 +77,9 @@ export class PropertyAdvertComponent {
         console.error('Error uploading images', err);
       }
     });
+  }
+
+  imagesValidator(control: FormControl) {
+    return control.value && control.value.length > 0 ? null : { required: true };
   }
 }
