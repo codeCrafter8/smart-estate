@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 6
+      author: codeCrafter8
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: users
+      changes:
+        - createSequence:
+            sequenceName: user_sequence
+            startValue: 1
+            incrementBy: 1
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  defaultValueSequenceNext: user_sequence
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR(100)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false

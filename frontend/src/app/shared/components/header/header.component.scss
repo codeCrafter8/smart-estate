@@ -1,0 +1,28 @@
+$header-bg-color: #f8f9fa;
+$header-border-color: #e7e7e7;
+
+.header {
+  background-color: $header-bg-color;
+  border-bottom: 1px solid $header-border-color;
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    .logo {
+      img {
+        height: 75px; 
+        width: auto; 
+        cursor: pointer;
+      }
+    }
+
+    app-navbar {
+      width: 63%;
+    }
+  }
+}

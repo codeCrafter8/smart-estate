@@ -1,0 +1,77 @@
+$border-radius: 4px;
+
+.search-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 700px;
+    margin: 0 auto;
+    border: 1px solid #ccc; 
+    border-radius: $border-radius;
+    padding: 10px;
+    margin-top: 5px;
+  
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+  
+    .location-input {
+      flex: 1; 
+
+      #location {
+        width: 95%;
+      }
+    }
+  
+    select,
+    input {
+      padding: 8px;
+      border: 1px solid #ccc; 
+      border-radius: $border-radius; 
+      font-size: 14px; 
+  
+      &:focus {
+        border-color: #7491b0; 
+        outline: none; 
+      }
+  
+      &::placeholder {
+        color: #999; 
+      }
+    }
+
+    select {
+        width: 163px;
+        height: 48px;
+    }
+
+    input {
+        width: 145px;
+        height: 30px;
+    }
+  
+    .button-container {
+      display: flex;
+      justify-content: center; 
+      margin-top: 10px; 
+
+      button {
+        padding: 10px;
+        background-color: #7491b0;
+        color: white;
+        border: none;
+        border-radius: $border-radius;
+        cursor: pointer;
+        width: 150px;
+        font-size: 18px;
+
+        &:hover {
+          background-color: darken(#7491b0, 10%);
+        }
+      }
+    }
+}
+  

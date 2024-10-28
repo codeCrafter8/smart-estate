@@ -1,0 +1,84 @@
+databaseChangeLog:
+  - changeSet:
+      id: 5
+      author: codeCrafter8
+      changes:
+        - insert:
+            tableName: images
+            columns:
+              - column:
+                  name: file_path
+                  value: "static/images/1.jpg"
+              - column:
+                  name: property_id
+                  value: 1
+
+        - insert:
+            tableName: images
+            columns:
+              - column:
+                  name: file_path
+                  value: "static/images/2.jpg"
+              - column:
+                  name: property_id
+                  value: 2
+
+        - insert:
+            tableName: images
+            columns:
+              - column:
+                  name: file_path
+                  value: "static/images/3.jpg"
+              - column:
+                  name: property_id
+                  value: 3
+
+        - insert:
+            tableName: images
+            columns:
+              - column:
+                  name: file_path
+                  value: "static/images/4.jpg"
+              - column:
+                  name: property_id
+                  value: 4
+
+        - insert:
+            tableName: images
+            columns:
+              - column:
+                  name: file_path
+                  value: "static/images/5.jpg"
+              - column:
+                  name: property_id
+                  value: 5
+
+        - insert:
+            tableName: images
+            columns:
+              - column:
+                  name: file_path
+                  value: "static/images/6.jpg"
+              - column:
+                  name: property_id
+                  value: 6
+
+        - insert:
+            tableName: images
+            columns:
+              - column:
+                  name: file_path
+                  value: "static/images/7.jpg"
+              - column:
+                  name: property_id
+                  value: 7
+
+        - insert:
+            tableName: images
+            columns:
+              - column:
+                  name: file_path
+                  value: "static/images/8.jpg"
+              - column:
+                  name: property_id
+                  value: 8

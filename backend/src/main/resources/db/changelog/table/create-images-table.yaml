@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: codeCrafter8
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: images
+      changes:
+        - createSequence:
+            sequenceName: image_sequence
+            startValue: 1
+            incrementBy: 1
+        - createTable:
+            tableName: images
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  defaultValueSequenceNext: image_sequence
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: file_path
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: property_id
+                  type: INT
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 4
+      author: codeCrafter8
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: images
+            baseColumnNames: property_id
+            referencedTableName: properties
+            referencedColumnNames: id
+            constraintName: fk_property_id

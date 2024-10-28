@@ -1,0 +1,12 @@
+<div *ngIf="property" class="property-card">
+    <img *ngIf="property.imageIds && property.imageIds.length > 0; else noImage" 
+         [src]="getImageUrl(property.imageIds[0])"
+         alt="{{ property.title }}" 
+         class="property-image" />
+    <ng-template #noImage>
+        <img src="default-image.jpg" alt="Default Image" class="property-image" />
+    </ng-template>
+    
+    <h3>{{ property.title }}</h3>
+    <p>{{ property.priceInUsd | currency }}</p>
+</div>
