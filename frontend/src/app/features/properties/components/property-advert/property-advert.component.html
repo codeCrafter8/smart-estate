@@ -1,0 +1,95 @@
+<div class="advert-container">
+    <h2>Advertise</h2>
+    <form [formGroup]="propertyForm" (ngSubmit)="onSubmit()" novalidate>
+
+        <label for="propertyType">Property Type <span class="required">*</span></label>
+        <select id="propertyType" formControlName="propertyType">
+            <option value="" disabled>Select Property Type</option>
+            <option value="Apartment">Apartment</option>
+            <option value="House">House</option>
+        </select>
+        <div *ngIf="propertyForm.get('propertyType')?.invalid && propertyForm.get('propertyType')?.touched">
+            <small>Property Type is required.</small>
+        </div>
+
+        <label for="title">Title <span class="required">*</span></label>
+        <input id="title" formControlName="title" type="text" placeholder="Enter property title" />
+        <div *ngIf="propertyForm.get('title')?.invalid && propertyForm.get('title')?.touched">
+            <small>Title is required.</small>
+        </div>
+
+        <label for="countryName">Country <span class="required">*</span></label>
+        <input id="countryName" formControlName="countryName" type="text" placeholder="Enter country" />
+        <div *ngIf="propertyForm.get('countryName')?.invalid && propertyForm.get('countryName')?.touched">
+            <small>Country is required.</small>
+        </div>
+
+        <label for="regionName">Region <span class="required">*</span></label>
+        <input id="regionName" formControlName="regionName" type="text" placeholder="Enter region" />
+        <div *ngIf="propertyForm.get('regionName')?.invalid && propertyForm.get('regionName')?.touched">
+            <small>Region is required.</small>
+        </div>
+
+        <label for="yearBuilt">Year Built</label>
+        <input id="yearBuilt" formControlName="yearBuilt" type="number" placeholder="Enter year built" />
+        <div *ngIf="propertyForm.get('yearBuilt')?.invalid && propertyForm.get('yearBuilt')?.touched">
+            <small>Year Built must be a valid number.</small>
+        </div>
+
+        <label for="totalBuildingFloors">Total Building Floors</label>
+        <input id="totalBuildingFloors" formControlName="totalBuildingFloors" type="number" placeholder="Enter total building floors" />
+        <div *ngIf="propertyForm.get('totalBuildingFloors')?.invalid && propertyForm.get('totalBuildingFloors')?.touched">
+            <small>Total Building Floors must be a valid number.</small>
+        </div>
+
+        <label for="apartmentFloor">Apartment Floor</label>
+        <input id="apartmentFloor" formControlName="apartmentFloor" type="number" placeholder="Enter apartment floor" />
+        <div *ngIf="propertyForm.get('apartmentFloor')?.invalid && propertyForm.get('apartmentFloor')?.touched">
+            <small>Apartment Floor must be a valid number.</small>
+        </div>
+
+        <label for="totalRooms">Total Rooms</label>
+        <input id="totalRooms" formControlName="totalRooms" type="number" placeholder="Enter total rooms" />
+        <div *ngIf="propertyForm.get('totalRooms')?.invalid && propertyForm.get('totalRooms')?.touched">
+            <small>Total Rooms must be a valid number.</small>
+        </div>
+
+        <label for="totalBedrooms">Total Bedrooms</label>
+        <input id="totalBedrooms" formControlName="totalBedrooms" type="number" placeholder="Enter total bedrooms" />
+        <div *ngIf="propertyForm.get('totalBedrooms')?.invalid && propertyForm.get('totalBedrooms')?.touched">
+            <small>Total Bedrooms must be a valid number.</small>
+        </div>
+
+        <label for="totalBathrooms">Total Bathrooms</label>
+        <input id="totalBathrooms" formControlName="totalBathrooms" type="number" placeholder="Enter total bathrooms" />
+        <div *ngIf="propertyForm.get('totalBathrooms')?.invalid && propertyForm.get('totalBathrooms')?.touched">
+            <small>Total Bathrooms must be a valid number.</small>
+        </div>
+
+        <label for="apartmentArea">Apartment Area (m²) <span class="required">*</span></label>
+        <input id="apartmentArea" formControlName="apartmentArea" type="number" placeholder="Enter apartment area" />
+        <div *ngIf="propertyForm.get('apartmentArea')?.invalid && propertyForm.get('apartmentArea')?.touched">
+            <small>Apartment Area is required and must be a valid number.</small>
+        </div>
+
+        <label for="priceInUsd">Price (USD) <span class="required">*</span></label>
+        <input id="priceInUsd" formControlName="priceInUsd" type="number" placeholder="Enter price in USD" />
+        <div *ngIf="propertyForm.get('priceInUsd')?.invalid && propertyForm.get('priceInUsd')?.touched">
+            <small>Price is required and must be a valid number.</small>
+        </div>
+
+        <label for="images">Images:</label>
+        <input id="images" type="file" (change)="onFileChange($event)" multiple />
+        <div *ngIf="propertyForm.get('images')?.invalid && propertyForm.get('images')?.touched">
+            <small>At least one image is required.</small>
+        </div>
+
+        <label for="description">Description <span class="required">*</span></label>
+        <textarea id="description" formControlName="description" placeholder="Enter property description"></textarea>
+        <div *ngIf="propertyForm.get('description')?.invalid && propertyForm.get('description')?.touched">
+            <small>Description is required.</small>
+        </div>
+
+        <button type="submit" [disabled]="propertyForm.invalid">Add Property</button>
+    </form>
+</div>

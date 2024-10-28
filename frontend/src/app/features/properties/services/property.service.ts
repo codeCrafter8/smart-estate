@@ -25,4 +25,12 @@ export class PropertyService {
   getImageUrl(imageId: number): string {
     return `${this.apiUrl}/images/${imageId}`;
   }
+
+  addProperty(property: Property): Observable<number> {
+    return this.http.post<number>(`${this.apiUrl}/properties`, property);
+  }
+  
+  uploadImage(propertyId: number, formData: FormData) {
+    return this.http.post(`${this.apiUrl}/images/upload/${propertyId}`, formData);
+  }
 }
