@@ -1,5 +1,6 @@
 package com.smartestate.controller;
 
+import com.smartestate.dto.DescriptionDto;
 import com.smartestate.dto.PropertyRequestDto;
 import com.smartestate.service.OpenAIService;
 import lombok.RequiredArgsConstructor;
@@ -18,10 +19,10 @@ public class OpenAIController {
     private final OpenAIService openAIService;
 
     @PostMapping("/generate-description")
-    public ResponseEntity<String> generateDescription(@RequestBody PropertyRequestDto propertyRequestDto) {
+    public ResponseEntity<DescriptionDto> generateDescription(@RequestBody PropertyRequestDto propertyRequestDto) {
         log.info("Received request to generate description for property: {}", propertyRequestDto);
 
-        String description = openAIService.generateDescription(propertyRequestDto);
+        DescriptionDto description = openAIService.generateDescription(propertyRequestDto);
 
         log.info("Description generation completed.");
 

@@ -33,4 +33,8 @@ export class PropertyService {
   uploadImage(propertyId: number, formData: FormData) {
     return this.http.post(`${this.apiUrl}/images/upload/${propertyId}`, formData);
   }
+
+  generateDescription(propertyDetails: Property): Observable<{ description: string }> {
+    return this.http.post<{ description: string }>(`${this.apiUrl}/openai/generate-description`, propertyDetails);
+  }
 }
