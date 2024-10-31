@@ -92,4 +92,3 @@ lombok.config
 *.swo
 *~
 
-application-dev.properties
