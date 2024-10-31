@@ -36,9 +36,10 @@
             outline: none; 
         }
     }
-     select {
+
+    select {
         width: 100%;
-     }
+    }
 
     input, textarea {
         width: 96%;
@@ -74,5 +75,21 @@
 
     .required {
         color: $error-color;
+    }
+
+    .description-container {
+        display: flex;
+        align-items: center; 
+        margin-bottom: 8px;
+    }
+
+    .description-button-container {
+        margin-left: 10px; 
+    }
+
+    .generate-button {
+        font-size: 15px;
+        padding: 2px 4px;
+        margin-top: 10px;
     }
 }

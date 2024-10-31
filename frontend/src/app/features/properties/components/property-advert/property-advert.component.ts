@@ -16,6 +16,8 @@ import { CommonModule } from '@angular/common';
 })
 export class PropertyAdvertComponent {
   propertyForm: FormGroup;
+  isGenerating = false;
+  errorMessage: string | null = null;
 
   constructor(private fb: FormBuilder, private propertyService: PropertyService, private router: Router) {
     this.propertyForm = this.fb.group({
@@ -82,4 +84,26 @@ export class PropertyAdvertComponent {
   imagesValidator(control: FormControl) {
     return control.value && control.value.length > 0 ? null : { required: true };
   }
+
+  generateDescription() {
+    this.isGenerating = true; 
+    this.propertyService.generateDescription(this.propertyForm.value).subscribe({
+        next: (response) => {
+            const description = response.description;
+            const sanitizedDescription = description.replace(/\*/g, '&#42;');
+            this.propertyForm.patchValue({ description: sanitizedDescription }); 
+            this.isGenerating = false; 
+        },
+        error: (err) => {
+            this.errorMessage = 'Failed to generate description. Please try again.';
+            console.error('Error generating description', err);
+            this.isGenerating = false; 
+        }
+    });
+  }
+
+  get areRequiredFieldsFilled(): boolean {
+    const requiredFields = ['propertyType', 'title', 'countryName', 'regionName', 'apartmentArea', 'priceInUsd'];
+    return requiredFields.every(field => this.propertyForm.get(field)?.valid);
+  } 
 }

@@ -1,5 +1,6 @@
 package com.smartestate.service;
 
+import com.smartestate.dto.DescriptionDto;
 import com.smartestate.dto.PropertyRequestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +18,7 @@ import java.util.Optional;
 public class OpenAIService {
     private final ChatModel chatModel;
 
-    public String generateDescription(PropertyRequestDto propertyRequestDto) {
+    public DescriptionDto generateDescription(PropertyRequestDto propertyRequestDto) {
         String promptText = buildPrompt(propertyRequestDto);
         log.info("Generated prompt for OpenAI: {}", promptText);
 
@@ -34,11 +35,11 @@ public class OpenAIService {
         String result = response.getResult().getOutput().getContent();
         log.info("Received description from OpenAI: {}", result);
 
-        return result;
+        return new DescriptionDto(result);
     }
 
     private String buildPrompt(PropertyRequestDto propertyRequestDto) {
-        StringBuilder promptBuilder = new StringBuilder("Generate an encouraging and enticing description for a real estate listing based on the following details:");
+        StringBuilder promptBuilder = new StringBuilder("Generate an encouraging and enticing description for a real estate listing based on the following details. Please provide a plain text without any special formatting or symbols.");
 
         appendIfPresent(promptBuilder, "Property Type", propertyRequestDto.propertyType());
         appendIfPresent(promptBuilder, "Title", propertyRequestDto.title());
@@ -64,10 +65,11 @@ public class OpenAIService {
 
     private void appendIfPresent(StringBuilder builder, String label, Object value) {
         Optional.ofNullable(value)
+                .filter(v -> !(v instanceof String string && string.isEmpty()))
                 .ifPresent(v -> builder.append(" ")
-                                .append(label)
-                                .append(": ")
-                                .append(v)
-                                .append(","));
+                        .append(label)
+                        .append(": ")
+                        .append(v)
+                        .append(","));
     }
 }

@@ -84,10 +84,23 @@
             <small>At least one image is required.</small>
         </div>
 
-        <label for="description">Description <span class="required">*</span></label>
+        <div class="description-container">
+            <label for="description">Description <span class="required">*</span></label>
+            <div class="description-button-container">
+                <button type="button" (click)="generateDescription()" [disabled]="isGenerating || !areRequiredFieldsFilled" class="generate-button">
+                    Generate
+                </button>
+            </div>
+        </div>
+
         <textarea id="description" formControlName="description" placeholder="Enter property description"></textarea>
         <div *ngIf="propertyForm.get('description')?.invalid && propertyForm.get('description')?.touched">
             <small>Description is required.</small>
+        </div>
+
+        <div *ngIf="isGenerating">Generating description...</div>
+        <div *ngIf="errorMessage" class="error">
+            <small>{{ errorMessage }}</small>
         </div>
 
         <button type="submit" [disabled]="propertyForm.invalid">Add Property</button>
