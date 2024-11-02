@@ -26,9 +26,12 @@ export class NavbarComponent implements OnInit {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
+  closeDropdown(): void {
+    this.isDropdownOpen = false;
+  }
+
   logOut() {
     this.authService.logOut(); 
-    this.isDropdownOpen = false;
     this.router.navigate(['/']); 
   }
 }

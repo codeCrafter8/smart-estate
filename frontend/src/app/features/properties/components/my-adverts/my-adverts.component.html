@@ -1,0 +1,10 @@
+<div class="my-adverts">
+    <h2>My Adverts</h2>
+    <div *ngFor="let property of properties" class="advert-item">
+      <h3>{{ property.title }}</h3>
+      <p>Country: {{ property.countryName }}</p>
+      <p>Region: {{ property.regionName }}</p>
+      <p>Price: {{ property.priceInUsd | currency:'USD' }}</p>
+      <button (click)="editProperty(property.id)" class="btn btn-primary">Edit</button>
+    </div>
+</div>

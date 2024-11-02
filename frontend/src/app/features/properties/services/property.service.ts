@@ -37,4 +37,8 @@ export class PropertyService {
   generateDescription(propertyDetails: Property): Observable<{ description: string }> {
     return this.http.post<{ description: string }>(`${this.apiUrl}/openai/generate-description`, propertyDetails);
   }
+
+  getUserProperties(): Observable<Property[]> {
+    return this.http.get<Property[]>(`${this.apiUrl}/properties/me`);
+  }
 }
