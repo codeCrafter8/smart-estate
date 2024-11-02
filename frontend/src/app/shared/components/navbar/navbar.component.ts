@@ -12,6 +12,7 @@ import { NgIf } from '@angular/common';
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
+  isDropdownOpen: boolean = false;
 
   constructor(private router: Router, private authService: AuthService) {}
 
@@ -21,8 +22,13 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
   logOut() {
     this.authService.logOut(); 
+    this.isDropdownOpen = false;
     this.router.navigate(['/']); 
   }
 }

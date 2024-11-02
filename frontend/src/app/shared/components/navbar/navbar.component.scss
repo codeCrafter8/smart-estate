@@ -60,4 +60,44 @@ $btn-secondary-hover-bg-color: darken(#6c757d, 10%);
       }
     }
   }
+
+  .dropdown {
+    position: relative;
+    margin-right: 70px;
+
+    .material-symbols-outlined {
+      font-size: 30px;
+    }
+    
+    .dropdown-toggle {
+      display: flex;
+      align-items: center;
+      border: none;
+      cursor: pointer;
+      background-color: transparent;
+    }
+  
+    .dropdown-menu {
+      position: absolute;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      z-index: 1000;
+      margin-top: 10px;
+      width: 110px;
+  
+      .dropdown-item {
+        display: block;
+        width: 100%;
+        padding: 10px 20px;
+        text-align: left;
+        color: $link-color;
+        cursor: pointer;
+  
+        &:hover {
+          background-color: $btn-primary-hover-bg-color;
+          color: white;
+        }
+      }
+    }
+  }  
 }
