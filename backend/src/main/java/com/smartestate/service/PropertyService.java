@@ -64,4 +64,29 @@ public class PropertyService {
                             String.format("Property with id %d not found", id));
                 });
     }
+
+    public List<PropertyDto> getUserProperties(Principal principal) {
+        String userEmail = principal.getName();
+        log.info("Fetching properties for user: {}", userEmail);
+
+        User user = userService.findByEmail(userEmail);
+
+        List<Property> userProperties = propertyRepository.findByUserId(user.getId());
+
+        return userProperties.stream()
+                .map(propertyMapper::toDto)
+                .toList();
+    }
+
+    public PropertyDto updateProperty(Long propertyId, PropertyRequestDto propertyRequestDto) {
+        Property existingProperty = getPropertyById(propertyId);
+
+        propertyMapper.updatePropertyFromDto(propertyRequestDto, existingProperty);
+
+        Property updatedProperty = propertyRepository.save(existingProperty);
+
+        log.info("Property updated successfully: {}", updatedProperty);
+
+        return propertyMapper.toDto(updatedProperty);
+    }
 }
