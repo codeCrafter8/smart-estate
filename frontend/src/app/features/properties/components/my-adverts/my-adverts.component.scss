@@ -1,3 +1,5 @@
+@import '../../../../../variables.scss';
+
 .my-adverts {
     width: 50%;
     margin: auto;
@@ -17,7 +19,16 @@
       }
   
       .btn {
-        margin-top: 10px;
+        padding: 3px 8px;
+
+        &.btn-primary {
+          background-color: $btn-primary-bg-color;
+          color: white;
+  
+          &:hover {
+            background-color: $btn-primary-hover-bg-color;
+          }
+        }
       }
     }
 }

@@ -5,3 +5,8 @@ body {
 button, a {
     cursor: pointer;
 }
+
+button {
+    border: none;
+    border-radius: 4px;
+}

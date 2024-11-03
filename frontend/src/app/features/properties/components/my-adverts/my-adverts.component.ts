@@ -26,6 +26,6 @@ export class MyAdvertsComponent implements OnInit {
   }
 
   editProperty(propertyId: number): void {
-    // Logika przekierowania do strony edycji ogłoszenia
+    // Redirect to edit property page
   }
 }

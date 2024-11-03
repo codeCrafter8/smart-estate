@@ -1,8 +1,8 @@
+@import '../../../../variables.scss';
+
 $navbar-bg-color: #f8f9fa;
 $link-color: #000;
 $link-hover-color: darken(#7491b0, 10%);
-$btn-primary-bg-color: #7491b0;
-$btn-primary-hover-bg-color: darken(#7491b0, 10%);
 $btn-secondary-bg-color: #6c757d;
 $btn-secondary-hover-bg-color: darken(#6c757d, 10%);
 
@@ -35,8 +35,6 @@ $btn-secondary-hover-bg-color: darken(#6c757d, 10%);
 
     .btn {
       padding: 5px 15px;
-      border: none;
-      border-radius: 4px;
       font-size: 1.05rem;
 
       &.btn-primary {
@@ -89,6 +87,7 @@ $btn-secondary-hover-bg-color: darken(#6c757d, 10%);
         text-align: left;
         color: $link-color;
         cursor: pointer;
+        border: solid 1px #ccc;
   
         &:hover {
           background-color: $btn-primary-hover-bg-color;
