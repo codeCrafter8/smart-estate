@@ -89,4 +89,9 @@ public class PropertyService {
 
         return propertyMapper.toDto(updatedProperty);
     }
+
+    public PropertyDto getPropertyByIdDto(Long propertyId) {
+        Property property = getPropertyById(propertyId);
+        return propertyMapper.toDto(property);
+    }
 }

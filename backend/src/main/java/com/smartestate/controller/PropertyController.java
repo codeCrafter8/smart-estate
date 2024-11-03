@@ -62,4 +62,13 @@ public class PropertyController {
 
         return ResponseEntity.ok(updatedProperty);
     }
+
+    @GetMapping("/{propertyId}")
+    public ResponseEntity<PropertyDto> getPropertyById(@PathVariable Long propertyId) {
+        log.info("Received request to fetch property with id: {}", propertyId);
+
+        PropertyDto property = propertyService.getPropertyByIdDto(propertyId);
+
+        return ResponseEntity.ok(property);
+    }
 }
