@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { PropertyService } from '../../services/property.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Property } from '../../models/property.model';
 
 @Component({
   selector: 'app-property-advert',
@@ -14,12 +15,18 @@ import { CommonModule } from '@angular/common';
   templateUrl: './property-advert.component.html',
   styleUrl: './property-advert.component.scss'
 })
-export class PropertyAdvertComponent {
+export class PropertyAdvertComponent implements OnInit {
   propertyForm: FormGroup;
   isGenerating = false;
   errorMessage: string | null = null;
+  isEditMode = false;
+  propertyId: number | null = null;
 
-  constructor(private fb: FormBuilder, private propertyService: PropertyService, private router: Router) {
+  constructor(
+    private fb: FormBuilder, 
+    private propertyService: PropertyService, 
+    private router: Router,
+    private route: ActivatedRoute) {
     this.propertyForm = this.fb.group({
       propertyType: ['', Validators.required],
       title: ['', Validators.required],
@@ -36,6 +43,30 @@ export class PropertyAdvertComponent {
       images: [null, this.imagesValidator],
       description: ['', Validators.required],
     });
+  }
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('propertyId');
+      if (id) {
+        this.propertyId = +id;
+        this.isEditMode = true;
+        this.loadPropertyData();
+      }
+    });
+  }
+
+  loadPropertyData(): void {
+    if (this.propertyId) {
+      // this.propertyService.getPropertyById(this.propertyId).subscribe({
+      //   next: (property) => {
+      //     this.propertyForm.patchValue(property);
+      //   },
+      //   error: (err) => {
+      //     console.error('Error loading property data', err);
+      //   }
+      // });
+    }
   }
 
   onFileChange(event: Event) {
