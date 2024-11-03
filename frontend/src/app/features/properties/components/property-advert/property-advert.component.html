@@ -78,7 +78,7 @@
             <small>Price is required and must be a valid number.</small>
         </div>
 
-        <label for="images">Images:</label>
+        <label for="images">Images: <span class="required">*</span></label>
         <input id="images" type="file" (change)="onFileChange($event)" multiple />
         <div *ngIf="propertyForm.get('images')?.invalid && propertyForm.get('images')?.touched">
             <small>At least one image is required.</small>

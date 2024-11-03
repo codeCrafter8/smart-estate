@@ -1,5 +1,6 @@
 <div class="my-adverts">
     <h2>My Adverts</h2>
+    <div *ngIf="notFoundMessage" class="notFound">{{ notFoundMessage }}</div>
     <div *ngFor="let property of properties" class="advert-item">
       <h3>{{ property.title }}</h3>
       <p>Region: {{ property.regionName }}</p>

@@ -58,14 +58,14 @@ export class PropertyAdvertComponent implements OnInit {
 
   loadPropertyData(): void {
     if (this.propertyId) {
-      // this.propertyService.getPropertyById(this.propertyId).subscribe({
-      //   next: (property) => {
-      //     this.propertyForm.patchValue(property);
-      //   },
-      //   error: (err) => {
-      //     console.error('Error loading property data', err);
-      //   }
-      // });
+      this.propertyService.getPropertyById(this.propertyId).subscribe({
+        next: (property) => {
+          this.propertyForm.patchValue(property);
+        },
+        error: (err) => {
+          console.error('Error loading property data', err);
+        }
+      });
     }
   }
 
@@ -81,17 +81,28 @@ export class PropertyAdvertComponent implements OnInit {
 
   onSubmit() {
     if (this.propertyForm.valid) {
-      this.propertyService.addProperty(this.propertyForm.value).subscribe({
-        next: (propertyId: number) => {
-          if (this.propertyForm.get('images')?.value) {
-            this.uploadImages(propertyId);
+      if (this.isEditMode && this.propertyId) {
+        this.propertyService.updateProperty(this.propertyId, this.propertyForm.value).subscribe({
+          next: () => {
+            this.router.navigate(['/my-adverts']);
+          },
+          error: (err) => {
+            console.error('Error updating property', err);
           }
-          this.router.navigate(['/properties']); 
-        },
-        error: (err) => {
-          console.error('Error adding property', err);
-        }
-      });
+        });
+      } else {
+          this.propertyService.addProperty(this.propertyForm.value).subscribe({
+            next: (propertyId: number) => {
+              if (this.propertyForm.get('images')?.value) {
+                this.uploadImages(propertyId);
+              }
+              this.router.navigate(['/properties']); 
+            },
+            error: (err) => {
+              console.error('Error adding property', err);
+            }
+          });
+      }
     }
   }
   

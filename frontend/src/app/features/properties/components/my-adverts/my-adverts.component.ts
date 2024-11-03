@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class MyAdvertsComponent implements OnInit {
   properties: Property[] = [];
+  notFoundMessage: string | null = null;
 
   constructor(private propertyService: PropertyService, private router: Router) {}
 
@@ -23,6 +24,7 @@ export class MyAdvertsComponent implements OnInit {
   loadUserProperties(): void {
     this.propertyService.getUserProperties().subscribe(properties => {
       this.properties = properties;
+      this.notFoundMessage = properties.length === 0 ? 'You have no adverts yet.' : null;
     });
   }
 
