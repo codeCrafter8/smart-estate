@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } 
 import { PropertyService } from '../../services/property.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Property } from '../../models/property.model';
 
 @Component({
   selector: 'app-property-advert',
@@ -147,5 +146,5 @@ export class PropertyAdvertComponent implements OnInit {
   get areRequiredFieldsFilled(): boolean {
     const requiredFields = ['propertyType', 'title', 'countryName', 'regionName', 'apartmentArea', 'priceInUsd'];
     return requiredFields.every(field => this.propertyForm.get(field)?.valid);
-  } 
+  }
 }

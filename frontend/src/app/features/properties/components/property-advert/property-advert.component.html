@@ -5,8 +5,8 @@
         <label for="propertyType">Property Type <span class="required">*</span></label>
         <select id="propertyType" formControlName="propertyType">
             <option value="" disabled>Select Property Type</option>
-            <option value="Apartment">Apartment</option>
-            <option value="House">House</option>
+            <option value="APARTMENT">Apartment</option>
+            <option value="HOUSE">House</option>
         </select>
         <div *ngIf="propertyForm.get('propertyType')?.invalid && propertyForm.get('propertyType')?.touched">
             <small>Property Type is required.</small>
