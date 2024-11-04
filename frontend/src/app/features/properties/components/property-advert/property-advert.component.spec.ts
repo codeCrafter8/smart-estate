@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PropertyAdvertComponent } from './property-advert.component';
 import { provideHttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 describe('PropertyAdvertComponent', () => {
   let component: PropertyAdvertComponent;
@@ -9,7 +10,7 @@ describe('PropertyAdvertComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PropertyAdvertComponent],
+      imports: [PropertyAdvertComponent, RouterModule.forRoot([])],
       providers: [provideHttpClient()]
     })
     .compileComponents();
