@@ -41,4 +41,16 @@ export class PropertyService {
   getUserProperties(): Observable<Property[]> {
     return this.http.get<Property[]>(`${this.apiUrl}/properties/me`);
   }
+
+  getPropertyById(propertyId: number): Observable<Property> {
+    return this.http.get<Property>(`${this.apiUrl}/properties/${propertyId}`);
+  }
+
+  updateProperty(propertyId: number, propertyData: any): Observable<Property> {
+    return this.http.put<Property>(`${this.apiUrl}/properties/${propertyId}`, propertyData);
+  }
+
+  deleteImage(imageId: number) {
+    return this.http.delete(`${this.apiUrl}/images/${imageId}`);
+  }
 }

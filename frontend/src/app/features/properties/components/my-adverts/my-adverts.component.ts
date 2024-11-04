@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Property } from '../../models/property.model';
 import { PropertyService } from '../../services/property.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-adverts',
@@ -12,8 +13,9 @@ import { CommonModule } from '@angular/common';
 })
 export class MyAdvertsComponent implements OnInit {
   properties: Property[] = [];
+  notFoundMessage: string | null = null;
 
-  constructor(private propertyService: PropertyService) {}
+  constructor(private propertyService: PropertyService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadUserProperties();
@@ -22,10 +24,11 @@ export class MyAdvertsComponent implements OnInit {
   loadUserProperties(): void {
     this.propertyService.getUserProperties().subscribe(properties => {
       this.properties = properties;
+      this.notFoundMessage = properties.length === 0 ? 'You have no adverts yet.' : null;
     });
   }
 
   editProperty(propertyId: number): void {
-    // Redirect to edit property page
+    this.router.navigate(['/my-adverts/edit', propertyId]);
   }
 }

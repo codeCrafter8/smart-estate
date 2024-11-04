@@ -13,4 +13,5 @@ export const routes: Routes = [
     { path: 'properties', component: PropertiesListComponent },
     { path: 'advertise', component: PropertyAdvertComponent },
     { path: 'my-adverts', component: MyAdvertsComponent },
+    { path: 'my-adverts/edit/:propertyId', component: PropertyAdvertComponent },
 ];
