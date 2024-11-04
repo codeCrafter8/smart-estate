@@ -1,0 +1,35 @@
+@import '../../../../../variables.scss';
+
+.my-adverts {
+    width: 50%;
+    margin: auto;
+
+    h2 {
+      margin-bottom: 20px;
+    }
+  
+    .advert-item {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+  
+      h3 {
+        margin: 0 0 10px;
+      }
+  
+      .btn {
+        padding: 3px 8px;
+
+        &.btn-primary {
+          background-color: $btn-primary-bg-color;
+          color: white;
+  
+          &:hover {
+            background-color: $btn-primary-hover-bg-color;
+          }
+        }
+      }
+    }
+}
+  

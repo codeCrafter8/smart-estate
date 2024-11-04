@@ -1,8 +1,8 @@
+@import '../../../../variables.scss';
+
 $navbar-bg-color: #f8f9fa;
 $link-color: #000;
 $link-hover-color: darken(#7491b0, 10%);
-$btn-primary-bg-color: #7491b0;
-$btn-primary-hover-bg-color: darken(#7491b0, 10%);
 $btn-secondary-bg-color: #6c757d;
 $btn-secondary-hover-bg-color: darken(#6c757d, 10%);
 
@@ -22,7 +22,6 @@ $btn-secondary-hover-bg-color: darken(#6c757d, 10%);
       text-decoration: none;
       color: $link-color;
       font-size: 1.05rem;
-      cursor: pointer;
 
       &:hover {
         color: $link-hover-color;
@@ -36,9 +35,6 @@ $btn-secondary-hover-bg-color: darken(#6c757d, 10%);
 
     .btn {
       padding: 5px 15px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
       font-size: 1.05rem;
 
       &.btn-primary {
@@ -60,4 +56,44 @@ $btn-secondary-hover-bg-color: darken(#6c757d, 10%);
       }
     }
   }
+
+  .dropdown {
+    position: relative;
+
+    .material-symbols-outlined {
+      font-size: 30px;
+    }
+    
+    .dropdown-toggle {
+      display: flex;
+      align-items: center;
+      border: none;
+      cursor: pointer;
+      background-color: transparent;
+    }
+  
+    .dropdown-menu {
+      position: absolute;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      z-index: 1000;
+      margin-top: 10px;
+      width: 110px;
+  
+      .dropdown-item {
+        display: block;
+        width: 100%;
+        padding: 10px 20px;
+        text-align: left;
+        color: $link-color;
+        cursor: pointer;
+        border: solid 1px #ccc;
+  
+        &:hover {
+          background-color: $btn-primary-hover-bg-color;
+          color: white;
+        }
+      }
+    }
+  }  
 }

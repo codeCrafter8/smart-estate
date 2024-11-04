@@ -10,7 +10,17 @@
   <ng-template #loggedInTemplate>
     <div class="auth-buttons">
       <button routerLink="/advertise" class="btn btn-primary">Advertise</button>
-      <button (click)="logOut()" class="btn btn-secondary">Log Out</button>
+      <div class="dropdown">
+        <button class="dropdown-toggle" (click)="toggleDropdown()">
+          <span class="material-symbols-outlined">
+            person
+            </span>
+        </button>
+        <div class="dropdown-menu" *ngIf="isDropdownOpen">
+          <button routerLink="/my-adverts" class="dropdown-item" (click)="closeDropdown()">My Adverts</button>
+          <button (click)="logOut(); closeDropdown()" class="dropdown-item">Log Out</button>
+        </div>
+      </div>
     </div>
   </ng-template>
 </nav>
