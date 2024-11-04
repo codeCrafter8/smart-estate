@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MyAdvertsComponent } from './my-adverts.component';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('MyAdvertsComponent', () => {
   let component: MyAdvertsComponent;
@@ -8,7 +9,8 @@ describe('MyAdvertsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MyAdvertsComponent]
+      imports: [MyAdvertsComponent],
+      providers: [provideHttpClient()]
     })
     .compileComponents();
 
