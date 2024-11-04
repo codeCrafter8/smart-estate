@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormControl } 
 import { PropertyService } from '../../services/property.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Property } from '../../models/property.model';
 
 @Component({
   selector: 'app-property-advert',
@@ -20,6 +21,7 @@ export class PropertyAdvertComponent implements OnInit {
   errorMessage: string | null = null;
   isEditMode = false;
   propertyId: number | null = null;
+  images: Array<{ filePath: string; file: File | null } | null> = new Array(10).fill(null);
 
   constructor(
     private fb: FormBuilder, 
@@ -60,6 +62,14 @@ export class PropertyAdvertComponent implements OnInit {
       this.propertyService.getPropertyById(this.propertyId).subscribe({
         next: (property) => {
           this.propertyForm.patchValue(property);
+          this.images = property.imageIds.map(imageId => ({
+            filePath: this.propertyService.getImageUrl(imageId),
+            file: null
+          }));
+          while (this.images.length < 10) {
+            this.images.push(null);
+          }
+          this.updateImagesFormControl();
         },
         error: (err) => {
           console.error('Error loading property data', err);
@@ -68,21 +78,44 @@ export class PropertyAdvertComponent implements OnInit {
     }
   }
 
-  onFileChange(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files) {
-      this.propertyForm.patchValue({
-        images: input.files 
-      });
-    } 
-    this.propertyForm.get('images')?.markAsTouched();
+  addImage(index: number) {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = (event) => {
+        const file = (event.target as HTMLInputElement).files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                const imageUrl = URL.createObjectURL(file);
+                this.images[index] = { filePath: imageUrl, file: file };
+                this.updateImagesFormControl();
+                this.propertyForm.get('images')?.markAsTouched();
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+    input.click();
+  }
+
+  removeImage(index: number, event: Event) {
+    event.stopPropagation();
+    this.images[index] = null;
+    this.updateImagesFormControl();
+  }
+
+  private updateImagesFormControl() {
+    this.propertyForm.get('images')?.setValue(this.images.filter(image => image !== null));
   }
 
   onSubmit() {
     if (this.propertyForm.valid) {
       if (this.isEditMode && this.propertyId) {
         this.propertyService.updateProperty(this.propertyId, this.propertyForm.value).subscribe({
-          next: () => {
+          next: (property: Property) => {
+            if (this.propertyForm.get('images')?.value) {
+              this.uploadImages(property.id);
+            }
             this.router.navigate(['/my-adverts']);
           },
           error: (err) => {
@@ -107,19 +140,21 @@ export class PropertyAdvertComponent implements OnInit {
   
   uploadImages(propertyId: number) {
     const formData = new FormData();
-    const images: FileList = this.propertyForm.get('images')?.value;
+    const images = this.propertyForm.get('images')?.value;
 
-    if (images) {
-      Array.from(images).forEach(image => {
-        formData.append('files', image);
-      });
-    }
-  
-    this.propertyService.uploadImage(propertyId, formData).subscribe({
-      error: (err) => {
-        console.error('Error uploading images', err);
-      }
-    });
+    if (images && images.length > 0) {
+        images.forEach((image: { file: File | null }) => {
+            if (image && image.file instanceof File) { 
+                formData.append('files', image.file);
+            }
+        });
+
+        this.propertyService.uploadImage(propertyId, formData).subscribe({
+            error: (err) => {
+                console.error('Error uploading images', err);
+            }
+        });
+    } 
   }
 
   imagesValidator(control: FormControl) {
@@ -146,5 +181,13 @@ export class PropertyAdvertComponent implements OnInit {
   get areRequiredFieldsFilled(): boolean {
     const requiredFields = ['propertyType', 'title', 'countryName', 'regionName', 'apartmentArea', 'priceInUsd'];
     return requiredFields.every(field => this.propertyForm.get(field)?.valid);
+  }
+
+  get formTitle(): string {
+    return this.isEditMode ? 'Edit' : 'Advertise';
+  }
+
+  get buttonLabel(): string {
+    return this.isEditMode ? 'Update Property' : 'Add Property';
   }
 }

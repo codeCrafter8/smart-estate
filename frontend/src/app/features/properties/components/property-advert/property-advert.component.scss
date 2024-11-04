@@ -89,4 +89,48 @@
         padding: 2px 4px;
         margin-top: 10px;
     }
+
+    .image-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+        margin: 1rem 0;
+    }
+    
+    .image-tile {
+        border: 2px dashed #ccc;
+        border-radius: 8px;
+        text-align: center;
+        cursor: pointer;
+        position: relative;
+        padding: 3px;
+    
+        &.empty {
+            background-color: #f0f0f0;
+            color: #999;
+            padding: 1rem;
+        }
+    
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+    
+        button {
+            position: absolute;
+            top: 0.1rem;
+            right: 0.1rem;
+            color: white;
+            background-color: #555;
+            padding: 3px;
+            max-width: 16px;
+            font-size: 10px;
+            margin-top: 0px;
+        }
+    }
+    
+    .no-images {
+        text-align: center;
+        color: #999;
+    }    
 }

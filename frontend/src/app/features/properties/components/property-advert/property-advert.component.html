@@ -1,5 +1,5 @@
 <div class="advert-container">
-    <h2>Advertise</h2>
+    <h2>{{ formTitle }}</h2>
     <form [formGroup]="propertyForm" (ngSubmit)="onSubmit()" novalidate>
 
         <label for="propertyType">Property Type <span class="required">*</span></label>
@@ -79,7 +79,17 @@
         </div>
 
         <label for="images">Images: <span class="required">*</span></label>
-        <input id="images" type="file" (change)="onFileChange($event)" multiple />
+        <div class="image-grid">
+            <div *ngFor="let image of images; let i = index" class="image-tile" (click)="addImage(i)" [class.empty]="!image">
+                <ng-container *ngIf="image; else emptyTile">
+                    <img [src]="image.filePath" alt="Property Image" />
+                    <button type="button" (click)="removeImage(i, $event)">X</button>
+                </ng-container>
+                <ng-template #emptyTile>
+                    <span>Add Image</span>
+                </ng-template>
+            </div>
+        </div>
         <div *ngIf="propertyForm.get('images')?.invalid && propertyForm.get('images')?.touched">
             <small>At least one image is required.</small>
         </div>
@@ -103,6 +113,6 @@
             <small>{{ errorMessage }}</small>
         </div>
 
-        <button type="submit" [disabled]="propertyForm.invalid">Add Property</button>
+        <button type="submit" [disabled]="propertyForm.invalid">{{ buttonLabel }}</button>
     </form>
 </div>
