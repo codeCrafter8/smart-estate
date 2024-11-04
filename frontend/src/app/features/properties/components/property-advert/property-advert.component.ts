@@ -21,7 +21,8 @@ export class PropertyAdvertComponent implements OnInit {
   errorMessage: string | null = null;
   isEditMode = false;
   propertyId: number | null = null;
-  images: Array<{ filePath: string; file: File | null } | null> = new Array(10).fill(null);
+  images: Array<{ imageId: number | null; filePath: string; file: File | null } | null> = new Array(10).fill(null);
+  deletedImages: number[] = [];
 
   constructor(
     private fb: FormBuilder, 
@@ -63,6 +64,7 @@ export class PropertyAdvertComponent implements OnInit {
         next: (property) => {
           this.propertyForm.patchValue(property);
           this.images = property.imageIds.map(imageId => ({
+            imageId: imageId,
             filePath: this.propertyService.getImageUrl(imageId),
             file: null
           }));
@@ -88,7 +90,7 @@ export class PropertyAdvertComponent implements OnInit {
             const reader = new FileReader();
             reader.onload = () => {
                 const imageUrl = URL.createObjectURL(file);
-                this.images[index] = { filePath: imageUrl, file: file };
+                this.images[index] = { imageId: null, filePath: imageUrl, file: file };
                 this.updateImagesFormControl();
                 this.propertyForm.get('images')?.markAsTouched();
             };
@@ -100,6 +102,12 @@ export class PropertyAdvertComponent implements OnInit {
 
   removeImage(index: number, event: Event) {
     event.stopPropagation();
+    const image = this.images[index];
+
+    if (image && image.imageId && !image.file) {
+      this.deletedImages.push(image.imageId);
+    }
+
     this.images[index] = null;
     this.updateImagesFormControl();
   }
@@ -113,6 +121,13 @@ export class PropertyAdvertComponent implements OnInit {
       if (this.isEditMode && this.propertyId) {
         this.propertyService.updateProperty(this.propertyId, this.propertyForm.value).subscribe({
           next: (property: Property) => {
+            this.deletedImages.forEach(imageId => {
+              this.propertyService.deleteImage(imageId).subscribe({
+                next: () => console.log(`Image ${imageId} deleted successfully.`),
+                error: (err) => console.error(`Error deleting image ${imageId}`, err)
+              });
+            });
+
             if (this.propertyForm.get('images')?.value) {
               this.uploadImages(property.id);
             }
@@ -143,17 +158,21 @@ export class PropertyAdvertComponent implements OnInit {
     const images = this.propertyForm.get('images')?.value;
 
     if (images && images.length > 0) {
-        images.forEach((image: { file: File | null }) => {
-            if (image && image.file instanceof File) { 
+        const newImages = images.filter((image: { file: File | null }) => image && image.file instanceof File);
+
+        newImages.forEach((image: { file: File | null }) => {
+            if (image.file) { 
                 formData.append('files', image.file);
             }
         });
 
-        this.propertyService.uploadImage(propertyId, formData).subscribe({
-            error: (err) => {
-                console.error('Error uploading images', err);
-            }
-        });
+        if (newImages.length > 0) {
+          this.propertyService.uploadImage(propertyId, formData).subscribe({
+              error: (err) => {
+                  console.error('Error uploading images', err);
+              }
+          });
+        }
     } 
   }
 

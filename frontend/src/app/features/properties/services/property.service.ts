@@ -49,4 +49,8 @@ export class PropertyService {
   updateProperty(propertyId: number, propertyData: any): Observable<Property> {
     return this.http.put<Property>(`${this.apiUrl}/properties/${propertyId}`, propertyData);
   }
+
+  deleteImage(imageId: number) {
+    return this.http.delete(`${this.apiUrl}/images/${imageId}`);
+  }
 }
