@@ -94,4 +94,22 @@ public class ImageService {
                             String.format("Image with id %d not found", id));
                 });
     }
+
+    public void deleteImageById(Long imageId) {
+        Image image = getImageById(imageId);
+
+        try {
+            Path filePath = Paths.get(new ClassPathResource(image.getFilePath())
+                    .getFile()
+                    .getAbsolutePath());
+            Files.deleteIfExists(filePath);
+            log.info("Deleted image file from path: {}", filePath);
+        } catch (IOException e) {
+            log.error("Failed to delete image file", e);
+            throw new FileStorageException("Failed to delete image file");
+        }
+
+        imageRepository.deleteById(imageId);
+        log.info("Deleted image record with id: {}", imageId);
+    }
 }
