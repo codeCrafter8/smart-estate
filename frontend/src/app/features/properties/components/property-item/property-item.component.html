@@ -1,4 +1,4 @@
-<div *ngIf="property" class="property-card">
+<div *ngIf="property" class="property-card" [routerLink]="['/properties', property.id]">
     <img *ngIf="property.imageIds && property.imageIds.length > 0; else noImage" 
          [src]="getImageUrl(property.imageIds[0])"
          alt="{{ property.title }}" 

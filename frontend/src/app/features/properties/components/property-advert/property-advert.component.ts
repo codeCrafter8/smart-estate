@@ -48,14 +48,12 @@ export class PropertyAdvertComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const id = params.get('propertyId');
-      if (id) {
-        this.propertyId = +id;
-        this.isEditMode = true;
-        this.loadPropertyData();
-      }
-    });
+    const id = this.route.snapshot.paramMap.get('propertyId');
+    if (id) {
+      this.propertyId = +id;
+      this.isEditMode = true;
+      this.loadPropertyData();
+    }
   }
 
   loadPropertyData(): void {

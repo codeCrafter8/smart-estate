@@ -17,3 +17,5 @@ databaseChangeLog:
       file: db/changelog/data/insert-user-ids-to-properties.yaml
   - include:
       file: db/changelog/table/update-properties-table-user-id-not-null.yaml
+  - include:
+      file: db/changelog/table/create-inquires-table.yaml
