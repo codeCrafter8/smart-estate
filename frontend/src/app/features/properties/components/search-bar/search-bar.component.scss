@@ -4,7 +4,7 @@ $border-radius: 4px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 700px;
+    width: 660px;
     margin: 0 auto;
     border: 1px solid #ccc; 
     border-radius: $border-radius;
@@ -14,7 +14,7 @@ $border-radius: 4px;
     .row {
       display: flex;
       justify-content: space-between;
-      gap: 15px;
+      gap: 19px;
       margin-bottom: 10px;
     }
   
@@ -22,7 +22,7 @@ $border-radius: 4px;
       flex: 1; 
 
       #location {
-        width: 95%;
+        width: 96%;
       }
     }
   
@@ -44,12 +44,12 @@ $border-radius: 4px;
     }
 
     select {
-        width: 163px;
+        width: 151px;
         height: 48px;
     }
 
     input {
-        width: 145px;
+        width: 133px;
         height: 30px;
     }
   

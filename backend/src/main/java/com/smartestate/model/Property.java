@@ -45,7 +45,7 @@ public class Property {
     private String countryName;
 
     @Column(nullable = false)
-    private String regionName;
+    private String locationName;
 
     private Integer yearBuilt;
 

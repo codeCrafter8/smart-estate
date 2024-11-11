@@ -1,0 +1,45 @@
+<div *ngIf="property" class="property-details">
+    <div class="property-info">
+      <h2>{{ property.title }}</h2>
+  
+      <div class="image-gallery">
+        <div class="gallery-container">
+          <button *ngIf="canGoLeft" class="arrow left" (click)="prevImage()">&#10094;</button>
+          <div class="gallery-images" [style.transform]="'translateX(' + translateXValue + 'px)'">
+            <div *ngFor="let imageId of property.imageIds" class="gallery-item">
+              <img [src]="getImageUrl(imageId)" alt="{{ property.title }}" class="property-image" />
+            </div>
+          </div>
+          <button *ngIf="canGoRight" class="arrow right" (click)="nextImage()">&#10095;</button>
+        </div>
+      </div>
+  
+      <p>{{ property.description }}</p>
+      <p>Price: {{ property.priceInUsd | currency }}</p>
+      <p>Country: {{ property.countryName }}</p>
+      <p>Location: {{ property.locationName }}</p>
+      <p *ngIf="property.yearBuilt">Year Built: {{ property.yearBuilt }}</p>
+      <p *ngIf="property.apartmentFloor">Apartment Floor: {{ property.apartmentFloor }}</p>
+      <p *ngIf="property.totalRooms">Total Rooms: {{ property.totalRooms }}</p>
+      <p *ngIf="property.totalBedrooms">Total Bedrooms: {{ property.totalBedrooms }}</p>
+      <p *ngIf="property.totalBathrooms">Total Bathrooms: {{ property.totalBathrooms }}</p>
+      <p>Area: {{ property.apartmentArea }} m²</p>
+    </div>
+
+    <form [formGroup]="contactForm" (ngSubmit)="submitForm()" class="contact-form">
+      <p>Leave a request for property</p>
+      <label for="phoneNumber">Phone Number (with country code)</label>
+      <input id="phoneNumber" formControlName="phoneNumber" type="text" />
+  
+      <label for="email">Email Address</label>
+      <input id="email" formControlName="email" type="email" />
+  
+      <button type="submit" [disabled]="!isFormFilled()">Submit</button>
+
+      <div *ngIf="message" class="message">
+        {{ message }}
+      </div>
+    </form>
+    
+</div>
+  

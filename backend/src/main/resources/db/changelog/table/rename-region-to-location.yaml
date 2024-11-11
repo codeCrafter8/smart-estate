@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 13
+      author: codeCrafter8
+      changes:
+        - renameColumn:
+            tableName: properties
+            oldColumnName: region_name
+            newColumnName: location_name
+            columnDataType: varchar(255)

@@ -1,11 +1,13 @@
 <div class="my-adverts">
-    <h2>My Adverts</h2>
-    <div *ngIf="notFoundMessage" class="notFound">{{ notFoundMessage }}</div>
-    <div *ngFor="let property of properties" class="advert-item">
-      <h3>{{ property.title }}</h3>
-      <p>Region: {{ property.regionName }}</p>
-      <p>Area: {{ property.apartmentArea }} m²</p>
-      <p>Price: {{ property.priceInUsd | currency:'USD' }}</p>
-      <button (click)="editProperty(property.id)" class="btn btn-primary">Edit</button>
-    </div>
+  <h2>My Adverts</h2>
+  <div *ngIf="notFoundMessage" class="notFound">{{ notFoundMessage }}</div>
+  <div *ngFor="let property of properties" class="advert-item">
+    <h3>{{ property.title }}</h3>
+    <p>Location: {{ property.locationName }}</p>
+    <p>Area: {{ property.apartmentArea }} m²</p>
+    <p>Price: {{ property.priceInUsd | currency:'USD' }}</p>
+    
+    <button (click)="editProperty(property.id)" class="btn btn-primary">Edit</button>
+    <button (click)="viewInquiries(property.id)" class="btn btn-secondary">View Inquiries</button>
+  </div>
 </div>

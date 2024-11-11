@@ -1,0 +1,35 @@
+.property-inquiries {
+  width: 60%;
+  margin: auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+
+  h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .no-inquiries {
+    text-align: center;
+    color: #888;
+    font-size: 16px;
+  }
+
+  .inquiry-item {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    background-color: #fff;
+
+    p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+    strong {
+      font-weight: bold;
+    }
+  }
+}
