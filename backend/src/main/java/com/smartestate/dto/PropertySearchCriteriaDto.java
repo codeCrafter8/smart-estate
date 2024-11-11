@@ -10,7 +10,8 @@ public record PropertySearchCriteriaDto(
     BigDecimal minPrice,
     BigDecimal maxPrice,
     BigDecimal minArea,
-    BigDecimal maxArea
+    BigDecimal maxArea,
+    String currency
 ) {
 }
 

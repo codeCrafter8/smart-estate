@@ -12,6 +12,7 @@ $header-border-color: #e7e7e7;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    gap: 10px;
 
     .logo {
       img {
@@ -22,7 +23,12 @@ $header-border-color: #e7e7e7;
     }
 
     app-navbar {
-      width: 63%;
+      width: 53%;
+      margin-left: 380px;
+    }
+
+    app-language-switcher {
+      margin-left: 10px;
     }
   }
 }

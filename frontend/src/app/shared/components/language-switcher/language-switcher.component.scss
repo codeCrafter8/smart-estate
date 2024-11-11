@@ -1,0 +1,15 @@
+.language-switcher select {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+}
+  
+  .language-switcher {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+}
+  

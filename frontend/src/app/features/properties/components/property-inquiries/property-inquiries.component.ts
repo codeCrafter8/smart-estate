@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { PropertyInquiryService } from '../../services/property-inquiry.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-property-inquiries',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './property-inquiries.component.html',
   styleUrl: './property-inquiries.component.scss'
 })

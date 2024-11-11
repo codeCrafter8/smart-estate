@@ -1,42 +1,42 @@
 <div class="register-container">
-    <h2 class="register-title">Register</h2>
+    <h2 class="register-title">{{ 'REGISTER' | translate }}</h2>
     <form (ngSubmit)="onSubmit()" [formGroup]="registerForm" novalidate>
       <div>
         <label for="email">Email:</label>
-        <input id="email" formControlName="email" type="email" placeholder="Enter your email">
+        <input id="email" formControlName="email" type="email" [placeholder]="'ENTER_YOUR_EMAIL' | translate">
         <div *ngIf="(submitted && email?.invalid) || (email?.touched)" class="error">
-          <small *ngIf="email?.errors?.['required']">Email is required.</small>
-          <small *ngIf="email?.errors?.['email']">Invalid email format.</small>
+          <small *ngIf="email?.errors?.['required']">{{ 'EMAIL_IS_REQUIRED' | translate }}</small>
+          <small *ngIf="email?.errors?.['email']">{{ 'INVALID_EMAIL_FORMAT' | translate }}</small>
         </div>
       </div>
   
       <div>
-        <label for="password">Password:</label>
-        <input id="password" formControlName="password" type="password" placeholder="Enter your password">
+        <label for="password">{{ 'PASSWORD' | translate }}:</label>
+        <input id="password" formControlName="password" type="password" [placeholder]="'ENTER_YOUR_PASSWORD' | translate">
         <div *ngIf="(submitted && password?.invalid) || (password?.touched)" class="error">
-          <small *ngIf="password?.errors?.['required']">Password is required.</small>
-          <small *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters long.</small>
+          <small *ngIf="password?.errors?.['required']">{{ 'PASSWORD_IS_REQUIRED' | translate }}</small>
+          <small *ngIf="password?.errors?.['minlength']">{{ 'PASSWORD_MUST_BE_AT_LEAST_6_CHARACTERS' | translate }}</small>
         </div>
       </div>
   
       <div>
-        <label for="confirmPassword">Confirm Password:</label>
-        <input id="confirmPassword" formControlName="confirmPassword" type="password" placeholder="Confirm your password">
+        <label for="confirmPassword">{{ 'CONFIRM_PASSWORD' | translate }}:</label>
+        <input id="confirmPassword" formControlName="confirmPassword" type="password" [placeholder]="'CONFIRM_YOUR_PASSWORD' | translate">
         <div *ngIf="(submitted && confirmPassword?.invalid) || (confirmPassword?.touched)" class="error">
-          <small *ngIf="confirmPassword?.errors?.['required']">Confirmation is required. </small>
-          <small *ngIf="registerForm.errors?.['mismatch']">Passwords do not match.</small>
+          <small *ngIf="confirmPassword?.errors?.['required']">{{ 'CONFIRMATION_IS_REQUIRED' | translate }} </small>
+          <small *ngIf="registerForm.errors?.['mismatch']">P{{ 'PASSWORDS_DO_NOT_MATCH' | translate }}</small>
         </div>
       </div>
   
-      <button type="submit" [disabled]="registerForm.invalid">Register</button>
+      <button type="submit" [disabled]="registerForm.invalid">{{ 'REGISTER' | translate }}</button>
   
       <div *ngIf="registrationFailed" class="error">
         <small>{{ errorMessage }}</small>
       </div>
   
       <div class="registration-link">
-        <span>Already have an account? </span>
-        <a routerLink="/login">Sign in here</a>
+        <span>{{ 'ALREADY_HAVE_AN_ACCOUNT' | translate }} </span>
+        <a routerLink="/login">{{ 'SIGN_IN_HERE' | translate }}</a>
       </div>
     </form>
 </div>

@@ -1,12 +1,12 @@
 <div class="property-inquiries">
-    <h2>Property Inquiries</h2>
+    <h2>{{ 'PROPERTY_INQUIRIES' | translate }}</h2>
   
     <div *ngIf="inquiries.length === 0" class="no-inquiries">
-      <p>No inquiries for this property yet.</p>
+      <p>{{ 'NO_INQUIRIES_YET' | translate }}</p>
     </div>
   
     <div *ngFor="let inquiry of inquiries" class="inquiry-item">
-      <p *ngIf="inquiry.phoneNumber"><strong>Phone Number:</strong> {{ inquiry.phoneNumber }}</p>
+      <p *ngIf="inquiry.phoneNumber"><strong>{{ 'PHONE' | translate }}:</strong> {{ inquiry.phoneNumber }}</p>
       <p *ngIf="inquiry.email"><strong>Email:</strong> {{ inquiry.email }}</p>
     </div>
 </div>

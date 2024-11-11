@@ -26,11 +26,16 @@ public class PropertySpecification {
 
             if (criteria.minPrice() != null) {
                 predicate = criteriaBuilder.and(predicate,
-                        criteriaBuilder.greaterThanOrEqualTo(root.get("priceInUsd"), criteria.minPrice()));
+                        criteriaBuilder.greaterThanOrEqualTo(root.get("price"), criteria.minPrice()));
             }
             if (criteria.maxPrice() != null) {
                 predicate = criteriaBuilder.and(predicate,
-                        criteriaBuilder.lessThanOrEqualTo(root.get("priceInUsd"), criteria.maxPrice()));
+                        criteriaBuilder.lessThanOrEqualTo(root.get("price"), criteria.maxPrice()));
+            }
+
+            if (criteria.currency() != null && !criteria.currency().isBlank()) {
+                predicate = criteriaBuilder.and(predicate,
+                        criteriaBuilder.equal(root.get("currency"), criteria.currency()));
             }
 
             if (criteria.minArea() != null) {

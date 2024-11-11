@@ -3,13 +3,14 @@ import { Property } from '../../models/property.model';
 import { ActivatedRoute } from '@angular/router';
 import { PropertyService } from '../../services/property.service';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PropertyInquiryService } from '../../services/property-inquiry.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-property-details',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './property-details.component.html',
   styleUrls: ['./property-details.component.scss']
 })
@@ -25,7 +26,7 @@ export class PropertyDetailsComponent {
   constructor(
     private route: ActivatedRoute,
     private propertyService: PropertyService,
-    private propertyInquiryService: PropertyInquiryService,
+    private propertyInquiryService: PropertyInquiryService
   ) {
     this.contactForm = new FormGroup({
       phoneNumber: new FormControl('', [Validators.pattern(/^\+?[1-9]\d{1,14}$/)]),

@@ -50,6 +50,17 @@
         min-height: 100px; 
     }
 
+    .price-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+
+        .currency {
+            width: 20%;
+        }
+    }
+
     button {
         width: 100%;
         padding: 0.75rem;

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ import { AuthService } from '../../../../core/services/auth.service';
     ReactiveFormsModule, 
     CommonModule,
     RouterLink,
+    TranslateModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -25,6 +27,7 @@ export class LoginComponent {
     private fb: FormBuilder, 
     private authService: AuthService,
     private router: Router, 
+    private translate: TranslateService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -55,9 +58,13 @@ export class LoginComponent {
         error: (err) => {
           console.error('Login failed', err);
           this.loginFailed = true;
-          this.errorMessage = err.status === 401 
-            ? 'Incorrect email or password.' 
-            : 'Login failed. Please try again.';
+          const translationKey = err.status === 401
+            ? 'INCORRECT_EMAIL_OR_PASSWORD'
+            : 'LOGIN_FAILED';
+          
+          this.translate.get(translationKey).subscribe((translatedMessage: string) => {
+            this.errorMessage = translatedMessage;
+          });
         }
       });
     }

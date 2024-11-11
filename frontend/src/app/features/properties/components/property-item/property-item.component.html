@@ -8,5 +8,5 @@
     </ng-template>
     
     <h3>{{ property.title }}</h3>
-    <p>{{ property.priceInUsd | currency }}</p>
+    <p>{{ property.price | currency: property.currency }}</p>
 </div>
