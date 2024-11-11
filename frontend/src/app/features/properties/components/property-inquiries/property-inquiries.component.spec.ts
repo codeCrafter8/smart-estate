@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PropertyInquiriesComponent } from './property-inquiries.component';
+import { provideHttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 describe('PropertyInquiriesComponent', () => {
   let component: PropertyInquiriesComponent;
@@ -8,7 +10,8 @@ describe('PropertyInquiriesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PropertyInquiriesComponent]
+      imports: [PropertyInquiriesComponent, RouterModule.forRoot([])],
+      providers: [provideHttpClient()]
     })
     .compileComponents();
 

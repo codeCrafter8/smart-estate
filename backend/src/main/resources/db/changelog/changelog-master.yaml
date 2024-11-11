@@ -19,3 +19,5 @@ databaseChangeLog:
       file: db/changelog/table/update-properties-table-user-id-not-null.yaml
   - include:
       file: db/changelog/table/create-inquires-table.yaml
+  - include:
+      file: db/changelog/table/rename-region-to-location.yaml

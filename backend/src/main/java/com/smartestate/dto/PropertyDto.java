@@ -9,7 +9,7 @@ public record PropertyDto(
         String title,
         String description,
         String countryName,
-        String regionName,
+        String locationName,
         Integer yearBuilt,
         Integer totalBuildingFloors,
         Integer apartmentFloor,

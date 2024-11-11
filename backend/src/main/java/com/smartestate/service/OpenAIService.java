@@ -44,7 +44,7 @@ public class OpenAIService {
         appendIfPresent(promptBuilder, "Property Type", propertyRequestDto.propertyType());
         appendIfPresent(promptBuilder, "Title", propertyRequestDto.title());
         appendIfPresent(promptBuilder, "Country", propertyRequestDto.countryName());
-        appendIfPresent(promptBuilder, "Region", propertyRequestDto.regionName());
+        appendIfPresent(promptBuilder, "Location", propertyRequestDto.locationName());
         appendIfPresent(promptBuilder, "Year Built", propertyRequestDto.yearBuilt());
         appendIfPresent(promptBuilder, "Total Building Floors", propertyRequestDto.totalBuildingFloors());
         appendIfPresent(promptBuilder, "Apartment Floor", propertyRequestDto.apartmentFloor());

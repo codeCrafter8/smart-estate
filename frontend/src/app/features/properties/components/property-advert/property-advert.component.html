@@ -24,10 +24,10 @@
             <small>Country is required.</small>
         </div>
 
-        <label for="regionName">Region <span class="required">*</span></label>
-        <input id="regionName" formControlName="regionName" type="text" placeholder="Enter region" />
-        <div *ngIf="propertyForm.get('regionName')?.invalid && propertyForm.get('regionName')?.touched">
-            <small>Region is required.</small>
+        <label for="locationName">Location <span class="required">*</span></label>
+        <input id="locationName" formControlName="locationName" type="text" placeholder="Enter location" />
+        <div *ngIf="propertyForm.get('locationName')?.invalid && propertyForm.get('locationName')?.touched">
+            <small>Location is required.</small>
         </div>
 
         <label for="yearBuilt">Year Built</label>

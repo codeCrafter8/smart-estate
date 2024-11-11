@@ -19,7 +19,7 @@ public class PropertySpecification {
                 String likePattern = likePattern(criteria.location());
                 Predicate locationPredicate = criteriaBuilder.or(
                         criteriaBuilder.like(root.get("countryName"), likePattern),
-                        criteriaBuilder.like(root.get("regionName"), likePattern)
+                        criteriaBuilder.like(root.get("locationName"), likePattern)
                 );
                 predicate = criteriaBuilder.and(predicate, locationPredicate);
             }

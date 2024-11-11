@@ -4,7 +4,7 @@ export interface Property {
     title: string;
     description: string;
     countryName: string;
-    regionName: string;
+    locationName: string;
     yearBuilt: number;
     totalBuildingFloors: number;
     apartmentFloor: number;
