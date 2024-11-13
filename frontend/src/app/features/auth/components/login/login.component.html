@@ -1,32 +1,32 @@
 <div class="login-container">
-    <h2 class="login-title">Sign In</h2>
+    <h2 class="login-title">{{ 'SIGN_IN' | translate }}</h2>
     <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" novalidate>
       <div>
         <label for="email">Email:</label>
-        <input id="email" formControlName="email" type="email" placeholder="Enter your email">
+        <input id="email" formControlName="email" type="email" [placeholder]="'ENTER_YOUR_EMAIL' | translate">
         <div *ngIf="(submitted && email?.invalid) || (email?.touched)" class="error">
-          <small *ngIf="email?.errors?.['required']">Email is required.</small>
-          <small *ngIf="email?.errors?.['email']">Invalid email format.</small>
+          <small *ngIf="email?.errors?.['required']">{{ 'EMAIL_IS_REQUIRED' | translate }}</small>
+          <small *ngIf="email?.errors?.['email']">{{ 'INVALID_EMAIL_FORMAT' | translate }}</small>
         </div>
       </div>
   
       <div>
-        <label for="password">Password:</label>
-        <input id="password" formControlName="password" type="password" placeholder="Enter your password">
+        <label for="password">{{ 'PASSWORD' | translate }}:</label>
+        <input id="password" formControlName="password" type="password" [placeholder]="'ENTER_YOUR_PASSWORD' | translate">
         <div *ngIf="(submitted && password?.invalid) || (password?.touched)" class="error">
-          <small *ngIf="password?.errors?.['required']">Password is required.</small>
+          <small *ngIf="password?.errors?.['required']">{{ 'PASSWORD_IS_REQUIRED' | translate }}</small>
         </div>
       </div>
   
-      <button type="submit" [disabled]="loginForm.invalid">Sign In</button>
+      <button type="submit" [disabled]="loginForm.invalid">{{ 'SIGN_IN' | translate }}</button>
   
       <div *ngIf="loginFailed" class="error">
         <small>{{ errorMessage }}</small>
       </div>
   
       <div class="registration-link">
-        <span>Don't have an account? </span>
-        <a routerLink="/register">Join here</a>
+        <span>{{ 'DONT_HAVE_AN_ACCOUNT' | translate }} </span>
+        <a routerLink="/register">{{ 'JOIN_HERE' | translate }}</a>
       </div>
     </form>
 </div>

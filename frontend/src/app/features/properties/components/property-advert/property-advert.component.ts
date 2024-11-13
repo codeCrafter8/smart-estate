@@ -4,6 +4,7 @@ import { PropertyService } from '../../services/property.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Property } from '../../models/property.model';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-property-advert',
@@ -11,6 +12,7 @@ import { Property } from '../../models/property.model';
   imports: [
     ReactiveFormsModule,
     CommonModule,
+    TranslateModule
   ],
   templateUrl: './property-advert.component.html',
   styleUrl: './property-advert.component.scss'
@@ -23,12 +25,14 @@ export class PropertyAdvertComponent implements OnInit {
   propertyId: number | null = null;
   images: Array<{ imageId: number | null; filePath: string; file: File | null } | null> = new Array(10).fill(null);
   deletedImages: number[] = [];
+  isCurrencyUSD: boolean = false;
 
   constructor(
     private fb: FormBuilder, 
     private propertyService: PropertyService, 
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private translate: TranslateService) {
     this.propertyForm = this.fb.group({
       propertyType: ['', Validators.required],
       title: ['', Validators.required],
@@ -41,7 +45,8 @@ export class PropertyAdvertComponent implements OnInit {
       totalBedrooms: ['', [Validators.min(0)]],
       totalBathrooms: ['', [Validators.min(0)]],
       apartmentArea: ['', [Validators.required, Validators.min(1)]],
-      priceInUsd: ['', [Validators.required, Validators.min(0)]],
+      price: ['', [Validators.required, Validators.min(0)]],
+      currency: [this.isCurrencyUSD ? 'USD' : 'PLN'],
       images: [null, this.imagesValidator],
       description: ['', Validators.required],
     });
@@ -54,6 +59,8 @@ export class PropertyAdvertComponent implements OnInit {
       this.isEditMode = true;
       this.loadPropertyData();
     }
+    const currentLang = this.translate.currentLang; 
+    this.isCurrencyUSD = currentLang ? currentLang === 'en' : true;
   }
 
   loadPropertyData(): void {
@@ -196,15 +203,19 @@ export class PropertyAdvertComponent implements OnInit {
   }
 
   get areRequiredFieldsFilled(): boolean {
-    const requiredFields = ['propertyType', 'title', 'countryName', 'locationName', 'apartmentArea', 'priceInUsd'];
+    const requiredFields = ['propertyType', 'title', 'countryName', 'locationName', 'apartmentArea', 'price'];
     return requiredFields.every(field => this.propertyForm.get(field)?.valid);
   }
 
   get formTitle(): string {
-    return this.isEditMode ? 'Edit' : 'Advertise';
+    return this.isEditMode
+      ? this.translate.instant('EDIT')
+      : this.translate.instant('ADVERTISE');
   }
 
   get buttonLabel(): string {
-    return this.isEditMode ? 'Update Property' : 'Add Property';
+    return this.isEditMode
+      ? this.translate.instant('UPDATE_PROPERTY')
+      : this.translate.instant('ADD_PROPERTY');
   }
 }

@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { SearchBarComponent } from "../search-bar/search-bar.component";
 import { PropertySearchCriteria } from '../../models/property-search-criteria.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-properties-list',
@@ -19,7 +20,7 @@ export class PropertiesListComponent implements OnInit {
   errorMessage: string | null = null;
   searchCriteria: PropertySearchCriteria = {};
 
-  constructor(private route: ActivatedRoute, private propertyService: PropertyService) {}
+  constructor(private route: ActivatedRoute, private propertyService: PropertyService, private translate: TranslateService) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -32,11 +33,13 @@ export class PropertiesListComponent implements OnInit {
     this.propertyService.searchProperties(criteria).subscribe({
       next: (properties) => {
         this.properties = properties;
-        this.errorMessage = properties.length === 0 ? 'No properties found with the given criteria.' : null;
+        this.errorMessage = properties.length === 0 
+          ? this.translate.instant('NO_PROPERTIES_FOUND') 
+          : null;
       },
       error: () => {
         this.properties = [];
-        this.errorMessage = 'An error occurred while fetching properties.';
+        this.errorMessage = this.translate.instant('FETCH_PROPERTIES_ERROR');
       }
     });
   }

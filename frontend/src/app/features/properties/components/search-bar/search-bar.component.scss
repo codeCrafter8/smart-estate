@@ -4,7 +4,7 @@ $border-radius: 4px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 660px;
+    width: 691px;
     margin: 0 auto;
     border: 1px solid #ccc; 
     border-radius: $border-radius;
@@ -14,15 +14,29 @@ $border-radius: 4px;
     .row {
       display: flex;
       justify-content: space-between;
-      gap: 19px;
+      gap: 3px;
       margin-bottom: 10px;
+
+      .price, .area {
+        display: flex;
+        gap: 3px;
+      }
+
+      .currency {
+        width: 70px;
+        margin-left: 0px;
+      }
+
+      .second {
+        gap: 10px;
+      }
     }
   
     .location-input {
       flex: 1; 
 
       #location {
-        width: 96%;
+        width: 97%;
       }
     }
   
@@ -49,7 +63,7 @@ $border-radius: 4px;
     }
 
     input {
-        width: 133px;
+        width: 132px;
         height: 30px;
     }
   

@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: 14
+      author: codeCrafter8
+      changes:
+        - renameColumn:
+            tableName: properties
+            oldColumnName: price_in_usd
+            newColumnName: price
+            columnDataType: decimal(10, 2)
+
+        - addColumn:
+            tableName: properties
+            columns:
+              - column:
+                  name: currency
+                  type: varchar(3)
+                  defaultValue: "USD"
