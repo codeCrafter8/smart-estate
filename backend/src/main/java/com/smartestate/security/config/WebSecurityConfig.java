@@ -41,9 +41,11 @@ public class WebSecurityConfig {
         http.authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.POST,
                         "api/v1/auth/**",
-                        "api/v1/properties/search").permitAll()
+                        "api/v1/properties/search",
+                        "api/v1/inquiries/**").permitAll()
                 .requestMatchers(HttpMethod.GET,
-                        "api/v1/images/**").permitAll()
+                        "api/v1/images/**",
+                        "api/v1/properties/{propertyId}").permitAll()
                 .anyRequest().authenticated());
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
@@ -56,7 +58,7 @@ public class WebSecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(List.of("http://localhost:4200"));
-        configuration.setAllowedMethods(List.of("GET", "POST"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

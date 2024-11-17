@@ -5,11 +5,19 @@ import java.util.List;
 
 public record PropertyDto(
         Long id,
+        String propertyType,
         String title,
         String description,
         String countryName,
-        String regionName,
-        BigDecimal priceInUsd,
+        String locationName,
+        Integer yearBuilt,
+        Integer totalBuildingFloors,
+        Integer apartmentFloor,
+        Integer totalRooms,
+        Integer totalBedrooms,
+        Integer totalBathrooms,
+        BigDecimal price,
+        String currency,
         BigDecimal apartmentArea,
         List<Long> imageIds
 ) {

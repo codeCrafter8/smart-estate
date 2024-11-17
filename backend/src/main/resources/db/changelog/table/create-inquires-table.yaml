@@ -1,0 +1,51 @@
+databaseChangeLog:
+  - changeSet:
+      id: 11
+      author: codeCrafter8
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: property_inquiries
+      changes:
+        - createSequence:
+            sequenceName: inquiry_sequence
+            startValue: 1
+            incrementBy: 1
+        - createTable:
+            tableName: property_inquiries
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  defaultValueSequenceNext: inquiry_sequence
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: phone_number
+                  type: VARCHAR(255)
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: property_id
+                  type: INT
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 12
+      author: codeCrafter8
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: property_inquiries
+            baseColumnNames: property_id
+            referencedTableName: properties
+            referencedColumnNames: id
+            constraintName: fk_property_id

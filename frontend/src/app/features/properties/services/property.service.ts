@@ -33,4 +33,24 @@ export class PropertyService {
   uploadImage(propertyId: number, formData: FormData) {
     return this.http.post(`${this.apiUrl}/images/upload/${propertyId}`, formData);
   }
+
+  generateDescription(propertyDetails: Property): Observable<{ description: string }> {
+    return this.http.post<{ description: string }>(`${this.apiUrl}/openai/generate-description`, propertyDetails);
+  }
+
+  getUserProperties(): Observable<Property[]> {
+    return this.http.get<Property[]>(`${this.apiUrl}/properties/me`);
+  }
+
+  getPropertyById(propertyId: number): Observable<Property> {
+    return this.http.get<Property>(`${this.apiUrl}/properties/${propertyId}`);
+  }
+
+  updateProperty(propertyId: number, propertyData: any): Observable<Property> {
+    return this.http.put<Property>(`${this.apiUrl}/properties/${propertyId}`, propertyData);
+  }
+
+  deleteImage(imageId: number) {
+    return this.http.delete(`${this.apiUrl}/images/${imageId}`);
+  }
 }

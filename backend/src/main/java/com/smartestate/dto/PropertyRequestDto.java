@@ -9,7 +9,7 @@ public record PropertyRequestDto(
         String title,
         String description,
         String countryName,
-        String regionName,
+        String locationName,
         Integer yearBuilt,
         Integer totalBuildingFloors,
         Integer apartmentFloor,
@@ -17,5 +17,6 @@ public record PropertyRequestDto(
         Integer totalBedrooms,
         Integer totalBathrooms,
         BigDecimal apartmentArea,
-        BigDecimal priceInUsd
+        BigDecimal price,
+        String currency
 ) {}

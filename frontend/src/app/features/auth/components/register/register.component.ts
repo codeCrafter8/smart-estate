@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractContro
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +12,7 @@ import { AuthService } from '../../../../core/services/auth.service';
     ReactiveFormsModule, 
     CommonModule,
     RouterLink,
+    TranslateModule
   ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
@@ -25,6 +27,7 @@ export class RegisterComponent {
     private fb: FormBuilder, 
     private authService: AuthService,
     private router: Router, 
+    private translate: TranslateService
   ) {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -65,9 +68,13 @@ export class RegisterComponent {
         error: (err) => {
           console.error('Registration failed', err);
           this.registrationFailed = true;  
-          this.errorMessage = err.status === 409 
-            ? 'User with this email already exists.' 
-            : 'An error occurred during registration. Please try again.';
+          const translationKey = err.status === 409
+            ? 'USER_WITH_THIS_EMAIL_ALREADY_EXISTS'
+            : 'REGISTRATION_FAILED';
+
+          this.translate.get(translationKey).subscribe((translatedMessage: string) => {
+            this.errorMessage = translatedMessage;
+          });
         }
       });
     }

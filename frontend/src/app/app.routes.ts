@@ -4,11 +4,18 @@ import { RegisterComponent } from './features/auth/components/register/register.
 import { HomepageComponent } from './features/homepage/homepage.component';
 import { PropertiesListComponent } from './features/properties/components/properties-list/properties-list.component';
 import { PropertyAdvertComponent } from './features/properties/components/property-advert/property-advert.component';
+import { MyAdvertsComponent } from './features/properties/components/my-adverts/my-adverts.component';
+import { PropertyDetailsComponent } from './features/properties/components/property-details/property-details.component';
+import { PropertyInquiriesComponent } from './features/properties/components/property-inquiries/property-inquiries.component';
 
 export const routes: Routes = [
     { path: '', component: HomepageComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'properties', component: PropertiesListComponent },
-    { path: 'advertise', component: PropertyAdvertComponent }
+    { path: 'advertise', component: PropertyAdvertComponent },
+    { path: 'my-adverts', component: MyAdvertsComponent },
+    { path: 'my-adverts/edit/:propertyId', component: PropertyAdvertComponent },
+    { path: 'properties/:propertyId', component: PropertyDetailsComponent },
+    { path: 'my-adverts/inquiries/:id', component: PropertyInquiriesComponent },
 ];

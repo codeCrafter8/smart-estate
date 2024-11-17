@@ -1,35 +1,45 @@
 <div class="search-bar">
   <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
     <div class="row">
-      <div>
+      <!-- <div>
         <select formControlName="transactionType">
           <option value="" disabled>Select Transaction Type</option>
           <option *ngFor="let type of transactionTypes" [value]="type">{{ type }}</option>
         </select>
-      </div>
+      </div> -->
 
       <div>
         <select formControlName="propertyType">
-          <option value="" disabled>Select Property Type</option>
-          <option *ngFor="let type of propertyTypes" [value]="type">{{ type }}</option>
+          <option value="" disabled>{{ 'SELECT_PROPERTY_TYPE' | translate }}</option>
+          <option *ngFor="let type of propertyTypes" [value]="type">
+            {{ getPropertyTypeTranslation(type) }}
+          </option>
         </select>
       </div>
 
       <div class="location-input">
-        <input type="text" id="location" formControlName="location" placeholder="Enter location" />
+        <input type="text" id="location" formControlName="location" [placeholder]="'LOCATION' | translate" />
       </div>
     </div>
 
-    <div class="row">
-      <input type="number" formControlName="minPrice" placeholder="Min Price" />
-      <input type="number" formControlName="maxPrice" placeholder="Max Price" />
+    <div class="row second">
+      <div class="price">
+        <input type="number" formControlName="minPrice" [placeholder]="'Min. ' + ('PRICE' | translate)" />
+        <input type="number" formControlName="maxPrice" [placeholder]="'Max. ' + ('PRICE' | translate)" />
+        <select id="currency" formControlName="currency" class="currency">
+          <option value="USD">USD</option>
+          <option value="PLN">PLN</option>
+        </select>
+      </div>
 
-      <input type="number" formControlName="minArea" placeholder="Min Area (m²)" />
-      <input type="number" formControlName="maxArea" placeholder="Max Area (m²)" />
+      <div class="area">
+        <input type="number" formControlName="minArea" [placeholder]="'Min. ' + ('AREA' | translate) + ' (m²)'" />
+        <input type="number" formControlName="maxArea" [placeholder]="'Max. ' + ('AREA' | translate) + ' (m²)'" />
+      </div>
     </div>
 
     <div class="button-container"> 
-      <button type="submit">Search</button>
+      <button type="submit">{{ 'SEARCH' | translate }}</button>
     </div>
   </form>
 </div>

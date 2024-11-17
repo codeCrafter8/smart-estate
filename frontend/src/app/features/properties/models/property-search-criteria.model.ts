@@ -5,4 +5,5 @@ export interface PropertySearchCriteria {
     maxPrice?: number;
     minArea?: number;
     maxArea?: number;
+    currency?: string;
 }

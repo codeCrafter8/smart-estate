@@ -1,0 +1,45 @@
+<div *ngIf="property" class="property-details">
+    <div class="property-info">
+      <h2>{{ property.title }}</h2>
+  
+      <div class="image-gallery">
+        <div class="gallery-container">
+          <button *ngIf="canGoLeft" class="arrow left" (click)="prevImage()">&#10094;</button>
+          <div class="gallery-images" [style.transform]="'translateX(' + translateXValue + 'px)'">
+            <div *ngFor="let imageId of property.imageIds" class="gallery-item">
+              <img [src]="getImageUrl(imageId)" alt="{{ property.title }}" class="property-image" />
+            </div>
+          </div>
+          <button *ngIf="canGoRight" class="arrow right" (click)="nextImage()">&#10095;</button>
+        </div>
+      </div>
+  
+      <p>{{ property.description }}</p>
+      <p>{{ 'PRICE' | translate }}: {{ property.price | currency: property.currency }}</p>
+      <p>{{ 'COUNTRY' | translate }}: {{ property.countryName }}</p>
+      <p>{{ 'LOCATION' | translate }}: {{ property.locationName }}</p>
+      <p *ngIf="property.yearBuilt">{{ 'YEAR_BUILT' | translate }}: {{ property.yearBuilt }}</p>
+      <p *ngIf="property.apartmentFloor">{{ 'APARTMENT_FLOOR' | translate }}: {{ property.apartmentFloor }}</p>
+      <p *ngIf="property.totalRooms">{{ 'TOTAL_ROOMS' | translate }}: {{ property.totalRooms }}</p>
+      <p *ngIf="property.totalBedrooms">{{ 'TOTAL_BEDROOMS' | translate }}: {{ property.totalBedrooms }}</p>
+      <p *ngIf="property.totalBathrooms">{{ 'TOTAL_BATHROOMS' | translate }}: {{ property.totalBathrooms }}</p>
+      <p>{{ 'AREA' | translate }}: {{ property.apartmentArea }} m²</p>
+    </div>
+
+    <form [formGroup]="contactForm" (ngSubmit)="submitForm()" class="contact-form">
+      <p>{{ 'LEAVE_A_REQUEST_FOR_PROPERTY' | translate }}</p>
+      <label for="phoneNumber">{{ 'PHONE_WITH_COUNTRY_CODE' | translate }}</label>
+      <input id="phoneNumber" formControlName="phoneNumber" type="text" />
+  
+      <label for="email">{{ 'EMAIL_ADDRESS' | translate }}</label>
+      <input id="email" formControlName="email" type="email" />
+  
+      <button type="submit" [disabled]="!isFormFilled()">{{ 'SUBMIT' | translate }}</button>
+
+      <div *ngIf="message" class="message">
+        {{ message }}
+      </div>
+    </form>
+    
+</div>
+  

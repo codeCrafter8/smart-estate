@@ -4,11 +4,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PropertySearchCriteria } from '../../models/property-search-criteria.model';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-search-bar',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, TranslateModule],
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
 })
@@ -18,23 +19,36 @@ export class SearchBarComponent implements OnInit {
 
   propertyTypes = ['Apartment', 'House'];
   transactionTypes = ['Buy', 'Rent'];
+  isCurrencyUSD: boolean = false;
   
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private translate: TranslateService) {
     this.searchForm = this.fb.group({
       propertyType: ['Apartment', Validators.required], 
       transactionType: ['Buy', Validators.required], 
       location: [''],
       minPrice: [null, [Validators.min(0)]],
       maxPrice: [null, [Validators.min(0)]],
+      currency: [''],
       minArea: [null, [Validators.min(0)]],
       maxArea: [null, [Validators.min(0)]],
     });
   }
 
   ngOnInit() {
+    const currentLang = this.translate.currentLang; 
+    this.isCurrencyUSD = currentLang ? currentLang === 'en' : true;
+  
     if (this.initialCriteria) {
       this.searchForm.patchValue(this.initialCriteria);
     }
+  
+    if (!this.searchForm.get('currency')?.value) {
+      this.searchForm.patchValue({ currency: this.isCurrencyUSD ? 'USD' : 'PLN' });
+    }
+  
+    this.translate.onLangChange.subscribe(() => {
+      this.onLangChange(); 
+    });
 
     this.searchForm.valueChanges.subscribe(() => {
       const minPrice = this.searchForm.get('minPrice')?.value;
@@ -64,5 +78,15 @@ export class SearchBarComponent implements OnInit {
     } else {
       console.log('Invalid form input');
     }
+  }
+
+  getPropertyTypeTranslation(type: string): string {
+    return this.translate.instant(`propertyTypes.${type}`);
+  }
+
+  onLangChange(): void {
+    const currentLang = this.translate.currentLang;
+    this.isCurrencyUSD = currentLang === 'en';
+    this.searchForm.patchValue({ currency: this.isCurrencyUSD ? 'USD' : 'PLN' });
   }
 }
