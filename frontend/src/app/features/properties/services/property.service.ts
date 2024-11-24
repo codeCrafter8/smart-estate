@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, catchError, of } from 'rxjs';
 import { Property } from '../models/property.model';
 import { environment } from '../../../../environments/environment';
@@ -34,8 +34,10 @@ export class PropertyService {
     return this.http.post(`${this.apiUrl}/images/upload/${propertyId}`, formData);
   }
 
-  generateDescription(propertyDetails: Property): Observable<{ description: string }> {
-    return this.http.post<{ description: string }>(`${this.apiUrl}/openai/generate-description`, propertyDetails);
+  generateDescription(propertyDetails: Property, language: string): Observable<{ description: string }> {
+    const params = new HttpParams().set('language', language);  
+    
+    return this.http.post<{ description: string }>(`${this.apiUrl}/openai/generate-description`, propertyDetails, { params });
   }
 
   getUserProperties(): Observable<Property[]> {
