@@ -25,7 +25,7 @@ export class PropertyAdvertComponent implements OnInit {
   propertyId: number | null = null;
   images: Array<{ imageId: number | null; filePath: string; file: File | null } | null> = new Array(10).fill(null);
   deletedImages: number[] = [];
-  isCurrencyUSD: boolean = false;
+  isEnglish: boolean = false;
 
   constructor(
     private fb: FormBuilder, 
@@ -46,7 +46,7 @@ export class PropertyAdvertComponent implements OnInit {
       totalBathrooms: ['', [Validators.min(0)]],
       apartmentArea: ['', [Validators.required, Validators.min(1)]],
       price: ['', [Validators.required, Validators.min(0)]],
-      currency: [this.isCurrencyUSD ? 'USD' : 'PLN'],
+      currency: [this.isEnglish ? 'USD' : 'PLN'],
       images: [null, this.imagesValidator],
       description: ['', Validators.required],
     });
@@ -59,8 +59,8 @@ export class PropertyAdvertComponent implements OnInit {
       this.isEditMode = true;
       this.loadPropertyData();
     }
-    const currentLang = this.translate.currentLang; 
-    this.isCurrencyUSD = currentLang ? currentLang === 'en' : true;
+    
+    this.isEnglish = (this.translate.currentLang || 'en') === 'en';
   }
 
   loadPropertyData(): void {
@@ -187,7 +187,9 @@ export class PropertyAdvertComponent implements OnInit {
 
   generateDescription() {
     this.isGenerating = true; 
-    this.propertyService.generateDescription(this.propertyForm.value).subscribe({
+    const language = this.isEnglish ? 'en' : 'pl'; 
+
+    this.propertyService.generateDescription(this.propertyForm.value, language).subscribe({
         next: (response) => {
             const description = response.description;
             const sanitizedDescription = description.replace(/\*/g, '&#42;');
