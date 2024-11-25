@@ -91,6 +91,11 @@
     "NO_INQUIRIES_YET": "No inquiries for this property yet.",
     "NO_PROPERTIES_FOUND": "No properties found with the given criteria.",
     "FETCH_PROPERTIES_ERROR": "An error occurred while fetching properties.",
-    "CURRENCY": "Currency"
+    "CURRENCY": "Currency",
+    "DELETE": "Delete",
+    "CANCEL": "Cancel",
+    "CONFIRM": "Confirm",
+    "CONFIRM_DELETE_PROPERTY": "Are you sure you want to delete this advert?",
+    "ERROR_GENERATING_DESCRIPTION": "Failed to generate description. Please try again."
 }
   

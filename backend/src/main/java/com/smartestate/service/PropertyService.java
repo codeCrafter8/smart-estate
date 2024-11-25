@@ -94,4 +94,12 @@ public class PropertyService {
         Property property = getPropertyById(propertyId);
         return propertyMapper.toDto(property);
     }
+
+    public void deleteProperty(Long propertyId) {
+        Property property = getPropertyById(propertyId);
+
+        propertyRepository.delete(property);
+
+        log.info("Property with id {} deleted successfully", propertyId);
+    }
 }

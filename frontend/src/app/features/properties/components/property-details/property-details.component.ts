@@ -55,7 +55,6 @@ export class PropertyDetailsComponent {
 
       this.propertyInquiryService.submitInquiry(this.property.id, formData).subscribe({
         next: (response) => {
-          console.log('Inquiry submitted successfully:', response);
           this.message = 'Your inquiry has been successfully submitted!';
           this.contactForm.reset(); 
         },
@@ -64,9 +63,7 @@ export class PropertyDetailsComponent {
           this.message = 'Something went wrong. Please try again later.';
         }
       });
-    } else {
-      console.log('Form is invalid');
-    }
+    } 
   }
 
   prevImage() {

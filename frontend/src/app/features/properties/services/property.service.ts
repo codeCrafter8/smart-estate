@@ -55,4 +55,8 @@ export class PropertyService {
   deleteImage(imageId: number) {
     return this.http.delete(`${this.apiUrl}/images/${imageId}`);
   }
+
+  deleteProperty(propertyId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/properties/${propertyId}`);
+  }
 }
