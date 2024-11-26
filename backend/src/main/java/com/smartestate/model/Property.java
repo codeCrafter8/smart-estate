@@ -70,9 +70,17 @@ public class Property {
     @Column(nullable = false)
     private Currency currency;
 
-    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "property", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Image> images;
+
+    @OneToMany(
+            mappedBy = "property",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
+    @JsonManagedReference
+    private List<PropertyInquiry> inquiries;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)

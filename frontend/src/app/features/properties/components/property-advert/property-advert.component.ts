@@ -128,7 +128,6 @@ export class PropertyAdvertComponent implements OnInit {
           next: (property: Property) => {
             this.deletedImages.forEach(imageId => {
               this.propertyService.deleteImage(imageId).subscribe({
-                next: () => console.log(`Image ${imageId} deleted successfully.`),
                 error: (err) => console.error(`Error deleting image ${imageId}`, err)
               });
             });
@@ -186,6 +185,7 @@ export class PropertyAdvertComponent implements OnInit {
   }
 
   generateDescription() {
+    this.errorMessage = null;
     this.isGenerating = true; 
     const language = this.isEnglish ? 'en' : 'pl'; 
 
@@ -197,7 +197,7 @@ export class PropertyAdvertComponent implements OnInit {
             this.isGenerating = false; 
         },
         error: (err) => {
-            this.errorMessage = 'Failed to generate description. Please try again.';
+          this.errorMessage = this.translate.instant('ERROR_GENERATING_DESCRIPTION');
             console.error('Error generating description', err);
             this.isGenerating = false; 
         }

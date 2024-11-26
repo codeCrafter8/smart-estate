@@ -91,6 +91,11 @@
     "NO_INQUIRIES_YET": "Nie masz jeszcze zapytań o tę nieruchomość.",
     "NO_PROPERTIES_FOUND": "Nie znaleziono nieruchomości spełniających podane kryteria.",
     "FETCH_PROPERTIES_ERROR": "Wystąpił błąd podczas pobierania nieruchomości.",
-    "CURRENCY": "Waluta"
+    "CURRENCY": "Waluta",
+    "DELETE": "Usuń",
+    "CANCEL": "Anuluj",
+    "CONFIRM": "Potwierdź",
+    "CONFIRM_DELETE_PROPERTY": "Czy na pewno chcesz usunąć to ogłoszenie?",
+    "ERROR_GENERATING_DESCRIPTION": "Nie udało się wygenerować opisu. Spróbuj ponownie."
 }
   

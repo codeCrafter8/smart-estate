@@ -6,8 +6,11 @@
     <p>{{ 'LOCATION' | translate }}: {{ property.locationName }}</p>
     <p>{{ 'AREA' | translate }}: {{ property.apartmentArea }} m²</p>
     <p>{{ 'PRICE' | translate }}: {{ property.price | currency: property.currency }}</p>
-    
-    <button (click)="editProperty(property.id)" class="btn btn-primary">{{ 'EDIT' | translate }}</button>
+
+    <div>
+      <button (click)="editProperty(property.id)" class="btn btn-primary">{{ 'EDIT' | translate }}</button>
+      <button (click)="deleteProperty(property)" class="btn btn-delete">{{ 'DELETE' | translate }}</button>
+    </div>
     <button (click)="viewInquiries(property.id)" class="btn btn-secondary">{{ 'VIEW_INQUIRIES' | translate }}</button>
   </div>
 </div>
