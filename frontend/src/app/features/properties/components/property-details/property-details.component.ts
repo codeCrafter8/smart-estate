@@ -39,8 +39,8 @@ export class PropertyDetailsComponent {
     if (propertyId) {
       this.propertyService.getPropertyById(+propertyId).subscribe(data => {
         this.property = data;
-        this.updateImagePosition();  
-        this.updateArrowVisibility();  
+        this.updateImagePosition();
+        this.updateArrowVisibility();
       });
     }
   }
@@ -60,13 +60,13 @@ export class PropertyDetailsComponent {
     this.propertyInquiryService.submitInquiry(this.property.id, formData).subscribe({
       next: () => {
         this.message = 'Your inquiry has been successfully submitted!';
-        this.contactForm.reset(); 
+        this.contactForm.reset();
       },
       error: (error) => {
         console.error('Error submitting inquiry:', error);
         this.message = 'Something went wrong. Please try again later.';
       }
-    }); 
+    });
   }
 
   prevImage() {
@@ -87,8 +87,8 @@ export class PropertyDetailsComponent {
 
   updateImagePosition() {
     const galleryItem = document.querySelector('.gallery-item');
-    const itemWidth = galleryItem ? (galleryItem as HTMLElement).offsetWidth : 0; 
-    this.translateXValue = -this.currentIndex * itemWidth; 
+    const itemWidth = galleryItem ? (galleryItem as HTMLElement).offsetWidth : 0;
+    this.translateXValue = -this.currentIndex * itemWidth;
   }
 
   updateArrowVisibility() {

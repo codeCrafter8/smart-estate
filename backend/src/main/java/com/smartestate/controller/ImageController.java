@@ -45,7 +45,7 @@ public class ImageController {
     public ResponseEntity<Void> deleteImage(@PathVariable Long imageId) {
         log.info("Received request to delete image with id: {}", imageId);
 
-        imageService.deleteImageById(imageId);
+        imageService.deleteImage(imageId);
 
         return ResponseEntity.noContent().build();
     }

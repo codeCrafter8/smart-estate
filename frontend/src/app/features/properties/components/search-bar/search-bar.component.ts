@@ -75,8 +75,6 @@ export class SearchBarComponent implements OnInit {
     if (this.searchForm.valid) {
       const searchCriteria = this.searchForm.value;
       this.router.navigate(['/properties'], { queryParams: searchCriteria });
-    } else {
-      console.log('Invalid form input');
     }
   }
 
