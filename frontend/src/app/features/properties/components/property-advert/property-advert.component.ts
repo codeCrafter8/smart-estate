@@ -26,6 +26,7 @@ export class PropertyAdvertComponent implements OnInit {
   images: Array<{ imageId: number | null; filePath: string; file: File | null } | null> = new Array(10).fill(null);
   deletedImages: number[] = [];
   isEnglish: boolean = false;
+  submitted: boolean = false;
 
   constructor(
     private fb: FormBuilder, 
@@ -122,6 +123,8 @@ export class PropertyAdvertComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
+    
     if (this.propertyForm.valid) {
       if (this.isEditMode && this.propertyId) {
         this.propertyService.updateProperty(this.propertyId, this.propertyForm.value).subscribe({

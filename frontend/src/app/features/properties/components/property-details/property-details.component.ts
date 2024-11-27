@@ -50,23 +50,23 @@ export class PropertyDetailsComponent {
   }
 
   submitForm() {
-    if (this.contactForm.valid) {
-      const formData = this.contactForm.value;
-
-      this.propertyInquiryService.submitInquiry(this.property.id, formData).subscribe({
-        next: (response) => {
-          console.log('Inquiry submitted successfully:', response);
-          this.message = 'Your inquiry has been successfully submitted!';
-          this.contactForm.reset(); 
-        },
-        error: (error) => {
-          console.error('Error submitting inquiry:', error);
-          this.message = 'Something went wrong. Please try again later.';
-        }
-      });
-    } else {
-      console.log('Form is invalid');
+    if(!this.contactForm.valid) {
+      this.message = 'Your inquiry has been successfully submitted!';
+      return;
     }
+
+    const formData = this.contactForm.value;
+
+    this.propertyInquiryService.submitInquiry(this.property.id, formData).subscribe({
+      next: () => {
+        this.message = 'Your inquiry has been successfully submitted!';
+        this.contactForm.reset(); 
+      },
+      error: (error) => {
+        console.error('Error submitting inquiry:', error);
+        this.message = 'Something went wrong. Please try again later.';
+      }
+    }); 
   }
 
   prevImage() {

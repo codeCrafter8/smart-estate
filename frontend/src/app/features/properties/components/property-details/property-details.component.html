@@ -34,7 +34,7 @@
       <label for="email">{{ 'EMAIL_ADDRESS' | translate }}</label>
       <input id="email" formControlName="email" type="email" />
   
-      <button type="submit" [disabled]="!isFormFilled()">{{ 'SUBMIT' | translate }}</button>
+      <button type="submit">{{ 'SUBMIT' | translate }}</button>
 
       <div *ngIf="message" class="message">
         {{ message }}
