@@ -36,7 +36,7 @@
   
       <button type="submit">{{ 'SUBMIT' | translate }}</button>
 
-      <div *ngIf="message" class="message">
+      <div *ngIf="message" [ngClass]="messageClass" class="message">
         {{ message }}
       </div>
     </form>

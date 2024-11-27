@@ -96,6 +96,9 @@
     "CANCEL": "Anuluj",
     "CONFIRM": "Potwierdź",
     "CONFIRM_DELETE_PROPERTY": "Czy na pewno chcesz usunąć to ogłoszenie?",
-    "ERROR_GENERATING_DESCRIPTION": "Nie udało się wygenerować opisu. Spróbuj ponownie."
+    "ERROR_GENERATING_DESCRIPTION": "Nie udało się wygenerować opisu. Spróbuj ponownie.",
+    "INQUIRY_SUBMITTED": "Twoje zapytanie zostało pomyślnie wysłane!",
+    "PHONE_OR_EMAIL_REQUIRED": "Należy podać numer telefonu lub adres e-mail.",
+    "SOMETHING_WENT_WRONG": "Coś poszło nie tak. Spróbuj ponownie."
 }
   

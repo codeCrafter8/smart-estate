@@ -135,12 +135,22 @@
       .message {
         margin-top: 20px;
         padding: 5px;
-        background-color: #d4edda;
-        border: 1px solid #c3e6cb;
         border-radius: 4px;
         text-align: center;
         font-size: 15px;
       }
+      
+      .message.success {
+        background-color: #d4edda;
+        border: 1px solid #c3e6cb;
+        color: #155724;
+      }
+      
+      .message.error {
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+        color: #721c24;
+      }      
     }
 }
   

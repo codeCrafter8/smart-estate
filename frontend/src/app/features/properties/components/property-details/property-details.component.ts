@@ -5,7 +5,7 @@ import { PropertyService } from '../../services/property.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PropertyInquiryService } from '../../services/property-inquiry.service';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-property-details',
@@ -22,11 +22,13 @@ export class PropertyDetailsComponent {
   canGoLeft = false;
   canGoRight = false;
   message: string | null = null;
+  messageClass: string | undefined;
 
   constructor(
     private route: ActivatedRoute,
     private propertyService: PropertyService,
-    private propertyInquiryService: PropertyInquiryService
+    private propertyInquiryService: PropertyInquiryService,
+    private translate: TranslateService
   ) {
     this.contactForm = new FormGroup({
       phoneNumber: new FormControl('', [Validators.pattern(/^\+?[1-9]\d{1,14}$/)]),
@@ -50,8 +52,9 @@ export class PropertyDetailsComponent {
   }
 
   submitForm() {
-    if(!this.contactForm.valid) {
-      this.message = 'Your inquiry has been successfully submitted!';
+    if(!this.isFormFilled()) {
+      this.message = this.translate.instant('PHONE_OR_EMAIL_REQUIRED');
+      this.messageClass = 'error';
       return;
     }
 
@@ -59,12 +62,13 @@ export class PropertyDetailsComponent {
 
     this.propertyInquiryService.submitInquiry(this.property.id, formData).subscribe({
       next: () => {
-        this.message = 'Your inquiry has been successfully submitted!';
+        this.message = this.translate.instant('INQUIRY_SUBMITTED');
+        this.messageClass = 'success';
         this.contactForm.reset();
       },
-      error: (error) => {
-        console.error('Error submitting inquiry:', error);
-        this.message = 'Something went wrong. Please try again later.';
+      error: () => {
+        this.message = this.translate.instant('SOMETHING_WENT_WRONG');
+        this.messageClass = 'error';
       }
     });
   }

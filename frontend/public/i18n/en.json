@@ -96,6 +96,9 @@
     "CANCEL": "Cancel",
     "CONFIRM": "Confirm",
     "CONFIRM_DELETE_PROPERTY": "Are you sure you want to delete this advert?",
-    "ERROR_GENERATING_DESCRIPTION": "Failed to generate description. Please try again."
+    "ERROR_GENERATING_DESCRIPTION": "Failed to generate description. Please try again.",
+    "INQUIRY_SUBMITTED": "Your inquiry has been successfully submitted!",
+    "PHONE_OR_EMAIL_REQUIRED": "You must provide phone number or email address.",
+    "SOMETHING_WENT_WRONG": "Something went wrong. Please try again."
 }
   

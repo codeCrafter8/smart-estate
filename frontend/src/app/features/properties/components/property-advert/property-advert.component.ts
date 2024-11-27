@@ -200,8 +200,7 @@ export class PropertyAdvertComponent implements OnInit {
             this.isGenerating = false; 
         },
         error: (err) => {
-          this.errorMessage = this.translate.instant('ERROR_GENERATING_DESCRIPTION');
-            console.error('Error generating description', err);
+            this.errorMessage = this.translate.instant('ERROR_GENERATING_DESCRIPTION');
             this.isGenerating = false; 
         }
     });
