@@ -40,11 +40,11 @@ public class PropertySpecification {
 
             if (criteria.minArea() != null) {
                 predicate = criteriaBuilder.and(predicate,
-                        criteriaBuilder.greaterThanOrEqualTo(root.get("apartmentArea"), criteria.minArea()));
+                        criteriaBuilder.greaterThanOrEqualTo(root.get("area"), criteria.minArea()));
             }
             if (criteria.maxArea() != null) {
                 predicate = criteriaBuilder.and(predicate,
-                        criteriaBuilder.lessThanOrEqualTo(root.get("apartmentArea"), criteria.maxArea()));
+                        criteriaBuilder.lessThanOrEqualTo(root.get("area"), criteria.maxArea()));
             }
 
             return predicate;

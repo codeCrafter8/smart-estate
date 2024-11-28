@@ -13,6 +13,6 @@ export interface Property {
     totalBathrooms: number;
     price: number; 
     currency: string;
-    apartmentArea: number; 
+    area: number; 
     imageIds: number[];
 }

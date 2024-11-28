@@ -61,7 +61,7 @@ public class Property {
     private Integer totalBathrooms;
 
     @Column(nullable = false)
-    private BigDecimal apartmentArea;
+    private BigDecimal area;
 
     @Column(nullable = false)
     private BigDecimal price;

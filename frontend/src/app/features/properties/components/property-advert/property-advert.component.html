@@ -66,9 +66,9 @@
             <small>{{ 'TOTAL_BATHROOMS_MUST_BE_A_VALID_NUMBER' | translate }}</small>
         </div>
 
-        <label for="apartmentArea">{{ 'AREA' | translate }} (m²) <span class="required">*</span></label>
-        <input id="apartmentArea" formControlName="apartmentArea" type="number" [placeholder]="'ENTER_AREA' | translate" />
-        <div *ngIf="submitted && propertyForm.get('apartmentArea')?.invalid">
+        <label for="area">{{ 'AREA' | translate }} (m²) <span class="required">*</span></label>
+        <input id="area" formControlName="area" type="number" [placeholder]="'ENTER_AREA' | translate" />
+        <div *ngIf="submitted && propertyForm.get('area')?.invalid">
             <small>{{ 'AREA_REQUIRED_AND_VALID_NUMBER' | translate }}</small>
         </div>
 

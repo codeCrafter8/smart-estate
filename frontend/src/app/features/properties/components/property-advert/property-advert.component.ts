@@ -45,7 +45,7 @@ export class PropertyAdvertComponent implements OnInit {
       totalRooms: ['', [Validators.min(1)]],
       totalBedrooms: ['', [Validators.min(0)]],
       totalBathrooms: ['', [Validators.min(0)]],
-      apartmentArea: ['', [Validators.required, Validators.min(1)]],
+      area: ['', [Validators.required, Validators.min(1)]],
       price: ['', [Validators.required, Validators.min(0)]],
       currency: [this.isEnglish ? 'USD' : 'PLN'],
       images: [null, this.imagesValidator],

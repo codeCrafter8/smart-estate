@@ -13,3 +13,8 @@ databaseChangeLog:
             oldColumnName: location_name
             newColumnName: address
             columnDataType: varchar(255)
+        - renameColumn:
+            tableName: properties
+            oldColumnName: apartment_area
+            newColumnName: area
+            columnDataType: decimal(10, 2)
