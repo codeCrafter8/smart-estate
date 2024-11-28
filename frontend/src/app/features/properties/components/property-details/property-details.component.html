@@ -16,8 +16,8 @@
   
       <p>{{ property.description }}</p>
       <p>{{ 'PRICE' | translate }}: {{ property.price | currency: property.currency }}</p>
-      <p>{{ 'COUNTRY' | translate }}: {{ property.countryName }}</p>
-      <p>{{ 'LOCATION' | translate }}: {{ property.locationName }}</p>
+      <p>{{ 'COUNTRY' | translate }}: {{ property.country }}</p>
+      <p>{{ 'LOCATION' | translate }}: {{ property.address }}</p>
       <p *ngIf="property.yearBuilt">{{ 'YEAR_BUILT' | translate }}: {{ property.yearBuilt }}</p>
       <p *ngIf="property.apartmentFloor">{{ 'APARTMENT_FLOOR' | translate }}: {{ property.apartmentFloor }}</p>
       <p *ngIf="property.totalRooms">{{ 'TOTAL_ROOMS' | translate }}: {{ property.totalRooms }}</p>

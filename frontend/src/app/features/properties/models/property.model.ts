@@ -3,8 +3,8 @@ export interface Property {
     propertyType: string;
     title: string;
     description: string;
-    countryName: string;
-    locationName: string;
+    country: string;
+    address: string;
     yearBuilt: number;
     totalBuildingFloors: number;
     apartmentFloor: number;

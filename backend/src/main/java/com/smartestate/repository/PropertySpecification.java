@@ -18,8 +18,8 @@ public class PropertySpecification {
             if (criteria.location() != null && !criteria.location().isBlank()) {
                 String likePattern = likePattern(criteria.location());
                 Predicate locationPredicate = criteriaBuilder.or(
-                        criteriaBuilder.like(root.get("countryName"), likePattern),
-                        criteriaBuilder.like(root.get("locationName"), likePattern)
+                        criteriaBuilder.like(root.get("country"), likePattern),
+                        criteriaBuilder.like(root.get("address"), likePattern)
                 );
                 predicate = criteriaBuilder.and(predicate, locationPredicate);
             }

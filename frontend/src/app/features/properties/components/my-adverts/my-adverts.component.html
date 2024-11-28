@@ -3,7 +3,7 @@
   <div *ngIf="notFoundMessage" class="notFound">{{ notFoundMessage }}</div>
   <div *ngFor="let property of properties" class="advert-item">
     <h3>{{ property.title }}</h3>
-    <p>{{ 'LOCATION' | translate }}: {{ property.locationName }}</p>
+    <p>{{ 'LOCATION' | translate }}: {{ property.address }}</p>
     <p>{{ 'AREA' | translate }}: {{ property.apartmentArea }} m²</p>
     <p>{{ 'PRICE' | translate }}: {{ property.price | currency: property.currency }}</p>
 

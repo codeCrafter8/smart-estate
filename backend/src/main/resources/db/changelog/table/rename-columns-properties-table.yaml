@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: 15
+      author: codeCrafter8
+      changes:
+        - renameColumn:
+            tableName: properties
+            oldColumnName: country_name
+            newColumnName: country
+            columnDataType: varchar(255)
+        - renameColumn:
+            tableName: properties
+            oldColumnName: location_name
+            newColumnName: address
+            columnDataType: varchar(255)

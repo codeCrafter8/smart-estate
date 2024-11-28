@@ -43,10 +43,10 @@ public class Property {
     private String description;
 
     @Column(nullable = false, length = 100)
-    private String countryName;
+    private String country;
 
     @Column(nullable = false)
-    private String locationName;
+    private String address;
 
     private Integer yearBuilt;
 

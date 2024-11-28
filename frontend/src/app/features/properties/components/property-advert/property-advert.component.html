@@ -18,15 +18,15 @@
             <small>{{ 'TITLE_IS_REQUIRED' | translate }}</small>
         </div>
 
-        <label for="countryName">{{ 'COUNTRY' | translate }}  <span class="required">*</span></label>
-        <input id="countryName" formControlName="countryName" type="text"[placeholder]="'ENTER_COUNTRY' | translate" />
-        <div *ngIf="submitted && propertyForm.get('countryName')?.invalid">
+        <label for="country">{{ 'COUNTRY' | translate }}  <span class="required">*</span></label>
+        <input id="country" formControlName="country" type="text"[placeholder]="'ENTER_COUNTRY' | translate" />
+        <div *ngIf="submitted && propertyForm.get('country')?.invalid">
             <small>{{ 'COUNTRY_IS_REQUIRED' | translate }}</small>
         </div>
 
-        <label for="locationName">{{ 'LOCATION' | translate }}  <span class="required">*</span></label>
-        <input id="locationName" formControlName="locationName" type="text" [placeholder]="'ENTER_LOCATION' | translate" />
-        <div *ngIf="submitted && propertyForm.get('locationName')?.invalid">
+        <label for="address">{{ 'LOCATION' | translate }}  <span class="required">*</span></label>
+        <input id="address" formControlName="address" type="text" [placeholder]="'ENTER_LOCATION' | translate" />
+        <div *ngIf="submitted && propertyForm.get('address')?.invalid">
             <small>{{ 'LOCATION_IS_REQUIRED' | translate }}</small>
         </div>
 
