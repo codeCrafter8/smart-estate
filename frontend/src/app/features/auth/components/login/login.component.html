@@ -18,7 +18,7 @@
         </div>
       </div>
   
-      <button type="submit" [disabled]="loginForm.invalid">{{ 'SIGN_IN' | translate }}</button>
+      <button type="submit">{{ 'SIGN_IN' | translate }}</button>
   
       <div *ngIf="loginFailed" class="error">
         <small>{{ errorMessage }}</small>

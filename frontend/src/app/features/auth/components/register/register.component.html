@@ -24,11 +24,11 @@
         <input id="confirmPassword" formControlName="confirmPassword" type="password" [placeholder]="'CONFIRM_YOUR_PASSWORD' | translate">
         <div *ngIf="(submitted && confirmPassword?.invalid) || (confirmPassword?.touched)" class="error">
           <small *ngIf="confirmPassword?.errors?.['required']">{{ 'CONFIRMATION_IS_REQUIRED' | translate }} </small>
-          <small *ngIf="registerForm.errors?.['mismatch']">P{{ 'PASSWORDS_DO_NOT_MATCH' | translate }}</small>
+          <small *ngIf="registerForm.errors?.['mismatch']">{{ 'PASSWORDS_DO_NOT_MATCH' | translate }}</small>
         </div>
       </div>
   
-      <button type="submit" [disabled]="registerForm.invalid">{{ 'REGISTER' | translate }}</button>
+      <button type="submit">{{ 'REGISTER' | translate }}</button>
   
       <div *ngIf="registrationFailed" class="error">
         <small>{{ errorMessage }}</small>

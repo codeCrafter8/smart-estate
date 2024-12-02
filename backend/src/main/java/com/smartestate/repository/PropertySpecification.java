@@ -18,8 +18,8 @@ public class PropertySpecification {
             if (criteria.location() != null && !criteria.location().isBlank()) {
                 String likePattern = likePattern(criteria.location());
                 Predicate locationPredicate = criteriaBuilder.or(
-                        criteriaBuilder.like(root.get("countryName"), likePattern),
-                        criteriaBuilder.like(root.get("locationName"), likePattern)
+                        criteriaBuilder.like(root.get("country"), likePattern),
+                        criteriaBuilder.like(root.get("address"), likePattern)
                 );
                 predicate = criteriaBuilder.and(predicate, locationPredicate);
             }
@@ -40,11 +40,11 @@ public class PropertySpecification {
 
             if (criteria.minArea() != null) {
                 predicate = criteriaBuilder.and(predicate,
-                        criteriaBuilder.greaterThanOrEqualTo(root.get("apartmentArea"), criteria.minArea()));
+                        criteriaBuilder.greaterThanOrEqualTo(root.get("area"), criteria.minArea()));
             }
             if (criteria.maxArea() != null) {
                 predicate = criteriaBuilder.and(predicate,
-                        criteriaBuilder.lessThanOrEqualTo(root.get("apartmentArea"), criteria.maxArea()));
+                        criteriaBuilder.lessThanOrEqualTo(root.get("area"), criteria.maxArea()));
             }
 
             return predicate;

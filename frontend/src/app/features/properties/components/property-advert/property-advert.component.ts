@@ -26,6 +26,7 @@ export class PropertyAdvertComponent implements OnInit {
   images: Array<{ imageId: number | null; filePath: string; file: File | null } | null> = new Array(10).fill(null);
   deletedImages: number[] = [];
   isEnglish: boolean = false;
+  submitted: boolean = false;
 
   constructor(
     private fb: FormBuilder, 
@@ -36,15 +37,15 @@ export class PropertyAdvertComponent implements OnInit {
     this.propertyForm = this.fb.group({
       propertyType: ['', Validators.required],
       title: ['', Validators.required],
-      countryName: ['', Validators.required],
-      locationName: ['', Validators.required],
+      country: ['', Validators.required],
+      address: ['', Validators.required],
       yearBuilt: ['', [Validators.min(1800), Validators.max(new Date().getFullYear())]],
       totalBuildingFloors: ['', [Validators.min(1)]],
       apartmentFloor: ['', [Validators.min(0)]],
       totalRooms: ['', [Validators.min(1)]],
       totalBedrooms: ['', [Validators.min(0)]],
       totalBathrooms: ['', [Validators.min(0)]],
-      apartmentArea: ['', [Validators.required, Validators.min(1)]],
+      area: ['', [Validators.required, Validators.min(1)]],
       price: ['', [Validators.required, Validators.min(0)]],
       currency: [this.isEnglish ? 'USD' : 'PLN'],
       images: [null, this.imagesValidator],
@@ -122,6 +123,8 @@ export class PropertyAdvertComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
+    
     if (this.propertyForm.valid) {
       if (this.isEditMode && this.propertyId) {
         this.propertyService.updateProperty(this.propertyId, this.propertyForm.value).subscribe({
@@ -197,15 +200,14 @@ export class PropertyAdvertComponent implements OnInit {
             this.isGenerating = false; 
         },
         error: (err) => {
-          this.errorMessage = this.translate.instant('ERROR_GENERATING_DESCRIPTION');
-            console.error('Error generating description', err);
+            this.errorMessage = this.translate.instant('ERROR_GENERATING_DESCRIPTION');
             this.isGenerating = false; 
         }
     });
   }
 
   get areRequiredFieldsFilled(): boolean {
-    const requiredFields = ['propertyType', 'title', 'countryName', 'locationName', 'apartmentArea', 'price'];
+    const requiredFields = ['propertyType', 'title', 'country', 'address', 'apartmentArea', 'price'];
     return requiredFields.every(field => this.propertyForm.get(field)?.valid);
   }
 

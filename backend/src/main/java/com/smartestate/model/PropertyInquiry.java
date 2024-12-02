@@ -1,5 +1,6 @@
 package com.smartestate.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.smartestate.model.enumeration.InquiryStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -26,6 +27,7 @@ public class PropertyInquiry {
 
     @ManyToOne
     @JoinColumn(name = "property_id", nullable = false)
+    @JsonBackReference
     private Property property;
 
     private String phoneNumber;

@@ -5,7 +5,7 @@ import { PropertyService } from '../../services/property.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PropertyInquiryService } from '../../services/property-inquiry.service';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-property-details',
@@ -22,11 +22,13 @@ export class PropertyDetailsComponent {
   canGoLeft = false;
   canGoRight = false;
   message: string | null = null;
+  messageClass: string | undefined;
 
   constructor(
     private route: ActivatedRoute,
     private propertyService: PropertyService,
-    private propertyInquiryService: PropertyInquiryService
+    private propertyInquiryService: PropertyInquiryService,
+    private translate: TranslateService
   ) {
     this.contactForm = new FormGroup({
       phoneNumber: new FormControl('', [Validators.pattern(/^\+?[1-9]\d{1,14}$/)]),
@@ -39,8 +41,8 @@ export class PropertyDetailsComponent {
     if (propertyId) {
       this.propertyService.getPropertyById(+propertyId).subscribe(data => {
         this.property = data;
-        this.updateImagePosition();  
-        this.updateArrowVisibility();  
+        this.updateImagePosition();
+        this.updateArrowVisibility();
       });
     }
   }
@@ -50,20 +52,25 @@ export class PropertyDetailsComponent {
   }
 
   submitForm() {
-    if (this.contactForm.valid) {
-      const formData = this.contactForm.value;
+    if(!this.isFormFilled()) {
+      this.message = this.translate.instant('PHONE_OR_EMAIL_REQUIRED');
+      this.messageClass = 'error';
+      return;
+    }
 
-      this.propertyInquiryService.submitInquiry(this.property.id, formData).subscribe({
-        next: (response) => {
-          this.message = 'Your inquiry has been successfully submitted!';
-          this.contactForm.reset(); 
-        },
-        error: (error) => {
-          console.error('Error submitting inquiry:', error);
-          this.message = 'Something went wrong. Please try again later.';
-        }
-      });
-    } 
+    const formData = this.contactForm.value;
+
+    this.propertyInquiryService.submitInquiry(this.property.id, formData).subscribe({
+      next: () => {
+        this.message = this.translate.instant('INQUIRY_SUBMITTED');
+        this.messageClass = 'success';
+        this.contactForm.reset();
+      },
+      error: () => {
+        this.message = this.translate.instant('SOMETHING_WENT_WRONG');
+        this.messageClass = 'error';
+      }
+    });
   }
 
   prevImage() {
@@ -84,8 +91,8 @@ export class PropertyDetailsComponent {
 
   updateImagePosition() {
     const galleryItem = document.querySelector('.gallery-item');
-    const itemWidth = galleryItem ? (galleryItem as HTMLElement).offsetWidth : 0; 
-    this.translateXValue = -this.currentIndex * itemWidth; 
+    const itemWidth = galleryItem ? (galleryItem as HTMLElement).offsetWidth : 0;
+    this.translateXValue = -this.currentIndex * itemWidth;
   }
 
   updateArrowVisibility() {

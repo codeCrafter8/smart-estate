@@ -8,67 +8,67 @@
             <option value="APARTMENT">{{ 'propertyTypes.Apartment' | translate }}</option>
             <option value="HOUSE">{{ 'propertyTypes.House' | translate }}</option>
         </select>
-        <div *ngIf="propertyForm.get('propertyType')?.invalid && propertyForm.get('propertyType')?.touched">
+        <div *ngIf="submitted && propertyForm.get('propertyType')?.invalid">
             <small>{{ 'PROPERTY_TYPE_IS_REQUIRED' | translate }}</small>
         </div>
 
         <label for="title">{{ 'TITLE' | translate }} <span class="required">*</span></label>
         <input id="title" formControlName="title" type="text" [placeholder]="'ENTER_TITLE' | translate" />
-        <div *ngIf="propertyForm.get('title')?.invalid && propertyForm.get('title')?.touched">
+        <div *ngIf="submitted && propertyForm.get('title')?.invalid">
             <small>{{ 'TITLE_IS_REQUIRED' | translate }}</small>
         </div>
 
-        <label for="countryName">{{ 'COUNTRY' | translate }}  <span class="required">*</span></label>
-        <input id="countryName" formControlName="countryName" type="text"[placeholder]="'ENTER_COUNTRY' | translate" />
-        <div *ngIf="propertyForm.get('countryName')?.invalid && propertyForm.get('countryName')?.touched">
+        <label for="country">{{ 'COUNTRY' | translate }}  <span class="required">*</span></label>
+        <input id="country" formControlName="country" type="text"[placeholder]="'ENTER_COUNTRY' | translate" />
+        <div *ngIf="submitted && propertyForm.get('country')?.invalid">
             <small>{{ 'COUNTRY_IS_REQUIRED' | translate }}</small>
         </div>
 
-        <label for="locationName">{{ 'LOCATION' | translate }}  <span class="required">*</span></label>
-        <input id="locationName" formControlName="locationName" type="text" [placeholder]="'ENTER_LOCATION' | translate" />
-        <div *ngIf="propertyForm.get('locationName')?.invalid && propertyForm.get('locationName')?.touched">
+        <label for="address">{{ 'LOCATION' | translate }}  <span class="required">*</span></label>
+        <input id="address" formControlName="address" type="text" [placeholder]="'ENTER_LOCATION' | translate" />
+        <div *ngIf="submitted && propertyForm.get('address')?.invalid">
             <small>{{ 'LOCATION_IS_REQUIRED' | translate }}</small>
         </div>
 
         <label for="yearBuilt">{{ 'YEAR_BUILT' | translate }} </label>
         <input id="yearBuilt" formControlName="yearBuilt" type="number" [placeholder]="'ENTER_YEAR_BUILT' | translate" />
-        <div *ngIf="propertyForm.get('yearBuilt')?.invalid && propertyForm.get('yearBuilt')?.touched">
+        <div *ngIf="submitted && propertyForm.get('yearBuilt')?.invalid">
             <small>{{ 'YEAR_BUILT_MUST_BE_A_VALID_NUMBER' | translate }}</small>
         </div>
 
         <label for="totalBuildingFloors">{{ 'TOTAL_BUILDING_FLOORS' | translate }} </label>
         <input id="totalBuildingFloors" formControlName="totalBuildingFloors" type="number" [placeholder]="'ENTER_TOTAL_BUILDING_FLOORS' | translate" />
-        <div *ngIf="propertyForm.get('totalBuildingFloors')?.invalid && propertyForm.get('totalBuildingFloors')?.touched">
+        <div *ngIf="submitted && propertyForm.get('totalBuildingFloors')?.invalid">
             <small>{{ 'TOTAL_BUILDING_FLOORS_MUST_BE_A_VALID_NUMBER' | translate }}</small>
         </div>
 
         <label for="apartmentFloor">{{ 'APARTMENT_FLOOR' | translate }} </label>
         <input id="apartmentFloor" formControlName="apartmentFloor" type="number" [placeholder]="'ENTER_APARTMENT_FLOOR' | translate" />
-        <div *ngIf="propertyForm.get('apartmentFloor')?.invalid && propertyForm.get('apartmentFloor')?.touched">
+        <div *ngIf="submitted && propertyForm.get('apartmentFloor')?.invalid">
             <small>{{ 'APARTMENT_FLOOR_MUST_BE_A_VALID_NUMBER' | translate }}</small>
         </div>
 
         <label for="totalRooms">{{ 'TOTAL_ROOMS' | translate }} </label>
         <input id="totalRooms" formControlName="totalRooms" type="number" [placeholder]="'ENTER_TOTAL_ROOMS' | translate" />
-        <div *ngIf="propertyForm.get('totalRooms')?.invalid && propertyForm.get('totalRooms')?.touched">
+        <div *ngIf="submitted && propertyForm.get('totalRooms')?.invalid">
             <small>{{ 'TOTAL_ROOMS_MUST_BE_A_VALID_NUMBER' | translate }}</small>
         </div>
 
         <label for="totalBedrooms">{{ 'TOTAL_BEDROOMS' | translate }}</label>
         <input id="totalBedrooms" formControlName="totalBedrooms" type="number" [placeholder]="'ENTER_TOTAL_BEDROOMS' | translate" />
-        <div *ngIf="propertyForm.get('totalBedrooms')?.invalid && propertyForm.get('totalBedrooms')?.touched">
+        <div *ngIf="submitted && propertyForm.get('totalBedrooms')?.invalid">
             <small>{{ 'TOTAL_BEDROOMS_MUST_BE_A_VALID_NUMBER' | translate }}</small>
         </div>
 
         <label for="totalBathrooms">{{ 'TOTAL_BATHROOMS' | translate }}</label>
         <input id="totalBathrooms" formControlName="totalBathrooms" type="number" [placeholder]="'ENTER_TOTAL_BATHROOMS' | translate" />
-        <div *ngIf="propertyForm.get('totalBathrooms')?.invalid && propertyForm.get('totalBathrooms')?.touched">
+        <div *ngIf="submitted && propertyForm.get('totalBathrooms')?.invalid">
             <small>{{ 'TOTAL_BATHROOMS_MUST_BE_A_VALID_NUMBER' | translate }}</small>
         </div>
 
-        <label for="apartmentArea">{{ 'AREA' | translate }} (m²) <span class="required">*</span></label>
-        <input id="apartmentArea" formControlName="apartmentArea" type="number" [placeholder]="'ENTER_AREA' | translate" />
-        <div *ngIf="propertyForm.get('apartmentArea')?.invalid && propertyForm.get('apartmentArea')?.touched">
+        <label for="area">{{ 'AREA' | translate }} (m²) <span class="required">*</span></label>
+        <input id="area" formControlName="area" type="number" [placeholder]="'ENTER_AREA' | translate" />
+        <div *ngIf="submitted && propertyForm.get('area')?.invalid">
             <small>{{ 'AREA_REQUIRED_AND_VALID_NUMBER' | translate }}</small>
         </div>
 
@@ -82,7 +82,7 @@
             </select>
         </div>
           
-        <div *ngIf="propertyForm.get('price')?.invalid && propertyForm.get('price')?.touched">
+        <div *ngIf="submitted && propertyForm.get('price')?.invalid">
             <small>{{ 'PRICE_REQUIRED_AND_VALID_NUMBER' | translate }}</small>
         </div>
 
@@ -98,7 +98,7 @@
                 </ng-template>
             </div>
         </div>
-        <div *ngIf="propertyForm.get('images')?.invalid && propertyForm.get('images')?.touched">
+        <div *ngIf="submitted && propertyForm.get('images')?.invalid">
             <small>{{ 'AT_LEAST_ONE_IMAGE_IS_REQUIRED' | translate }}</small>
         </div>
 
@@ -112,7 +112,7 @@
         </div>
 
         <textarea id="description" formControlName="description" [placeholder]="'ENTER_PROPERTY_DESCRIPTION' | translate"></textarea>
-        <div *ngIf="propertyForm.get('description')?.invalid && propertyForm.get('description')?.touched">
+        <div *ngIf="submitted && propertyForm.get('description')?.invalid">
             <small>{{ 'DESCRIPTION_IS_REQUIRED' | translate }}</small>
         </div>
 
@@ -121,6 +121,6 @@
             <small>{{ errorMessage }}</small>
         </div>
 
-        <button type="submit" [disabled]="propertyForm.invalid">{{ buttonLabel }}</button>
+        <button type="submit">{{ buttonLabel }}</button>
     </form>
 </div>

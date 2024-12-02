@@ -23,3 +23,5 @@ databaseChangeLog:
       file: db/changelog/table/rename-region-to-location.yaml
   - include:
       file: db/changelog/table/update-properties-table-change-price.yaml
+  - include:
+      file: db/changelog/table/rename-columns-properties-table.yaml

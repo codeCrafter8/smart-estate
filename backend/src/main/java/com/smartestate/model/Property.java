@@ -43,10 +43,10 @@ public class Property {
     private String description;
 
     @Column(nullable = false, length = 100)
-    private String countryName;
+    private String country;
 
     @Column(nullable = false)
-    private String locationName;
+    private String address;
 
     private Integer yearBuilt;
 
@@ -61,7 +61,7 @@ public class Property {
     private Integer totalBathrooms;
 
     @Column(nullable = false)
-    private BigDecimal apartmentArea;
+    private BigDecimal area;
 
     @Column(nullable = false)
     private BigDecimal price;
