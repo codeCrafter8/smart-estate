@@ -46,7 +46,7 @@ export class PropertyAdvertComponent implements OnInit {
       totalBedrooms: ['', [Validators.min(0)]],
       totalBathrooms: ['', [Validators.min(0)]],
       area: ['', [Validators.required, Validators.min(1)]],
-      price: ['', [Validators.required, Validators.min(0)]],
+      priceAmount: ['', [Validators.required, Validators.min(0)]],
       currency: [this.isEnglish ? 'USD' : 'PLN'],
       images: [null, this.imagesValidator],
       description: ['', Validators.required],
@@ -207,7 +207,7 @@ export class PropertyAdvertComponent implements OnInit {
   }
 
   get areRequiredFieldsFilled(): boolean {
-    const requiredFields = ['propertyType', 'title', 'country', 'address', 'area', 'price'];
+    const requiredFields = ['propertyType', 'title', 'country', 'address', 'area', 'priceAmount'];
     return requiredFields.every(field => this.propertyForm.get(field)?.valid);
   }
 

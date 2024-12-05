@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 21
+      author: codeCrafter8
+      changes:
+        - dropColumn:
+            tableName: properties
+            columnName: price
+        - dropColumn:
+            tableName: properties
+            columnName: currency

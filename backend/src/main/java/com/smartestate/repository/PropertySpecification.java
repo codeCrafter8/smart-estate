@@ -27,18 +27,19 @@ public class PropertySpecification {
                 predicate = criteriaBuilder.and(predicate, locationPredicate);
             }
 
+            Join<Object, Object> priceJoin = root.join("price");
             if (criteria.minPrice() != null) {
                 predicate = criteriaBuilder.and(predicate,
-                        criteriaBuilder.greaterThanOrEqualTo(root.get("price"), criteria.minPrice()));
+                        criteriaBuilder.greaterThanOrEqualTo(priceJoin.get("amount"), criteria.minPrice()));
             }
             if (criteria.maxPrice() != null) {
                 predicate = criteriaBuilder.and(predicate,
-                        criteriaBuilder.lessThanOrEqualTo(root.get("price"), criteria.maxPrice()));
+                        criteriaBuilder.lessThanOrEqualTo(priceJoin.get("amount"), criteria.maxPrice()));
             }
 
             if (criteria.currency() != null && !criteria.currency().isBlank()) {
                 predicate = criteriaBuilder.and(predicate,
-                        criteriaBuilder.equal(root.get("currency"), criteria.currency()));
+                        criteriaBuilder.equal(priceJoin.get("currency"), criteria.currency()));
             }
 
             if (criteria.minArea() != null) {

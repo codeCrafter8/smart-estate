@@ -21,5 +21,4 @@ public class LocationService {
         log.info("Adding location: {}", location);
         return locationRepository.save(location);
     }
-
 }

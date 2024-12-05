@@ -16,7 +16,7 @@ public record PropertyDto(
         Integer totalRooms,
         Integer totalBedrooms,
         Integer totalBathrooms,
-        BigDecimal price,
+        BigDecimal priceAmount,
         String currency,
         BigDecimal area,
         List<Long> imageIds

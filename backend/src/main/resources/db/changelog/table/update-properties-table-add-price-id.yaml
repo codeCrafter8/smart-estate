@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 23
+      author: codeCrafter8
+      changes:
+        - addColumn:
+            tableName: properties
+            columns:
+              - column:
+                  name: price_id
+                  type: bigint
+
+        - addForeignKeyConstraint:
+            baseTableName: properties
+            baseColumnNames: price_id
+            constraintName: fk_property_price
+            referencedTableName: prices
+            referencedColumnNames: id
+            onDelete: CASCADE
+
+        - createIndex:
+            tableName: properties
+            columns:
+              - column:
+                  name: price_id

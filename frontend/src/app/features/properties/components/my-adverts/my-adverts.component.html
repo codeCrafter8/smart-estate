@@ -5,7 +5,7 @@
     <h3>{{ property.title }}</h3>
     <p>{{ 'LOCATION' | translate }}: {{ property.address }}</p>
     <p>{{ 'AREA' | translate }}: {{ property.area }} m²</p>
-    <p>{{ 'PRICE' | translate }}: {{ property.price | currency: property.currency }}</p>
+    <p>{{ 'PRICE' | translate }}: {{ property.priceAmount | currency: property.currency }}</p>
 
     <div>
       <button (click)="editProperty(property.id)" class="btn btn-primary">{{ 'EDIT' | translate }}</button>

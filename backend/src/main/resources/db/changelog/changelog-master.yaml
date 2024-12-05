@@ -35,4 +35,14 @@ databaseChangeLog:
         file: db/changelog/data/insert-locations-data.yaml
   - include:
       file: db/changelog/data/insert-location-ids-to-properties.yaml
+  - include:
+      file: db/changelog/table/remove-price-columns-properties-table.yaml
+  - include:
+      file: db/changelog/table/create-prices-table.yaml
+  - include:
+      file: db/changelog/table/update-properties-table-add-price-id.yaml
+  - include:
+      file: db/changelog/data/insert-prices-data.yaml
+  - include:
+      file: db/changelog/data/insert-price-ids-to-properties.yaml
 

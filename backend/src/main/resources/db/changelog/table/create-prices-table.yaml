@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      id: 22
+      author: codeCrafted8
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: prices
+      changes:
+        - createSequence:
+            sequenceName: price_sequence
+            startValue: 1
+            incrementBy: 1
+        - createTable:
+            tableName: prices
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  defaultValueSequenceNext: price_sequence
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: amount
+                  type: decimal(10, 2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency
+                  type: varchar(10)
+                  constraints:
+                    nullable: false

@@ -5,8 +5,10 @@ import com.smartestate.dto.PropertyRequestDto;
 import com.smartestate.dto.PropertySearchCriteriaDto;
 import com.smartestate.exception.ResourceNotFoundException;
 import com.smartestate.mapper.LocationMapper;
+import com.smartestate.mapper.PriceMapper;
 import com.smartestate.mapper.PropertyMapper;
 import com.smartestate.model.Location;
+import com.smartestate.model.Price;
 import com.smartestate.model.Property;
 import com.smartestate.model.User;
 import com.smartestate.repository.PropertyRepository;
@@ -26,9 +28,11 @@ import java.util.List;
 public class PropertyService {
     private final PropertyRepository propertyRepository;
     private final PropertyMapper propertyMapper;
-    private final LocationMapper locationMapper;
     private final UserService userService;
     private final LocationService locationService;
+    private final LocationMapper locationMapper;
+    private final PriceService priceService;
+    private final PriceMapper priceMapper;
 
     public List<PropertyDto> searchProperties(PropertySearchCriteriaDto criteria) {
         log.info("Searching properties with criteria: {}", criteria);
@@ -55,6 +59,9 @@ public class PropertyService {
 
         Location location = locationService.addLocation(propertyRequest.address(), propertyRequest.country());
         property.setLocation(location);
+
+        Price price = priceService.addPrice(propertyRequest.priceAmount(), propertyRequest.currency());
+        property.setPrice(price);
 
         Property savedProperty = propertyRepository.save(property);
 
@@ -92,6 +99,7 @@ public class PropertyService {
 
         propertyMapper.updatePropertyFromDto(propertyRequestDto, existingProperty);
         locationMapper.updateLocationFromDto(propertyRequestDto, existingProperty.getLocation());
+        priceMapper.updatePriceFromDto(propertyRequestDto, existingProperty.getPrice());
 
         Property updatedProperty = propertyRepository.save(existingProperty);
 
@@ -105,7 +113,6 @@ public class PropertyService {
         return propertyMapper.toDto(property);
     }
 
-    @Transactional
     public void deleteProperty(Long propertyId) {
         Property property = getPropertyById(propertyId);
 

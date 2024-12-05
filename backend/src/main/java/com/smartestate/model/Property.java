@@ -3,7 +3,6 @@ package com.smartestate.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.smartestate.model.enumeration.Currency;
 import com.smartestate.model.enumeration.PropertyType;
 import jakarta.persistence.*;
 import lombok.*;
@@ -57,13 +56,6 @@ public class Property {
     @Column(nullable = false)
     private BigDecimal area;
 
-    @Column(nullable = false)
-    private BigDecimal price;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Currency currency;
-
     @OneToMany(mappedBy = "property", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Image> images;
@@ -84,4 +76,8 @@ public class Property {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id", nullable = false)
     private Location location;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "price_id", nullable = false)
+    private Price price;
 }

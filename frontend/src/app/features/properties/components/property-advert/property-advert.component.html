@@ -73,9 +73,9 @@
         </div>
 
         
-        <label for="price">{{ 'PRICE' | translate }} <span class="required">*</span></label>
+        <label for="priceAmount">{{ 'PRICE' | translate }} <span class="required">*</span></label>
         <div class="price-container">
-            <input id="price" formControlName="price" type="number" [placeholder]="'ENTER_PRICE' | translate" />
+            <input id="priceAmount" formControlName="priceAmount" type="number" [placeholder]="'ENTER_PRICE' | translate" />
             <select id="currency" formControlName="currency" class="currency">
               <option value="USD" [selected]="isEnglish">USD</option>
               <option value="PLN" [selected]="!isEnglish">PLN</option>

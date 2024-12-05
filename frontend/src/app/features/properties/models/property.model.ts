@@ -11,7 +11,7 @@ export interface Property {
     totalRooms: number;
     totalBedrooms: number;
     totalBathrooms: number;
-    price: number; 
+    priceAmount: number; 
     currency: string;
     area: number; 
     imageIds: number[];

@@ -13,6 +13,8 @@ public interface PropertyMapper {
 
     @Mapping(target = "country", source = "location.country")
     @Mapping(target = "address", source = "location.address")
+    @Mapping(target = "priceAmount", source = "price.amount")
+    @Mapping(target = "currency", source = "price.currency")
     @Mapping(target = "imageIds", source = "images", qualifiedByName = "mapImagesToIds")
     PropertyDto toDto(Property property);
 
