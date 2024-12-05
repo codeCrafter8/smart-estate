@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 16
+      author: codeCrafter8
+      changes:
+        - dropColumn:
+            tableName: property
+            columnName: country
+        - dropColumn:
+            tableName: property
+            columnName: address

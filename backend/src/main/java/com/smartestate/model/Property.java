@@ -42,12 +42,6 @@ public class Property {
     @Column(length = 1000)
     private String description;
 
-    @Column(nullable = false, length = 100)
-    private String country;
-
-    @Column(nullable = false)
-    private String address;
-
     private Integer yearBuilt;
 
     private Integer totalBuildingFloors;
@@ -86,4 +80,8 @@ public class Property {
     @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference
     private User user;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "location_id", nullable = false)
+    private Location location;
 }

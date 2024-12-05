@@ -11,6 +11,8 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface PropertyMapper {
 
+    @Mapping(target = "country", source = "location.country")
+    @Mapping(target = "address", source = "location.address")
     @Mapping(target = "imageIds", source = "images", qualifiedByName = "mapImagesToIds")
     PropertyDto toDto(Property property);
 

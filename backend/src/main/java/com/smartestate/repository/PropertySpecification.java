@@ -2,6 +2,7 @@ package com.smartestate.repository;
 
 import com.smartestate.dto.PropertySearchCriteriaDto;
 import com.smartestate.model.Property;
+import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -17,9 +18,11 @@ public class PropertySpecification {
 
             if (criteria.location() != null && !criteria.location().isBlank()) {
                 String likePattern = likePattern(criteria.location());
+
+                Join<Object, Object> locationJoin = root.join("location");
                 Predicate locationPredicate = criteriaBuilder.or(
-                        criteriaBuilder.like(root.get("country"), likePattern),
-                        criteriaBuilder.like(root.get("address"), likePattern)
+                        criteriaBuilder.like(locationJoin.get("country"), likePattern),
+                        criteriaBuilder.like(locationJoin.get("address"), likePattern)
                 );
                 predicate = criteriaBuilder.and(predicate, locationPredicate);
             }

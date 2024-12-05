@@ -4,7 +4,9 @@ import com.smartestate.dto.PropertyDto;
 import com.smartestate.dto.PropertyRequestDto;
 import com.smartestate.dto.PropertySearchCriteriaDto;
 import com.smartestate.exception.ResourceNotFoundException;
+import com.smartestate.mapper.LocationMapper;
 import com.smartestate.mapper.PropertyMapper;
+import com.smartestate.model.Location;
 import com.smartestate.model.Property;
 import com.smartestate.model.User;
 import com.smartestate.repository.PropertyRepository;
@@ -23,6 +25,7 @@ import java.util.List;
 public class PropertyService {
     private final PropertyRepository propertyRepository;
     private final PropertyMapper propertyMapper;
+    private final LocationMapper locationMapper;
     private final UserService userService;
 
     public List<PropertyDto> searchProperties(PropertySearchCriteriaDto criteria) {
@@ -46,6 +49,9 @@ public class PropertyService {
 
         Property property = propertyMapper.toEntity(propertyRequest);
         property.setUser(user);
+
+        Location location = locationMapper.toEntity(propertyRequest);
+        property.setLocation(location);
 
         Property savedProperty = propertyRepository.save(property);
 
@@ -82,6 +88,7 @@ public class PropertyService {
         Property existingProperty = getPropertyById(propertyId);
 
         propertyMapper.updatePropertyFromDto(propertyRequestDto, existingProperty);
+        locationMapper.updateLocationFromDto(propertyRequestDto, existingProperty.getLocation());
 
         Property updatedProperty = propertyRepository.save(existingProperty);
 

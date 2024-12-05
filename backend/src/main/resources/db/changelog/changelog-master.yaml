@@ -25,3 +25,9 @@ databaseChangeLog:
       file: db/changelog/table/update-properties-table-change-price.yaml
   - include:
       file: db/changelog/table/rename-columns-properties-table.yaml
+  - include:
+      file: db/changelog/table/remove-location-columns-properties-table.yaml
+  - include:
+      file: db/changelog/table/create-locations-table.yaml
+  - include:
+      file: db/changelog/table/update-properties-table-add-location-id.yaml

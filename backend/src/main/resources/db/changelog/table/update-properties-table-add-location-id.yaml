@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: 18
+      author: codeCrafter8
+      changes:
+        - addColumn:
+            tableName: property
+            columns:
+              - column:
+                  name: location_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: property
+            baseColumnNames: location_id
+            constraintName: fk_property_location
+            referencedTableName: location
+            referencedColumnNames: id
+            onDelete: CASCADE
+
+        - createIndex:
+            tableName: property
+            columns:
+              - column:
+                  name: location_id
