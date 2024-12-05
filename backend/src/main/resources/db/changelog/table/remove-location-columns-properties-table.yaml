@@ -4,8 +4,8 @@ databaseChangeLog:
       author: codeCrafter8
       changes:
         - dropColumn:
-            tableName: property
+            tableName: properties
             columnName: country
         - dropColumn:
-            tableName: property
+            tableName: properties
             columnName: address
