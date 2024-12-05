@@ -11,6 +11,7 @@ import com.smartestate.model.Property;
 import com.smartestate.model.User;
 import com.smartestate.repository.PropertyRepository;
 import com.smartestate.repository.PropertySpecification;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.Specification;
@@ -27,6 +28,7 @@ public class PropertyService {
     private final PropertyMapper propertyMapper;
     private final LocationMapper locationMapper;
     private final UserService userService;
+    private final LocationService locationService;
 
     public List<PropertyDto> searchProperties(PropertySearchCriteriaDto criteria) {
         log.info("Searching properties with criteria: {}", criteria);
@@ -41,6 +43,7 @@ public class PropertyService {
                 .toList();
     }
 
+    @Transactional
     public Long addProperty(PropertyRequestDto propertyRequest, Principal principal) {
         String userEmail = principal.getName();
         log.info("Adding property for user: {}", userEmail);
@@ -50,7 +53,7 @@ public class PropertyService {
         Property property = propertyMapper.toEntity(propertyRequest);
         property.setUser(user);
 
-        Location location = locationMapper.toEntity(propertyRequest);
+        Location location = locationService.addLocation(propertyRequest.address(), propertyRequest.country());
         property.setLocation(location);
 
         Property savedProperty = propertyRepository.save(property);
@@ -102,6 +105,7 @@ public class PropertyService {
         return propertyMapper.toDto(property);
     }
 
+    @Transactional
     public void deleteProperty(Long propertyId) {
         Property property = getPropertyById(propertyId);
 

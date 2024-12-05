@@ -207,7 +207,7 @@ export class PropertyAdvertComponent implements OnInit {
   }
 
   get areRequiredFieldsFilled(): boolean {
-    const requiredFields = ['propertyType', 'title', 'country', 'address', 'apartmentArea', 'price'];
+    const requiredFields = ['propertyType', 'title', 'country', 'address', 'area', 'price'];
     return requiredFields.every(field => this.propertyForm.get(field)?.valid);
   }
 

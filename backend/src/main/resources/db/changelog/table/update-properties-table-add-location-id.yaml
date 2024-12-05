@@ -9,8 +9,6 @@ databaseChangeLog:
               - column:
                   name: location_id
                   type: bigint
-                  constraints:
-                    nullable: false
 
         - addForeignKeyConstraint:
             baseTableName: properties

@@ -31,3 +31,8 @@ databaseChangeLog:
       file: db/changelog/table/create-locations-table.yaml
   - include:
       file: db/changelog/table/update-properties-table-add-location-id.yaml
+  - include:
+        file: db/changelog/data/insert-locations-data.yaml
+  - include:
+      file: db/changelog/data/insert-location-ids-to-properties.yaml
+

@@ -13,7 +13,7 @@ databaseChangeLog:
             startValue: 1
             incrementBy: 1
         - createTable:
-            tableName: location
+            tableName: locations
             columns:
                - column:
                    name: id
