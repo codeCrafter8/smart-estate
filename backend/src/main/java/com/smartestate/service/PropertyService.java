@@ -94,12 +94,12 @@ public class PropertyService {
                 .toList();
     }
 
-    public PropertyDto updateProperty(Long propertyId, PropertyRequestDto propertyRequestDto) {
+    public PropertyDto updateProperty(Long propertyId, PropertyRequestDto propertyRequest) {
         Property existingProperty = getPropertyById(propertyId);
 
-        propertyMapper.updatePropertyFromDto(propertyRequestDto, existingProperty);
-        locationMapper.updateLocationFromDto(propertyRequestDto, existingProperty.getLocation());
-        priceMapper.updatePriceFromDto(propertyRequestDto, existingProperty.getPrice());
+        propertyMapper.updatePropertyFromDto(propertyRequest, existingProperty);
+        locationMapper.updateLocationFromDto(propertyRequest, existingProperty.getLocation());
+        priceMapper.updatePriceFromDto(propertyRequest, existingProperty.getPrice());
 
         Property updatedProperty = propertyRepository.save(existingProperty);
 
@@ -108,7 +108,7 @@ public class PropertyService {
         return propertyMapper.toDto(updatedProperty);
     }
 
-    public PropertyDto getPropertyByIdDto(Long propertyId) {
+    public PropertyDto getPropertyDtoById(Long propertyId) {
         Property property = getPropertyById(propertyId);
         return propertyMapper.toDto(property);
     }
