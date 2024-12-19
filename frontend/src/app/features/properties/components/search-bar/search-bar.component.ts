@@ -19,7 +19,7 @@ export class SearchBarComponent implements OnInit {
 
   propertyTypes = ['Apartment', 'House'];
   transactionTypes = ['Buy', 'Rent'];
-  isCurrencyUSD: boolean = false;
+  isLanguageEnglish: boolean = false;
   
   constructor(private fb: FormBuilder, private router: Router, private translate: TranslateService) {
     this.searchForm = this.fb.group({
@@ -36,14 +36,14 @@ export class SearchBarComponent implements OnInit {
 
   ngOnInit() {
     const currentLang = this.translate.currentLang; 
-    this.isCurrencyUSD = currentLang ? currentLang === 'en' : true;
+    this.isLanguageEnglish = currentLang ? currentLang === 'en' : true;
   
     if (this.initialCriteria) {
       this.searchForm.patchValue(this.initialCriteria);
     }
   
     if (!this.searchForm.get('currency')?.value) {
-      this.searchForm.patchValue({ currency: this.isCurrencyUSD ? 'USD' : 'PLN' });
+      this.searchForm.patchValue({ currency: this.isLanguageEnglish ? 'USD' : 'PLN' });
     }
   
     this.translate.onLangChange.subscribe(() => {
@@ -84,7 +84,7 @@ export class SearchBarComponent implements OnInit {
 
   onLangChange(): void {
     const currentLang = this.translate.currentLang;
-    this.isCurrencyUSD = currentLang === 'en';
-    this.searchForm.patchValue({ currency: this.isCurrencyUSD ? 'USD' : 'PLN' });
+    this.isLanguageEnglish = currentLang === 'en';
+    this.searchForm.patchValue({ currency: this.isLanguageEnglish ? 'USD' : 'PLN' });
   }
 }
