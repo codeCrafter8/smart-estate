@@ -77,8 +77,8 @@
         <div class="price-container">
             <input id="priceAmount" formControlName="priceAmount" type="number" [placeholder]="'ENTER_PRICE' | translate" />
             <select id="currency" formControlName="currency" class="currency">
-              <option value="USD" [selected]="isEnglish">USD</option>
-              <option value="PLN" [selected]="!isEnglish">PLN</option>
+              <option value="USD" [selected]="isLanguageEnglish">USD</option>
+              <option value="PLN" [selected]="!isLanguageEnglish">PLN</option>
             </select>
         </div>
           
