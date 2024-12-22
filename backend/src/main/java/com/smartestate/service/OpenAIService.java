@@ -58,7 +58,7 @@ public class OpenAIService {
         appendIfPresent(promptBuilder, "Bedrooms", propertyRequestDto.totalBedrooms());
         appendIfPresent(promptBuilder, "Bathrooms", propertyRequestDto.totalBathrooms());
         appendIfPresent(promptBuilder, "Area", propertyRequestDto.area() + " m²");
-        appendIfPresent(promptBuilder, "Price", propertyRequestDto.price() + propertyRequestDto.currency());
+        appendIfPresent(promptBuilder, "Price", propertyRequestDto.priceAmount() + propertyRequestDto.currency());
 
         if (promptBuilder.charAt(promptBuilder.length() - 1) == ',') {
             promptBuilder.setLength(promptBuilder.length() - 1);

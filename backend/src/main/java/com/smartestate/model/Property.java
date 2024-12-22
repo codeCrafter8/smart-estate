@@ -3,7 +3,6 @@ package com.smartestate.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.smartestate.model.enumeration.Currency;
 import com.smartestate.model.enumeration.PropertyType;
 import jakarta.persistence.*;
 import lombok.*;
@@ -42,12 +41,6 @@ public class Property {
     @Column(length = 1000)
     private String description;
 
-    @Column(nullable = false, length = 100)
-    private String country;
-
-    @Column(nullable = false)
-    private String address;
-
     private Integer yearBuilt;
 
     private Integer totalBuildingFloors;
@@ -62,13 +55,6 @@ public class Property {
 
     @Column(nullable = false)
     private BigDecimal area;
-
-    @Column(nullable = false)
-    private BigDecimal price;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Currency currency;
 
     @OneToMany(mappedBy = "property", fetch = FetchType.LAZY)
     @JsonManagedReference
@@ -86,4 +72,12 @@ public class Property {
     @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference
     private User user;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "location_id", nullable = false)
+    private Location location;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "price_id", nullable = false)
+    private Price price;
 }

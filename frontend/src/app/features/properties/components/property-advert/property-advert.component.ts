@@ -25,7 +25,7 @@ export class PropertyAdvertComponent implements OnInit {
   propertyId: number | null = null;
   images: Array<{ imageId: number | null; filePath: string; file: File | null } | null> = new Array(10).fill(null);
   deletedImages: number[] = [];
-  isEnglish: boolean = false;
+  isLanguageEnglish: boolean = false;
   submitted: boolean = false;
 
   constructor(
@@ -46,8 +46,8 @@ export class PropertyAdvertComponent implements OnInit {
       totalBedrooms: ['', [Validators.min(0)]],
       totalBathrooms: ['', [Validators.min(0)]],
       area: ['', [Validators.required, Validators.min(1)]],
-      price: ['', [Validators.required, Validators.min(0)]],
-      currency: [this.isEnglish ? 'USD' : 'PLN'],
+      priceAmount: ['', [Validators.required, Validators.min(0)]],
+      currency: [this.isLanguageEnglish ? 'USD' : 'PLN'],
       images: [null, this.imagesValidator],
       description: ['', Validators.required],
     });
@@ -61,7 +61,7 @@ export class PropertyAdvertComponent implements OnInit {
       this.loadPropertyData();
     }
     
-    this.isEnglish = (this.translate.currentLang || 'en') === 'en';
+    this.isLanguageEnglish = (this.translate.currentLang || 'en') === 'en';
   }
 
   loadPropertyData(): void {
@@ -190,7 +190,7 @@ export class PropertyAdvertComponent implements OnInit {
   generateDescription() {
     this.errorMessage = null;
     this.isGenerating = true; 
-    const language = this.isEnglish ? 'en' : 'pl'; 
+    const language = this.isLanguageEnglish ? 'en' : 'pl'; 
 
     this.propertyService.generateDescription(this.propertyForm.value, language).subscribe({
         next: (response) => {
@@ -207,7 +207,7 @@ export class PropertyAdvertComponent implements OnInit {
   }
 
   get areRequiredFieldsFilled(): boolean {
-    const requiredFields = ['propertyType', 'title', 'country', 'address', 'apartmentArea', 'price'];
+    const requiredFields = ['propertyType', 'title', 'country', 'address', 'area', 'priceAmount'];
     return requiredFields.every(field => this.propertyForm.get(field)?.valid);
   }
 

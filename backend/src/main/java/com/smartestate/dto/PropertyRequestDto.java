@@ -17,6 +17,6 @@ public record PropertyRequestDto(
         Integer totalBedrooms,
         Integer totalBathrooms,
         BigDecimal area,
-        BigDecimal price,
+        BigDecimal priceAmount,
         String currency
 ) {}
