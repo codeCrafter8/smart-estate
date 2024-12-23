@@ -117,7 +117,7 @@
             </div>
         </div>
 
-        <label for="images">{{ 'IMAGES' | translate }}: <span class="required">*</span></label>
+        <label for="images">{{ 'IMAGES' | translate }} <span class="required">*</span></label>
         <div class="image-grid">
             <div *ngFor="let image of images; let i = index" class="image-tile" (click)="addImage(i)" [class.empty]="!image">
                 <ng-container *ngIf="image; else emptyTile">
