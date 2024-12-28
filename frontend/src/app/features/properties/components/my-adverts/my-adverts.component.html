@@ -1,7 +1,7 @@
 <div class="my-adverts">
   <h2>{{ 'MY_ADVERTS' | translate }}</h2>
   <div *ngIf="notFoundMessage" class="notFound">{{ notFoundMessage }}</div>
-  <div *ngFor="let property of properties" class="advert-item">
+  <div *ngFor="let property of properties" class="advert-item" [routerLink]="['/properties', property.id]">
     <h3>{{ property.title }}</h3>
     <p>{{ 'LOCATION' | translate }}: {{ property.address }}</p>
     <p>{{ 'AREA' | translate }}: {{ property.area }} m²</p>
