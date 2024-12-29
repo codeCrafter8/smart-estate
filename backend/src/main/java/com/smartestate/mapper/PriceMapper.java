@@ -7,7 +7,6 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring")
 public interface PriceMapper {
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(source = "priceAmount", target = "amount")
     void updatePriceFromDto(PropertyRequestDto propertyRequest, @MappingTarget Price price);
 

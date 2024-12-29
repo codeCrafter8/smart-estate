@@ -9,7 +9,7 @@
 
     <div>
       <button (click)="editProperty(property.id)" class="btn btn-primary">{{ 'EDIT' | translate }}</button>
-      <button (click)="deleteProperty(property)" class="btn btn-delete">{{ 'DELETE' | translate }}</button>
+      <button (click)="deleteProperty(property, $event)" class="btn btn-delete">{{ 'DELETE' | translate }}</button>
     </div>
     <button (click)="viewInquiries(property.id)" class="btn btn-secondary">{{ 'VIEW_INQUIRIES' | translate }}</button>
   </div>

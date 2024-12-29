@@ -45,7 +45,9 @@ export class MyAdvertsComponent implements OnInit {
     this.router.navigate(['/my-adverts/inquiries', propertyId]);
   }
 
-  deleteProperty(property: Property): void {
+  deleteProperty(property: Property, event: MouseEvent): void {
+    event.stopPropagation(); 
+
     const translatedMessage = this.translate.instant('CONFIRM_DELETE_PROPERTY');
   
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
