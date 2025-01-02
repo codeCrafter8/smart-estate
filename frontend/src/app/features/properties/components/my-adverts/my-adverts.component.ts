@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Property } from '../../models/property.model';
 import { PropertyService } from '../../services/property.service';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -10,7 +10,7 @@ import { catchError, forkJoin, of } from 'rxjs';
 @Component({
   selector: 'app-my-adverts',
   standalone: true,
-  imports: [CommonModule, TranslateModule, MatDialogModule],
+  imports: [CommonModule, TranslateModule, MatDialogModule, RouterModule],
   templateUrl: './my-adverts.component.html',
   styleUrl: './my-adverts.component.scss'
 })
@@ -45,7 +45,9 @@ export class MyAdvertsComponent implements OnInit {
     this.router.navigate(['/my-adverts/inquiries', propertyId]);
   }
 
-  deleteProperty(property: Property): void {
+  deleteProperty(property: Property, event: MouseEvent): void {
+    event.stopPropagation(); 
+
     const translatedMessage = this.translate.instant('CONFIRM_DELETE_PROPERTY');
   
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {

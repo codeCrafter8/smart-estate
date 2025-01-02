@@ -27,6 +27,5 @@ public interface PropertyMapper {
 
     Property toEntity(PropertyRequestDto propertyRequest);
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updatePropertyFromDto(PropertyRequestDto dto, @MappingTarget Property entity);
 }
