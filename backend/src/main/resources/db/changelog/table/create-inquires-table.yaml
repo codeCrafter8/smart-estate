@@ -48,4 +48,4 @@ databaseChangeLog:
             baseColumnNames: property_id
             referencedTableName: properties
             referencedColumnNames: id
-            constraintName: fk_property_id
+            constraintName: fk_property_inquiries_property

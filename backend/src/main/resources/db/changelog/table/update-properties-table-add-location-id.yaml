@@ -13,7 +13,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseTableName: properties
             baseColumnNames: location_id
-            constraintName: fk_property_location
+            constraintName: fk_location_property
             referencedTableName: locations
             referencedColumnNames: id
             onDelete: CASCADE
