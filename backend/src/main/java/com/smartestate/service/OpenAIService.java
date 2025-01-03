@@ -38,8 +38,8 @@ public class OpenAIService {
         return new DescriptionDto(result);
     }
 
-    private String buildPrompt(PropertyRequestDto propertyRequestDto, String language) {
-        StringBuilder promptBuilder = new StringBuilder("Generate an encouraging and enticing description for a real estate listing based on the following details. Please provide a plain text without any special formatting or symbols.");
+    public String buildPrompt(PropertyRequestDto propertyRequestDto, String language) {
+        StringBuilder promptBuilder = new StringBuilder("Generate an encouraging and enticing description for a real estate listing based on the following details. Please provide a plain text without any special formatting or symbols. ");
 
         String languageInstruction = "pl".equals(language)
                 ? "Please provide the description in Polish."
