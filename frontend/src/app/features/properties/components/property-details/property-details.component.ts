@@ -37,12 +37,15 @@ export class PropertyDetailsComponent {
   }
 
   ngOnInit(): void {
+    this.loadProperty();
+  }
+
+  loadProperty(): void {
     const propertyId = this.route.snapshot.paramMap.get('propertyId');
     if (propertyId) {
       this.propertyService.getPropertyById(+propertyId).subscribe(data => {
         this.property = data;
-        this.updateImagePosition();
-        this.updateArrowVisibility();
+        this.updateImageDisplay();
       });
     }
   }
@@ -76,23 +79,23 @@ export class PropertyDetailsComponent {
   prevImage() {
     if (this.canGoLeft) {
       this.currentIndex--;
-      this.updateImagePosition();
-      this.updateArrowVisibility();
+      this.updateImageDisplay();
     }
   }
 
   nextImage() {
     if (this.canGoRight) {
       this.currentIndex++;
-      this.updateImagePosition();
-      this.updateArrowVisibility();
+      this.updateImageDisplay();
     }
   }
 
-  updateImagePosition() {
+  updateImageDisplay() {
     const galleryItem = document.querySelector('.gallery-item');
     const itemWidth = galleryItem ? (galleryItem as HTMLElement).offsetWidth : 0;
     this.translateXValue = -this.currentIndex * itemWidth;
+
+    this.updateArrowVisibility();
   }
 
   updateArrowVisibility() {
