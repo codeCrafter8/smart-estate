@@ -111,7 +111,7 @@
                     </select>
                 </div>
                 
-                <div *ngIf="submitted && propertyForm.get('price')?.invalid">
+                <div *ngIf="submitted && propertyForm.get('priceAmount')?.invalid">
                     <small>{{ 'PRICE_REQUIRED_AND_VALID_NUMBER' | translate }}</small>
                 </div>
             </div>

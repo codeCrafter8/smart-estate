@@ -14,6 +14,8 @@ class MockTranslateLoader implements TranslateLoader {
   }
 }
 
+const property = { id: 1, title: 'Big house in the city center', imageIds: [1, 2] } as Property;
+
 describe('PropertyDetailsComponent', () => {
   let component: PropertyDetailsComponent;
   let fixture: ComponentFixture<PropertyDetailsComponent>;
@@ -53,6 +55,7 @@ describe('PropertyDetailsComponent', () => {
     fixture = TestBed.createComponent(PropertyDetailsComponent);
     component = fixture.componentInstance;
     httpTestingController = TestBed.inject(HttpTestingController); 
+    propertyService = TestBed.inject(PropertyService);
   });
 
   afterEach(() => {
@@ -63,10 +66,8 @@ describe('PropertyDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should load property data', () => {
-    const mockProperty = { id: 1, title: 'Big house in the city center', imageIds: [1, 2] } as Property;
-    
-    spyOn(component['propertyService'], 'getPropertyById').and.returnValue(of(mockProperty));
+  it('should load property data with mocking', () => {
+    spyOn(component['propertyService'], 'getPropertyById').and.returnValue(of(property));
 
     component.loadProperty();
 
@@ -75,21 +76,14 @@ describe('PropertyDetailsComponent', () => {
     expect(component.property.title).toBe('Big house in the city center');
   });
 
-  it('[IT test] should load property data on init', (done) => {
-    const mockProperty = { id: 1 } as Property;
-  
-    spyOn(component['propertyService'], 'getPropertyById').and.callThrough(); 
-    spyOn(component, 'updateImageDisplay');
-  
+  it('should interact with service to load property data on init', (done) => {
     component.ngOnInit();
   
     const req = httpTestingController.expectOne(`http://localhost:8080/api/v1/properties/1`);
-  
     expect(req.request.method).toEqual('GET');
-    req.flush(mockProperty); 
-  
-    expect(component['propertyService'].getPropertyById).toHaveBeenCalledTimes(1); 
-    expect(component.property).toEqual(mockProperty);
+    req.flush(property); 
+   
+    expect(component.property).toEqual(property);
   
     done();
   });  

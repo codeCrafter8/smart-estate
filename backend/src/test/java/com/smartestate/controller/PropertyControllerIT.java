@@ -7,6 +7,7 @@ import com.smartestate.model.enumeration.PropertyType;
 import com.smartestate.repository.ImageRepository;
 import com.smartestate.repository.PropertyRepository;
 import com.smartestate.service.PropertyService;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,20 +52,23 @@ class PropertyControllerIT {
 
     @Test
     void testSearchProperties() throws Exception {
-        // Given
+        // Arrange
         PropertySearchCriteriaDto criteria = new PropertySearchCriteriaDto(null, null, new BigDecimal("150000.0"), new BigDecimal("200000.0"), null, null, "USD");
+
         PropertyRequestDto propertyRequestDto1 = createPropertyRequest("Property 1", new BigDecimal("160000.0"));
         PropertyRequestDto propertyRequestDto2 = createPropertyRequest("Property 2", new BigDecimal("185000.0"));
         PropertyRequestDto propertyRequestDto3 = createPropertyRequest("Property 3", new BigDecimal("125000.0"));
+
         propertyService.addProperty(propertyRequestDto1, () -> "john.doe@example.com");
         propertyService.addProperty(propertyRequestDto2, () -> "jane.smith@example.com");
         propertyService.addProperty(propertyRequestDto3, () -> "jane.smith@example.com");
 
-        // When & Then
+        // Act & Assert
         mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/properties/search")
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(criteria)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(2)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].title").value("Property 1"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[1].title").value("Property 2"));
     }
@@ -78,7 +82,11 @@ class PropertyControllerIT {
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(propertyRequestDto)))
                 .andExpect(MockMvcResultMatchers.status().isCreated())
-                .andExpect(MockMvcResultMatchers.content().string(matchesPattern("\\d+")));
+                .andExpect(MockMvcResultMatchers.content().string(matchesPattern("\\d+")))
+                .andDo(result -> {
+                    String content = result.getResponse().getContentAsString();
+                    System.out.println(content);
+                });
     }
 
     @WithMockUser("jane.smith@example.com")
@@ -106,33 +114,28 @@ class PropertyControllerIT {
         );
     }
 
-    /*@Test
+    @WithMockUser("jane.smith@example.com")
+    @Test
     void testUpdateProperty() throws Exception {
         // Given
-        PropertyRequestDto propertyRequestDto = new PropertyRequestDto(
-                "Updated Property", "Updated Description", "Czech Republic", "Prague", 2023, 3, 2, 5, 3, 2, 2, 1500.0, 1200000.0
-        );
-        Long propertyId = propertyService.addProperty(propertyRequestDto, () -> "user1");
+        PropertyRequestDto propertyRequestDto = createPropertyRequest("Property to Update", new BigDecimal("1000000.0"));
+        Long propertyId = propertyService.addProperty(propertyRequestDto, () -> "jane.smith@example.com");
 
-        PropertyRequestDto updatedRequest = new PropertyRequestDto(
-                "Updated Property Name", "Updated Description", "Czech Republic", "Prague", 2023, 3, 2, 5, 3, 2, 2, 1500.0, 1300000.0
-        );
+        PropertyRequestDto updatedRequest = createPropertyRequest("Updated Property Name", new BigDecimal("1300000.0"));
 
         // When & Then
         mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/properties/{propertyId}", propertyId)
                         .contentType("application/json")
-                        .content("{\"title\":\"Updated Property Name\", \"description\":\"Updated Description\", \"countryName\":\"Czech Republic\", \"regionName\":\"Prague\", \"yearBuilt\":2023, \"totalBuildingFloors\":3, \"apartmentFloor\":2, \"totalRooms\":5, \"totalBedrooms\":3, \"totalBathrooms\":2, \"apartmentArea\":1500.0, \"priceInUsd\":1300000.0}"))
+                        .content(objectMapper.writeValueAsString(updatedRequest)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Updated Property Name"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.title").value(updatedRequest.title()));
     }
 
     @Test
     void testGetPropertyById() throws Exception {
         // Given
-        PropertyRequestDto propertyRequestDto = new PropertyRequestDto(
-                "Property Title", "Description", "Czech Republic", "Prague", 2023, 3, 2, 5, 3, 2, 2, 1500.0, 1000000.0
-        );
-        Long propertyId = propertyService.addProperty(propertyRequestDto, () -> "user1");
+        PropertyRequestDto propertyRequestDto = createPropertyRequest("Property Title", new BigDecimal("1000000.0"));
+        Long propertyId = propertyService.addProperty(propertyRequestDto, () -> "jane.smith@example.com");
 
         // When & Then
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/properties/{propertyId}", propertyId))
@@ -141,16 +144,15 @@ class PropertyControllerIT {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Property Title"));
     }
 
+    @WithMockUser("jane.smith@example.com")
     @Test
     void testDeleteProperty() throws Exception {
         // Given
-        PropertyRequestDto propertyRequestDto = new PropertyRequestDto(
-                "Property to Delete", "Description", "Czech Republic", "Prague", 2023, 3, 2, 5, 3, 2, 2, 1500.0, 1000000.0
-        );
-        Long propertyId = propertyService.addProperty(propertyRequestDto, () -> "user1");
+        PropertyRequestDto propertyRequestDto = createPropertyRequest("Property to Delete", new BigDecimal("1000000.0"));
+        Long propertyId = propertyService.addProperty(propertyRequestDto, () -> "jane.smith@example.com");
 
         // When & Then
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/properties/{propertyId}", propertyId))
                 .andExpect(MockMvcResultMatchers.status().isNoContent());
-    }*/
+    }
 }

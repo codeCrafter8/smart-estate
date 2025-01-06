@@ -37,15 +37,15 @@ export class MyAdvertsComponent implements OnInit {
     });
   }
 
-  editProperty(propertyId: number): void {
+  navigateToEditProperty(propertyId: number): void {
     this.router.navigate(['/my-adverts/edit', propertyId]);
   }
 
-  viewInquiries(propertyId: number): void {
+  navigateToViewInquiries(propertyId: number): void {
     this.router.navigate(['/my-adverts/inquiries', propertyId]);
   }
 
-  deleteProperty(property: Property, event: MouseEvent): void {
+  navigateToDeleteProperty(property: Property, event: MouseEvent): void {
     event.stopPropagation(); 
 
     const translatedMessage = this.translate.instant('CONFIRM_DELETE_PROPERTY');
