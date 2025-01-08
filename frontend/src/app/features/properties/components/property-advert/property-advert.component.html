@@ -148,10 +148,13 @@
         </div>
 
         <div *ngIf="isGenerating">{{ 'GENERATING_DESCRIPTION' | translate }}...</div>
-        <div *ngIf="errorMessage" class="error">
-            <small>{{ errorMessage }}</small>
+        <div *ngIf="errorMessageGenerateDescription" class="error">
+            <small>{{ errorMessageGenerateDescription }}</small>
         </div>
 
         <button type="submit">{{ buttonLabel }}</button>
+        <div *ngIf="errorMessageSubmit" class="error">
+            <small>{{ errorMessageSubmit }}</small>
+        </div>
     </form>
 </div>
