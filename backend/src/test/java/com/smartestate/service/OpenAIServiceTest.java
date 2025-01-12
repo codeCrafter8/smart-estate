@@ -61,7 +61,7 @@ class OpenAIServiceTest {
     }
 
     @Test
-    void buildPrompt_shouldGenerateCorrectPromptInEnglish() {
+    void buildPrompt_shouldGenerateCorrectPrompt_englishInstruction() {
         // Arrange
         PropertyRequestDto propertyRequestDto = new PropertyRequestDto(
                 PropertyType.APARTMENT, "Modern Apartment", null, "USA",
@@ -81,7 +81,7 @@ class OpenAIServiceTest {
     }
 
     @Test
-    void buildPrompt_shouldGenerateCorrectPromptInPolish() {
+    void buildPrompt_shouldGenerateCorrectPrompt_polishInstruction() {
         // Arrange
         PropertyRequestDto propertyRequestDto = new PropertyRequestDto(
                 PropertyType.HOUSE, "Piękny dom", null, "Polska",

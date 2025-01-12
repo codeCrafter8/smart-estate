@@ -5,6 +5,9 @@ import { provideHttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule, TranslateService, TranslateStore } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { Property } from '../../models/property.model';
+import { MatDialogRef } from '@angular/material/dialog';
 
 class MockTranslateLoader implements TranslateLoader {
   getTranslation(lang: string): Observable<any> {
@@ -38,7 +41,6 @@ describe('MyAdvertsComponent', () => {
 
     fixture = TestBed.createComponent(MyAdvertsComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
     router = TestBed.inject(Router);
   });
 
@@ -52,5 +54,5 @@ describe('MyAdvertsComponent', () => {
     component.navigateToEditProperty(propertyId); 
 
     expect(router.navigate).toHaveBeenCalledWith(['/my-adverts/edit', propertyId]);
-  });
+  });  
 });

@@ -45,7 +45,7 @@ export class MyAdvertsComponent implements OnInit {
     this.router.navigate(['/my-adverts/inquiries', propertyId]);
   }
 
-  navigateToDeleteProperty(property: Property, event: MouseEvent): void {
+  deleteProperty(property: Property, event: MouseEvent): void {
     event.stopPropagation(); 
 
     const translatedMessage = this.translate.instant('CONFIRM_DELETE_PROPERTY');
