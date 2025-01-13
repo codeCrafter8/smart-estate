@@ -13,7 +13,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseTableName: properties
             baseColumnNames: price_id
-            constraintName: fk_property_price
+            constraintName: fk_price_property
             referencedTableName: prices
             referencedColumnNames: id
             onDelete: CASCADE

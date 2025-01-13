@@ -62,6 +62,9 @@ export class PropertyAdvertComponent implements OnInit {
     }
     
     this.isLanguageEnglish = (this.translate.currentLang || 'en') === 'en';
+    this.translate.onLangChange.subscribe(() => {
+      this.onLangChange(); 
+    });
   }
 
   loadPropertyData(): void {
@@ -221,5 +224,11 @@ export class PropertyAdvertComponent implements OnInit {
     return this.isEditMode
       ? this.translate.instant('UPDATE_PROPERTY')
       : this.translate.instant('ADD_PROPERTY');
+  }
+
+  onLangChange(): void {
+    const currentLang = this.translate.currentLang;
+    this.isLanguageEnglish = currentLang === 'en';
+    this.propertyForm.patchValue({ currency: this.isLanguageEnglish ? 'USD' : 'PLN' });
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PropertyService } from '../../services/property.service';
 import { Property } from '../../models/property.model';
-import { PropertyItemComponent } from '../property-item/property-item.component';
+import { PropertyItemComponent } from './property-item/property-item.component';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { SearchBarComponent } from "../search-bar/search-bar.component";
