@@ -26,8 +26,8 @@ public class OpenAIService {
                 new Prompt(
                         promptText,
                         OpenAiChatOptions.builder()
-                                .withMaxTokens(300)
-                                .withTemperature(0.7)
+                                .maxTokens(300)
+                                .temperature(0.7)
                                 .build()
                 )
         );
