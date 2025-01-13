@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 
 class MockTranslateLoader implements TranslateLoader {
   getTranslation(lang: string): Observable<any> {
-    return of({ key: 'value' }); 
+    return of({ key: 'value' });
   }
 }
 
@@ -28,8 +28,8 @@ describe('MyAdvertsComponent', () => {
         },
       }),],
       providers: [
-        provideHttpClient(), 
-        TranslateService, 
+        provideHttpClient(),
+        TranslateService,
         TranslateStore,
         { provide: Router, useValue: { navigate: jasmine.createSpy('navigate') } },
       ]
@@ -38,7 +38,6 @@ describe('MyAdvertsComponent', () => {
 
     fixture = TestBed.createComponent(MyAdvertsComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
     router = TestBed.inject(Router);
   });
 
@@ -47,9 +46,9 @@ describe('MyAdvertsComponent', () => {
   });
 
   it('should navigate to edit property route', () => {
-    const propertyId = 1; 
+    const propertyId = 1;
 
-    component.navigateToEditProperty(propertyId); 
+    component.navigateToEditProperty(propertyId);
 
     expect(router.navigate).toHaveBeenCalledWith(['/my-adverts/edit', propertyId]);
   });

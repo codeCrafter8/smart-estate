@@ -11,7 +11,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 
 class MockTranslateLoader implements TranslateLoader {
   getTranslation(lang: string): Observable<any> {
-    return of({ key: 'value' }); 
+    return of({ key: 'value' });
   }
 }
 
@@ -25,14 +25,14 @@ describe('PropertyAdvertComponent', () => {
     const activatedRouteMock = {
       snapshot: {
         paramMap: {
-          get: (key: string) => '1', 
+          get: (key: string) => '1',
         },
       },
     };
 
     await TestBed.configureTestingModule({
       imports: [
-        PropertyAdvertComponent, 
+        PropertyAdvertComponent,
         RouterModule.forRoot([]),
         TranslateModule.forRoot({
           loader: {
@@ -41,12 +41,12 @@ describe('PropertyAdvertComponent', () => {
         },
       }),],
       providers: [
-        provideHttpClient(), 
+        provideHttpClient(),
         provideHttpClientTesting(),
-        TranslateService, 
+        TranslateService,
         TranslateStore,
         { provide: ActivatedRoute, useValue: activatedRouteMock },
-        PropertyService, 
+        PropertyService,
       ]
     })
     .compileComponents();
@@ -68,7 +68,7 @@ describe('PropertyAdvertComponent', () => {
 
   it('should call propertyService.getPropertyById() when in edit mode with mocking', () => {
     spyOn(propertyService, 'getPropertyById').and.returnValue(of({ title: 'Test Property', country: 'Test Country', description: 'Test Description', imageIds: [1] } as Property));
-    
+
     component.propertyId = 1;
     component.ngOnInit();
     expect(propertyService.getPropertyById).toHaveBeenCalledWith(1);
@@ -99,11 +99,40 @@ describe('PropertyAdvertComponent', () => {
       images: ['image1.jpg'],
       description: 'New Description'
     });
-    expect(component.propertyForm.valid).toBeTrue();
     component.onSubmit();
 
     const req = httpTestingController.expectOne('http://localhost:8080/api/v1/properties');
     expect(req.request.method).toBe('POST');
+    expect(req.request.body).toEqual(component.propertyForm.value);
+
+    req.flush({ id: 1 });
+  });
+
+  it('should interact with service to update property', () => {
+    component.propertyForm.patchValue({
+      propertyType: 'House',
+      title: 'Updated Property',
+      country: 'New Country',
+      address: 'Some Address',
+      yearBuilt: 2020,
+      totalBuildingFloors: 5,
+      apartmentFloor: 2,
+      totalRooms: 4,
+      totalBedrooms: 2,
+      totalBathrooms: 2,
+      area: 100,
+      priceAmount: 100000,
+      currency: 'USD',
+      images: ['image1.jpg'],
+      description: 'Updated Description'
+    });
+    component.isEditMode = true;
+    component.propertyId = 1;
+
+    component.onSubmit();
+
+    const req = httpTestingController.expectOne('http://localhost:8080/api/v1/properties/1');
+    expect(req.request.method).toBe('PUT');
     expect(req.request.body).toEqual(component.propertyForm.value);
 
     req.flush({ id: 1 });

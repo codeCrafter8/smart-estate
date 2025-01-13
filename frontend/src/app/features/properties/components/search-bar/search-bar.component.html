@@ -1,13 +1,6 @@
 <div class="search-bar">
   <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
     <div class="row">
-      <!-- <div>
-        <select formControlName="transactionType">
-          <option value="" disabled>Select Transaction Type</option>
-          <option *ngFor="let type of transactionTypes" [value]="type">{{ type }}</option>
-        </select>
-      </div> -->
-
       <div>
         <select formControlName="propertyType">
           <option value="" disabled>{{ 'SELECT_PROPERTY_TYPE' | translate }}</option>
