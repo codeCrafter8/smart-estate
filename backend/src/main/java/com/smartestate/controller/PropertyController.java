@@ -55,10 +55,10 @@ public class PropertyController {
     @PutMapping("/{propertyId}")
     public ResponseEntity<PropertyDto> updateProperty(
             @PathVariable Long propertyId,
-            @RequestBody PropertyRequestDto propertyRequestDto) {
+            @RequestBody PropertyRequestDto propertyRequest) {
         log.info("Received request to update property with id: {}", propertyId);
 
-        PropertyDto updatedProperty = propertyService.updateProperty(propertyId, propertyRequestDto);
+        PropertyDto updatedProperty = propertyService.updateProperty(propertyId, propertyRequest);
 
         return ResponseEntity.ok(updatedProperty);
     }
@@ -67,8 +67,17 @@ public class PropertyController {
     public ResponseEntity<PropertyDto> getPropertyById(@PathVariable Long propertyId) {
         log.info("Received request to fetch property with id: {}", propertyId);
 
-        PropertyDto property = propertyService.getPropertyByIdDto(propertyId);
+        PropertyDto property = propertyService.getPropertyDtoById(propertyId);
 
         return ResponseEntity.ok(property);
+    }
+
+    @DeleteMapping("/{propertyId}")
+    public ResponseEntity<Void> deleteProperty(@PathVariable Long propertyId) {
+        log.info("Received request to delete property with id: {}", propertyId);
+
+        propertyService.deleteProperty(propertyId);
+
+        return ResponseEntity.noContent().build();
     }
 }

@@ -1,13 +1,16 @@
 <div class="my-adverts">
   <h2>{{ 'MY_ADVERTS' | translate }}</h2>
   <div *ngIf="notFoundMessage" class="notFound">{{ notFoundMessage }}</div>
-  <div *ngFor="let property of properties" class="advert-item">
+  <div *ngFor="let property of properties" class="advert-item" [routerLink]="['/properties', property.id]">
     <h3>{{ property.title }}</h3>
-    <p>{{ 'LOCATION' | translate }}: {{ property.locationName }}</p>
-    <p>{{ 'AREA' | translate }}: {{ property.apartmentArea }} m²</p>
-    <p>{{ 'PRICE' | translate }}: {{ property.price | currency: property.currency }}</p>
-    
-    <button (click)="editProperty(property.id)" class="btn btn-primary">{{ 'EDIT' | translate }}</button>
-    <button (click)="viewInquiries(property.id)" class="btn btn-secondary">{{ 'VIEW_INQUIRIES' | translate }}</button>
+    <p>{{ 'LOCATION' | translate }}: {{ property.address }}</p>
+    <p>{{ 'AREA' | translate }}: {{ property.area }} m²</p>
+    <p>{{ 'PRICE' | translate }}: {{ property.priceAmount | currency: property.currency }}</p>
+
+    <div>
+      <button (click)="navigateToEditProperty(property.id)" class="btn btn-primary">{{ 'EDIT' | translate }}</button>
+      <button (click)="deleteProperty(property, $event)" class="btn btn-delete">{{ 'DELETE' | translate }}</button>
+    </div>
+    <button (click)="navigateToViewInquiries(property.id)" class="btn btn-secondary">{{ 'VIEW_INQUIRIES' | translate }}</button>
   </div>
 </div>

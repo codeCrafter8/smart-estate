@@ -18,33 +18,28 @@ export class SearchBarComponent implements OnInit {
   searchForm: FormGroup;
 
   propertyTypes = ['Apartment', 'House'];
-  transactionTypes = ['Buy', 'Rent'];
-  isCurrencyUSD: boolean = false;
+  isLanguageEnglish: boolean = false;
   
   constructor(private fb: FormBuilder, private router: Router, private translate: TranslateService) {
+    const currentLang = this.translate.currentLang; 
+    this.isLanguageEnglish = currentLang ? currentLang === 'en' : true;
+
     this.searchForm = this.fb.group({
-      propertyType: ['Apartment', Validators.required], 
-      transactionType: ['Buy', Validators.required], 
+      propertyType: ['Apartment', Validators.required],  
       location: [''],
       minPrice: [null, [Validators.min(0)]],
       maxPrice: [null, [Validators.min(0)]],
-      currency: [''],
+      currency: [this.isLanguageEnglish ? 'USD' : 'PLN', Validators.required],
       minArea: [null, [Validators.min(0)]],
       maxArea: [null, [Validators.min(0)]],
     });
   }
 
   ngOnInit() {
-    const currentLang = this.translate.currentLang; 
-    this.isCurrencyUSD = currentLang ? currentLang === 'en' : true;
-  
     if (this.initialCriteria) {
       this.searchForm.patchValue(this.initialCriteria);
     }
   
-    if (!this.searchForm.get('currency')?.value) {
-      this.searchForm.patchValue({ currency: this.isCurrencyUSD ? 'USD' : 'PLN' });
-    }
   
     this.translate.onLangChange.subscribe(() => {
       this.onLangChange(); 
@@ -75,8 +70,6 @@ export class SearchBarComponent implements OnInit {
     if (this.searchForm.valid) {
       const searchCriteria = this.searchForm.value;
       this.router.navigate(['/properties'], { queryParams: searchCriteria });
-    } else {
-      console.log('Invalid form input');
     }
   }
 
@@ -86,7 +79,7 @@ export class SearchBarComponent implements OnInit {
 
   onLangChange(): void {
     const currentLang = this.translate.currentLang;
-    this.isCurrencyUSD = currentLang === 'en';
-    this.searchForm.patchValue({ currency: this.isCurrencyUSD ? 'USD' : 'PLN' });
+    this.isLanguageEnglish = currentLang === 'en';
+    this.searchForm.patchValue({ currency: this.isLanguageEnglish ? 'USD' : 'PLN' });
   }
 }

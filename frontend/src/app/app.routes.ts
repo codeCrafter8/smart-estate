@@ -7,6 +7,7 @@ import { PropertyAdvertComponent } from './features/properties/components/proper
 import { MyAdvertsComponent } from './features/properties/components/my-adverts/my-adverts.component';
 import { PropertyDetailsComponent } from './features/properties/components/property-details/property-details.component';
 import { PropertyInquiriesComponent } from './features/properties/components/property-inquiries/property-inquiries.component';
+import { AdvertConfirmationComponent } from './features/properties/components/advert-confirmation/advert-confirmation.component';
 
 export const routes: Routes = [
     { path: '', component: HomepageComponent },
@@ -18,4 +19,5 @@ export const routes: Routes = [
     { path: 'my-adverts/edit/:propertyId', component: PropertyAdvertComponent },
     { path: 'properties/:propertyId', component: PropertyDetailsComponent },
     { path: 'my-adverts/inquiries/:id', component: PropertyInquiriesComponent },
+    { path: 'advert-confirmation', component: AdvertConfirmationComponent },
 ];

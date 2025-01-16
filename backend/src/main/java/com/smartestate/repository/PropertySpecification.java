@@ -2,6 +2,7 @@ package com.smartestate.repository;
 
 import com.smartestate.dto.PropertySearchCriteriaDto;
 import com.smartestate.model.Property;
+import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -17,34 +18,37 @@ public class PropertySpecification {
 
             if (criteria.location() != null && !criteria.location().isBlank()) {
                 String likePattern = likePattern(criteria.location());
+
+                Join<Object, Object> locationJoin = root.join("location");
                 Predicate locationPredicate = criteriaBuilder.or(
-                        criteriaBuilder.like(root.get("countryName"), likePattern),
-                        criteriaBuilder.like(root.get("locationName"), likePattern)
+                        criteriaBuilder.like(locationJoin.get("country"), likePattern),
+                        criteriaBuilder.like(locationJoin.get("address"), likePattern)
                 );
                 predicate = criteriaBuilder.and(predicate, locationPredicate);
             }
 
+            Join<Object, Object> priceJoin = root.join("price");
             if (criteria.minPrice() != null) {
                 predicate = criteriaBuilder.and(predicate,
-                        criteriaBuilder.greaterThanOrEqualTo(root.get("price"), criteria.minPrice()));
+                        criteriaBuilder.greaterThanOrEqualTo(priceJoin.get("amount"), criteria.minPrice()));
             }
             if (criteria.maxPrice() != null) {
                 predicate = criteriaBuilder.and(predicate,
-                        criteriaBuilder.lessThanOrEqualTo(root.get("price"), criteria.maxPrice()));
+                        criteriaBuilder.lessThanOrEqualTo(priceJoin.get("amount"), criteria.maxPrice()));
             }
 
             if (criteria.currency() != null && !criteria.currency().isBlank()) {
                 predicate = criteriaBuilder.and(predicate,
-                        criteriaBuilder.equal(root.get("currency"), criteria.currency()));
+                        criteriaBuilder.equal(priceJoin.get("currency"), criteria.currency()));
             }
 
             if (criteria.minArea() != null) {
                 predicate = criteriaBuilder.and(predicate,
-                        criteriaBuilder.greaterThanOrEqualTo(root.get("apartmentArea"), criteria.minArea()));
+                        criteriaBuilder.greaterThanOrEqualTo(root.get("area"), criteria.minArea()));
             }
             if (criteria.maxArea() != null) {
                 predicate = criteriaBuilder.and(predicate,
-                        criteriaBuilder.lessThanOrEqualTo(root.get("apartmentArea"), criteria.maxArea()));
+                        criteriaBuilder.lessThanOrEqualTo(root.get("area"), criteria.maxArea()));
             }
 
             return predicate;

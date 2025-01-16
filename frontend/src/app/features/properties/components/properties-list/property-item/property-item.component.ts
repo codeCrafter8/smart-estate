@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { Property } from '../../models/property.model';
+import { Property } from '../../../models/property.model';
 import { CommonModule } from '@angular/common';
-import { PropertyService } from '../../services/property.service';
+import { PropertyService } from '../../../services/property.service';
 import { RouterModule } from '@angular/router';
 
 @Component({

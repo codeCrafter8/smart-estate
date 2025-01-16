@@ -8,17 +8,17 @@ public record PropertyDto(
         String propertyType,
         String title,
         String description,
-        String countryName,
-        String locationName,
+        String country,
+        String address,
         Integer yearBuilt,
         Integer totalBuildingFloors,
         Integer apartmentFloor,
         Integer totalRooms,
         Integer totalBedrooms,
         Integer totalBathrooms,
-        BigDecimal price,
+        BigDecimal priceAmount,
         String currency,
-        BigDecimal apartmentArea,
+        BigDecimal area,
         List<Long> imageIds
 ) {
 }

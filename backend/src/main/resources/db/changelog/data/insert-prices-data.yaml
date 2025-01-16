@@ -1,0 +1,77 @@
+databaseChangeLog:
+  - changeSet:
+      id: 24
+      author: codeCrafter8
+      changes:
+        - insert:
+            tableName: prices
+            columns:
+              - column:
+                  name: amount
+                  value: 314990.0
+              - column:
+                  name: currency
+                  value: "USD"
+        - insert:
+            tableName: prices
+            columns:
+              - column:
+                  name: amount
+                  value: 274415.0
+              - column:
+                  name: currency
+                  value: "USD"
+        - insert:
+            tableName: prices
+            columns:
+              - column:
+                  name: amount
+                  value: 460092.0
+              - column:
+                  name: currency
+                  value: "USD"
+        - insert:
+            tableName: prices
+            columns:
+              - column:
+                  name: amount
+                  value: 163039.0
+              - column:
+                  name: currency
+                  value: "USD"
+        - insert:
+            tableName: prices
+            columns:
+              - column:
+                  name: amount
+                  value: 1521699.0
+              - column:
+                  name: currency
+                  value: "USD"
+        - insert:
+            tableName: prices
+            columns:
+              - column:
+                  name: amount
+                  value: 146816.0
+              - column:
+                  name: currency
+                  value: "USD"
+        - insert:
+            tableName: prices
+            columns:
+              - column:
+                  name: amount
+                  value: 1249967.0
+              - column:
+                  name: currency
+                  value: "USD"
+        - insert:
+            tableName: prices
+            columns:
+              - column:
+                  name: amount
+                  value: 2404508.0
+              - column:
+                  name: currency
+                  value: "USD"

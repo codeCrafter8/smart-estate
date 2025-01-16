@@ -20,12 +20,14 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 export class PropertyAdvertComponent implements OnInit {
   propertyForm: FormGroup;
   isGenerating = false;
-  errorMessage: string | null = null;
+  errorMessageGenerateDescription: string | null = null;
+  errorMessageSubmit: string | null = null;
   isEditMode = false;
   propertyId: number | null = null;
   images: Array<{ imageId: number | null; filePath: string; file: File | null } | null> = new Array(10).fill(null);
   deletedImages: number[] = [];
-  isCurrencyUSD: boolean = false;
+  isLanguageEnglish: boolean = false;
+  submitted: boolean = false;
 
   constructor(
     private fb: FormBuilder, 
@@ -36,17 +38,17 @@ export class PropertyAdvertComponent implements OnInit {
     this.propertyForm = this.fb.group({
       propertyType: ['', Validators.required],
       title: ['', Validators.required],
-      countryName: ['', Validators.required],
-      locationName: ['', Validators.required],
+      country: ['', Validators.required],
+      address: ['', Validators.required],
       yearBuilt: ['', [Validators.min(1800), Validators.max(new Date().getFullYear())]],
       totalBuildingFloors: ['', [Validators.min(1)]],
       apartmentFloor: ['', [Validators.min(0)]],
       totalRooms: ['', [Validators.min(1)]],
       totalBedrooms: ['', [Validators.min(0)]],
       totalBathrooms: ['', [Validators.min(0)]],
-      apartmentArea: ['', [Validators.required, Validators.min(1)]],
-      price: ['', [Validators.required, Validators.min(0)]],
-      currency: [this.isCurrencyUSD ? 'USD' : 'PLN'],
+      area: ['', [Validators.required, Validators.min(1)]],
+      priceAmount: ['', [Validators.required, Validators.min(0)]],
+      currency: [this.isLanguageEnglish ? 'USD' : 'PLN'],
       images: [null, this.imagesValidator],
       description: ['', Validators.required],
     });
@@ -59,8 +61,11 @@ export class PropertyAdvertComponent implements OnInit {
       this.isEditMode = true;
       this.loadPropertyData();
     }
-    const currentLang = this.translate.currentLang; 
-    this.isCurrencyUSD = currentLang ? currentLang === 'en' : true;
+    
+    this.isLanguageEnglish = (this.translate.currentLang || 'en') === 'en';
+    this.translate.onLangChange.subscribe(() => {
+      this.onLangChange(); 
+    });
   }
 
   loadPropertyData(): void {
@@ -122,13 +127,14 @@ export class PropertyAdvertComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
+    
     if (this.propertyForm.valid) {
       if (this.isEditMode && this.propertyId) {
         this.propertyService.updateProperty(this.propertyId, this.propertyForm.value).subscribe({
           next: (property: Property) => {
             this.deletedImages.forEach(imageId => {
               this.propertyService.deleteImage(imageId).subscribe({
-                next: () => console.log(`Image ${imageId} deleted successfully.`),
                 error: (err) => console.error(`Error deleting image ${imageId}`, err)
               });
             });
@@ -139,6 +145,7 @@ export class PropertyAdvertComponent implements OnInit {
             this.router.navigate(['/my-adverts']);
           },
           error: (err) => {
+            this.errorMessageSubmit = this.translate.instant('ERROR_SUBMIT_EDIT');
             console.error('Error updating property', err);
           }
         });
@@ -148,9 +155,14 @@ export class PropertyAdvertComponent implements OnInit {
               if (this.propertyForm.get('images')?.value) {
                 this.uploadImages(propertyId);
               }
-              this.router.navigate(['/properties']); 
+
+              const translatedMessage = this.translate.instant('ADVERT_ADDED_SUCCESS');
+              this.router.navigate(['/advert-confirmation'], {
+                queryParams: { message: translatedMessage }
+              });
             },
             error: (err) => {
+              this.errorMessageSubmit = this.translate.instant('ERROR_SUBMIT_ADD');
               console.error('Error adding property', err);
             }
           });
@@ -186,8 +198,11 @@ export class PropertyAdvertComponent implements OnInit {
   }
 
   generateDescription() {
+    this.errorMessageGenerateDescription = null;
     this.isGenerating = true; 
-    this.propertyService.generateDescription(this.propertyForm.value).subscribe({
+    const language = this.isLanguageEnglish ? 'en' : 'pl'; 
+
+    this.propertyService.generateDescription(this.propertyForm.value, language).subscribe({
         next: (response) => {
             const description = response.description;
             const sanitizedDescription = description.replace(/\*/g, '&#42;');
@@ -195,15 +210,14 @@ export class PropertyAdvertComponent implements OnInit {
             this.isGenerating = false; 
         },
         error: (err) => {
-            this.errorMessage = 'Failed to generate description. Please try again.';
-            console.error('Error generating description', err);
+            this.errorMessageGenerateDescription = this.translate.instant('ERROR_GENERATING_DESCRIPTION');
             this.isGenerating = false; 
         }
     });
   }
 
   get areRequiredFieldsFilled(): boolean {
-    const requiredFields = ['propertyType', 'title', 'countryName', 'locationName', 'apartmentArea', 'price'];
+    const requiredFields = ['propertyType', 'title', 'country', 'address', 'area', 'priceAmount'];
     return requiredFields.every(field => this.propertyForm.get(field)?.valid);
   }
 
@@ -217,5 +231,11 @@ export class PropertyAdvertComponent implements OnInit {
     return this.isEditMode
       ? this.translate.instant('UPDATE_PROPERTY')
       : this.translate.instant('ADD_PROPERTY');
+  }
+
+  onLangChange(): void {
+    const currentLang = this.translate.currentLang;
+    this.isLanguageEnglish = currentLang === 'en';
+    this.propertyForm.patchValue({ currency: this.isLanguageEnglish ? 'USD' : 'PLN' });
   }
 }

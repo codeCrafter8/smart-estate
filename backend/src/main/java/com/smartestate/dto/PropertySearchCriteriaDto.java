@@ -14,5 +14,3 @@ public record PropertySearchCriteriaDto(
     String currency
 ) {
 }
-
-

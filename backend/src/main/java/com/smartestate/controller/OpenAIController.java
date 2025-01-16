@@ -6,10 +6,7 @@ import com.smartestate.service.OpenAIService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -19,10 +16,12 @@ public class OpenAIController {
     private final OpenAIService openAIService;
 
     @PostMapping("/generate-description")
-    public ResponseEntity<DescriptionDto> generateDescription(@RequestBody PropertyRequestDto propertyRequestDto) {
-        log.info("Received request to generate description for property: {}", propertyRequestDto);
+    public ResponseEntity<DescriptionDto> generateDescription(
+            @RequestBody PropertyRequestDto propertyRequestDto,
+            @RequestParam(defaultValue = "en") String language) {
+        log.info("Received request to generate description for property: {} with language: {}", propertyRequestDto, language);
 
-        DescriptionDto description = openAIService.generateDescription(propertyRequestDto);
+        DescriptionDto description = openAIService.generateDescription(propertyRequestDto, language);
 
         log.info("Description generation completed.");
 

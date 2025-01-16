@@ -11,6 +11,10 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface PropertyMapper {
 
+    @Mapping(target = "country", source = "location.country")
+    @Mapping(target = "address", source = "location.address")
+    @Mapping(target = "priceAmount", source = "price.amount")
+    @Mapping(target = "currency", source = "price.currency")
     @Mapping(target = "imageIds", source = "images", qualifiedByName = "mapImagesToIds")
     PropertyDto toDto(Property property);
 
@@ -23,6 +27,5 @@ public interface PropertyMapper {
 
     Property toEntity(PropertyRequestDto propertyRequest);
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updatePropertyFromDto(PropertyRequestDto dto, @MappingTarget Property entity);
 }

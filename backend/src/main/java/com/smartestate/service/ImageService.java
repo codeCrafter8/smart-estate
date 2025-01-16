@@ -95,7 +95,7 @@ public class ImageService {
                 });
     }
 
-    public void deleteImageById(Long imageId) {
+    public void deleteImage(Long imageId) {
         Image image = getImageById(imageId);
 
         try {

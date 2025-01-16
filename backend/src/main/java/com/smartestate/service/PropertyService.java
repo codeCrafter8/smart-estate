@@ -4,11 +4,16 @@ import com.smartestate.dto.PropertyDto;
 import com.smartestate.dto.PropertyRequestDto;
 import com.smartestate.dto.PropertySearchCriteriaDto;
 import com.smartestate.exception.ResourceNotFoundException;
+import com.smartestate.mapper.LocationMapper;
+import com.smartestate.mapper.PriceMapper;
 import com.smartestate.mapper.PropertyMapper;
+import com.smartestate.model.Location;
+import com.smartestate.model.Price;
 import com.smartestate.model.Property;
 import com.smartestate.model.User;
 import com.smartestate.repository.PropertyRepository;
 import com.smartestate.repository.PropertySpecification;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.Specification;
@@ -24,6 +29,10 @@ public class PropertyService {
     private final PropertyRepository propertyRepository;
     private final PropertyMapper propertyMapper;
     private final UserService userService;
+    private final LocationService locationService;
+    private final LocationMapper locationMapper;
+    private final PriceService priceService;
+    private final PriceMapper priceMapper;
 
     public List<PropertyDto> searchProperties(PropertySearchCriteriaDto criteria) {
         log.info("Searching properties with criteria: {}", criteria);
@@ -38,6 +47,7 @@ public class PropertyService {
                 .toList();
     }
 
+    @Transactional
     public Long addProperty(PropertyRequestDto propertyRequest, Principal principal) {
         String userEmail = principal.getName();
         log.info("Adding property for user: {}", userEmail);
@@ -46,6 +56,12 @@ public class PropertyService {
 
         Property property = propertyMapper.toEntity(propertyRequest);
         property.setUser(user);
+
+        Location location = locationService.addLocation(propertyRequest.address(), propertyRequest.country());
+        property.setLocation(location);
+
+        Price price = priceService.addPrice(propertyRequest.priceAmount(), propertyRequest.currency());
+        property.setPrice(price);
 
         Property savedProperty = propertyRepository.save(property);
 
@@ -78,10 +94,12 @@ public class PropertyService {
                 .toList();
     }
 
-    public PropertyDto updateProperty(Long propertyId, PropertyRequestDto propertyRequestDto) {
+    public PropertyDto updateProperty(Long propertyId, PropertyRequestDto propertyRequest) {
         Property existingProperty = getPropertyById(propertyId);
 
-        propertyMapper.updatePropertyFromDto(propertyRequestDto, existingProperty);
+        propertyMapper.updatePropertyFromDto(propertyRequest, existingProperty);
+        locationMapper.updateLocationFromDto(propertyRequest, existingProperty.getLocation());
+        priceMapper.updatePriceFromDto(propertyRequest, existingProperty.getPrice());
 
         Property updatedProperty = propertyRepository.save(existingProperty);
 
@@ -90,8 +108,16 @@ public class PropertyService {
         return propertyMapper.toDto(updatedProperty);
     }
 
-    public PropertyDto getPropertyByIdDto(Long propertyId) {
+    public PropertyDto getPropertyDtoById(Long propertyId) {
         Property property = getPropertyById(propertyId);
         return propertyMapper.toDto(property);
+    }
+
+    public void deleteProperty(Long propertyId) {
+        Property property = getPropertyById(propertyId);
+
+        propertyRepository.delete(property);
+
+        log.info("Property with id {} deleted successfully", propertyId);
     }
 }

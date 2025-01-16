@@ -23,8 +23,12 @@ $header-border-color: #e7e7e7;
     }
 
     app-navbar {
-      width: 53%;
-      margin-left: 380px;
+      width: 70%;
+      margin-left: 370px;
+
+      &.navbar-pl {
+        margin-left: 310px;
+      }
     }
 
     app-language-switcher {

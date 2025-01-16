@@ -1,0 +1,30 @@
+@import '../../../../../variables.scss';
+
+.confirmation-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh; 
+    text-align: center;
+  
+    h2 {
+      color: $btn-primary-hover-bg-color;
+      margin-bottom: 20px;
+    }
+  
+    button {
+      background-color: $btn-primary-bg-color;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+  
+      &:hover {
+        background-color: $btn-primary-hover-bg-color;
+      }
+    }
+}
+  
