@@ -99,6 +99,10 @@
     "ERROR_GENERATING_DESCRIPTION": "Failed to generate description. Please try again.",
     "INQUIRY_SUBMITTED": "Your inquiry has been successfully submitted!",
     "PHONE_OR_EMAIL_REQUIRED": "You must provide phone number or email address.",
-    "SOMETHING_WENT_WRONG": "Something went wrong. Please try again."
+    "SOMETHING_WENT_WRONG": "Something went wrong. Please try again.",
+    "GO_TO_MY_ADVERTS": "Go to my adverts",
+    "ADVERT_ADDED_SUCCESS": "Advert added successfully!",
+    "ERROR_SUBMIT_ADD": "An error occurred while adding advert. Please try again.",
+    "ERROR_SUBMIT_EDIT": "An error occurred while updating advert. Please try again."
 }
   

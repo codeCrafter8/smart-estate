@@ -5,13 +5,10 @@ import { provideHttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule, TranslateService, TranslateStore } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { Property } from '../../models/property.model';
-import { MatDialogRef } from '@angular/material/dialog';
 
 class MockTranslateLoader implements TranslateLoader {
   getTranslation(lang: string): Observable<any> {
-    return of({ key: 'value' }); 
+    return of({ key: 'value' });
   }
 }
 
@@ -31,8 +28,8 @@ describe('MyAdvertsComponent', () => {
         },
       }),],
       providers: [
-        provideHttpClient(), 
-        TranslateService, 
+        provideHttpClient(),
+        TranslateService,
         TranslateStore,
         { provide: Router, useValue: { navigate: jasmine.createSpy('navigate') } },
       ]
@@ -49,10 +46,10 @@ describe('MyAdvertsComponent', () => {
   });
 
   it('should navigate to edit property route', () => {
-    const propertyId = 1; 
+    const propertyId = 1;
 
-    component.navigateToEditProperty(propertyId); 
+    component.navigateToEditProperty(propertyId);
 
     expect(router.navigate).toHaveBeenCalledWith(['/my-adverts/edit', propertyId]);
-  });  
+  });
 });

@@ -20,7 +20,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 export class PropertyAdvertComponent implements OnInit {
   propertyForm: FormGroup;
   isGenerating = false;
-  errorMessage: string | null = null;
+  errorMessageGenerateDescription: string | null = null;
+  errorMessageSubmit: string | null = null;
   isEditMode = false;
   propertyId: number | null = null;
   images: Array<{ imageId: number | null; filePath: string; file: File | null } | null> = new Array(10).fill(null);
@@ -144,6 +145,7 @@ export class PropertyAdvertComponent implements OnInit {
             this.router.navigate(['/my-adverts']);
           },
           error: (err) => {
+            this.errorMessageSubmit = this.translate.instant('ERROR_SUBMIT_EDIT');
             console.error('Error updating property', err);
           }
         });
@@ -153,9 +155,14 @@ export class PropertyAdvertComponent implements OnInit {
               if (this.propertyForm.get('images')?.value) {
                 this.uploadImages(propertyId);
               }
-              this.router.navigate(['/properties']); 
+
+              const translatedMessage = this.translate.instant('ADVERT_ADDED_SUCCESS');
+              this.router.navigate(['/advert-confirmation'], {
+                queryParams: { message: translatedMessage }
+              });
             },
             error: (err) => {
+              this.errorMessageSubmit = this.translate.instant('ERROR_SUBMIT_ADD');
               console.error('Error adding property', err);
             }
           });
@@ -191,7 +198,7 @@ export class PropertyAdvertComponent implements OnInit {
   }
 
   generateDescription() {
-    this.errorMessage = null;
+    this.errorMessageGenerateDescription = null;
     this.isGenerating = true; 
     const language = this.isLanguageEnglish ? 'en' : 'pl'; 
 
@@ -203,7 +210,7 @@ export class PropertyAdvertComponent implements OnInit {
             this.isGenerating = false; 
         },
         error: (err) => {
-            this.errorMessage = this.translate.instant('ERROR_GENERATING_DESCRIPTION');
+            this.errorMessageGenerateDescription = this.translate.instant('ERROR_GENERATING_DESCRIPTION');
             this.isGenerating = false; 
         }
     });
